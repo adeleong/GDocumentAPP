@@ -11,7 +11,8 @@ namespace GDocumentAPP.Context
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class EMPLEADO
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,15 +22,45 @@ namespace GDocumentAPP.Context
         }
     
         public int EMPLEADO_ID { get; set; }
+
+        [Required(ErrorMessage = "La Persona es requerida")]
+        [Display(Name = "Persona", Description = "Nombre + Identificación")]
         public int PERSONA_ID { get; set; }
+
+        [Required(ErrorMessage = "El Supervisor es requerido")]
+        [Display(Name = "Supervisor")]
         public string SUPERVISOR { get; set; }
+
+        [Required(ErrorMessage = "La Dependencia es requerida")]
+        [Display(Name = "Dependencia", Description = "Nombre + Identificación")]
         public int DEPENDENCIA_ID { get; set; }
+
+        [Required(ErrorMessage = "El Puesto es requerido")]
+        [Display(Name = "Puesto")]
         public string PUESTO { get; set; }
+
+        [Required(ErrorMessage = "La Fecha Ingreso es requerida")]
+        [Display(Name = "Fecha Ingreso")]
         public System.DateTime FECHA_INGRESO { get; set; }
+
+        [Required(ErrorMessage = "El Sueldo es requerida")]
+        [Display(Name = "Sueldo", Description = "Nombre + Identificación")]
         public decimal SUELDO { get; set; }
+
+        [Required(ErrorMessage = "El Banco es requerido")]
+        [Display(Name = "Banco")]
         public string BANCO { get; set; }
+
+        [Required(ErrorMessage = "La Cuenta Bancaria es requerida")]
+        [Display(Name = "Cuenta Bancaria")]
         public string CUENTABANCARIA { get; set; }
+
+        [Required(ErrorMessage = "La Empresa es requerida")]
+        [Display(Name = "Empresa")]
         public string EMPRESA { get; set; }
+
+        [Required(ErrorMessage = "El Estatus es requerido")]
+        [Display(Name = "Estatus")]
         public int ESTATUS_ID { get; set; }
     
         public virtual DEPENDENCIA DEPENDENCIA { get; set; }
