@@ -1,0 +1,87 @@
+﻿@model IEnumerable<GDocumentAPP.Context.EMPLEADO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SUPERVISOR)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PUESTO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FECHA_INGRESO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SUELDO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BANCO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CUENTABANCARIA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EMPRESA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DEPENDENCIA.DEPENDENCIA_NOMBRE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ESTATU.DESCRIPCION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PERSONA.NOMBRE)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SUPERVISOR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PUESTO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FECHA_INGRESO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SUELDO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BANCO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CUENTABANCARIA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMPRESA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DEPENDENCIA.DEPENDENCIA_NOMBRE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ESTATU.DESCRIPCION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PERSONA.NOMBRE)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EMPLEADO_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EMPLEADO_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EMPLEADO_ID })
+        </td>
+    </tr>
+}
+
+</table>

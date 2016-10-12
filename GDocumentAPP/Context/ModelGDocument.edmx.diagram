@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9ea1e83339c54269ae8851fe2e337c4f" Name="Diagram1">
+        <EntityTypeShape EntityType="GDocumentDBModel.DEPENDENCIA" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GDocumentDBModel.DOCUMENTO" Width="1.5" PointX="5.25" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GDocumentDBModel.DOCUMENTO_INDEXACION" Width="1.5" PointX="7.5" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GDocumentDBModel.EMPLEADO" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GDocumentDBModel.ESTATU" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GDocumentDBModel.PERSONA" Width="1.5" PointX="0.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GDocumentDBModel.RASTREO_EXPEDIENTE" Width="1.5" PointX="5.25" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GDocumentDBModel.ROL" Width="1.5" PointX="6" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GDocumentDBModel.TELEFONO" Width="1.5" PointX="3" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GDocumentDBModel.TIPO_DOCUMENTO" Width="1.5" PointX="5.25" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GDocumentDBModel.USUARIO" Width="1.75" PointX="3" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GDocumentDBModel.USUARIO_ROL" Width="1.5" PointX="8.25" PointY="17.25" IsExpanded="true" />
+        <AssociationConnector Association="GDocumentDBModel.FK_EMPLEADO_DEPENDENCIA" ManuallyRouted="false" />
+        <AssociationConnector Association="GDocumentDBModel.FK_RASTREO__DEPENDENCIA" ManuallyRouted="false" />
+        <AssociationConnector Association="GDocumentDBModel.FK_DOCINDEXACION_DOCUMENTO" ManuallyRouted="false" />
+        <AssociationConnector Association="GDocumentDBModel.FK_DOCUMENTO_EMPLEADO" ManuallyRouted="false" />
+        <AssociationConnector Association="GDocumentDBModel.FK_DOCUMENTO_ESTATUS" ManuallyRouted="false" />
+        <AssociationConnector Association="GDocumentDBModel.FK_DOCUMENTO_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="GDocumentDBModel.FK_DOCUMENTOINDEX_TIPO_DOC" ManuallyRouted="false" />
+        <AssociationConnector Association="GDocumentDBModel.FK_DOCUMENTOINDEX_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="GDocumentDBModel.FK_EMPLEADO_ESTATUS" ManuallyRouted="false" />
+        <AssociationConnector Association="GDocumentDBModel.FK_EMPLEADO_PERSONA" ManuallyRouted="false" />
+        <AssociationConnector Association="GDocumentDBModel.FK_USUARIO_ESTATUS" ManuallyRouted="false" />
+        <AssociationConnector Association="GDocumentDBModel.FK_TELEFONO_PERSONA" ManuallyRouted="false" />
+        <AssociationConnector Association="GDocumentDBModel.FK_RASTREO_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="GDocumentDBModel.FK_USUARIO_ROL" ManuallyRouted="false" />
+        <AssociationConnector Association="GDocumentDBModel.FK_USUARIOROL_USUARIO" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

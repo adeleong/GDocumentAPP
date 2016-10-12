@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GDocumentAPP", "GDocumentAPP\GDocumentAPP.csproj", "{CC8610AB-8DE9-4C4F-B2AB-D89863F15D68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GDocumentAPP.Tests", "GDocumentAPP.Tests\GDocumentAPP.Tests.csproj", "{7E25AE87-D725-4D90-BA42-CE2458A37C1D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC8610AB-8DE9-4C4F-B2AB-D89863F15D68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC8610AB-8DE9-4C4F-B2AB-D89863F15D68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC8610AB-8DE9-4C4F-B2AB-D89863F15D68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC8610AB-8DE9-4C4F-B2AB-D89863F15D68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E25AE87-D725-4D90-BA42-CE2458A37C1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E25AE87-D725-4D90-BA42-CE2458A37C1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E25AE87-D725-4D90-BA42-CE2458A37C1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E25AE87-D725-4D90-BA42-CE2458A37C1D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

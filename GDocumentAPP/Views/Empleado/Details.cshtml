@@ -1,0 +1,98 @@
+﻿@model GDocumentAPP.Context.EMPLEADO
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>EMPLEADO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SUPERVISOR)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SUPERVISOR)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PUESTO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PUESTO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FECHA_INGRESO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHA_INGRESO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SUELDO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SUELDO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BANCO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BANCO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CUENTABANCARIA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CUENTABANCARIA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMPRESA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMPRESA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DEPENDENCIA.DEPENDENCIA_NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DEPENDENCIA.DEPENDENCIA_NOMBRE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ESTATU.DESCRIPCION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ESTATU.DESCRIPCION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PERSONA.NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PERSONA.NOMBRE)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EMPLEADO_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
