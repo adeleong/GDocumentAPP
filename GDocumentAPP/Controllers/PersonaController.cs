@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 using GDocumentAPP.Context;
 
 namespace GDocumentAPP.Controllers
@@ -15,9 +16,13 @@ namespace GDocumentAPP.Controllers
         private GDocumentDBEntities db = new GDocumentDBEntities();
 
         // GET: Persona
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(db.PERSONAs.ToList());
+
+            int pageSize = 8;
+            int pageNumber = (page ?? 1);
+            return View(db.PERSONAs.ToList().ToPagedList(pageNumber, pageSize));
+           
         }
 
         // GET: Persona/Details/5

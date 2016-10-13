@@ -1,10 +1,15 @@
-﻿@model IEnumerable<GDocumentAPP.Context.PERSONA>
+﻿@using PagedList.Mvc;
+@using PagedList;
+
+@model PagedList.IPagedList<GDocumentAPP.Context.PERSONA>
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Persona";
 }
 
-<h2>Listado de Persona</h2>
+<h3>Listado de Persona</h3>
 
 <p>
     @Html.ActionLink("Crear Persona", "Create",null, new { @class = "btn btn-primary" })
@@ -17,22 +22,22 @@
                 Nombre
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PRIMER_APELLIDO)
+                @Html.DisplayNameFor(model => model.First().PRIMER_APELLIDO)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SEGUNDO_APELLIDO)
+                @Html.DisplayNameFor(model => model.First().SEGUNDO_APELLIDO)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TIPO_IDENTIFICACION)
+                @Html.DisplayNameFor(model => model.First().TIPO_IDENTIFICACION)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IDENTIFICACION)
+                @Html.DisplayNameFor(model => model.First().IDENTIFICACION)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SEXO)
+                @Html.DisplayNameFor(model => model.First().SEXO)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EMAIL)
+                @Html.DisplayNameFor(model => model.First().EMAIL)
             </th>
             <th colspan="3"></th>
         </tr>
@@ -62,16 +67,17 @@
                     @Html.DisplayFor(modelItem => item.EMAIL)
                 </td>
                 <td>
-                    @Html.ActionLink("Editar", "Edit", new { id = item.PERSONA_ID }, new { @class = "btn btn-default" })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.PERSONA_ID }, new { @class = "btn btn-default btn-sm" })
                 </td>
                 <td>
-                    @Html.ActionLink("Detalle", "Details", new { id = item.PERSONA_ID }, new { @class = " btn btn-info" })
+                    @Html.ActionLink("Detalle", "Details", new { id = item.PERSONA_ID }, new { @class = " btn btn-info btn-sm" })
                 </td>
                 <td>
-                    @Html.ActionLink("Eliminar", "Delete", new { id = item.PERSONA_ID }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.PERSONA_ID }, new { @class = "btn btn-danger btn-sm" })
                 </td>
             </tr>
         }
 
     </table>
 </div>
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

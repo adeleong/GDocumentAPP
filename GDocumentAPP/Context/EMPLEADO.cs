@@ -41,6 +41,8 @@ namespace GDocumentAPP.Context
 
         [Required(ErrorMessage = "La Fecha Ingreso es requerida")]
         [Display(Name = "Fecha Ingreso")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime FECHA_INGRESO { get; set; }
 
         [Required(ErrorMessage = "El Sueldo es requerida")]
