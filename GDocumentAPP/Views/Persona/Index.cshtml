@@ -3,6 +3,7 @@
 
 @model PagedList.IPagedList<GDocumentAPP.Context.PERSONA>
 
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
@@ -14,6 +15,23 @@
 <p>
     @Html.ActionLink("Crear Persona", "Create",null, new { @class = "btn btn-primary" })
 </p>
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="input-group">
+                <input type="text" class="form-control" name="SearchString" maxlength="150">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
+            </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+    </div><!-- /.row -->
+    <p></p>
+}
 
 <div class="table-responsive">
     <table class="table table-striped">
