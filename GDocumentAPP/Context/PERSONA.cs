@@ -44,10 +44,11 @@ namespace GDocumentAPP.Context
         public string IDENTIFICACION { get; set; }
 
         [Required(ErrorMessage = "El Sexo es requerido")]
-        [Display(Name = "Sexo", Description = "xxxxx")]
+        [Display(Name = "Sexo")]
         public string SEXO { get; set; }
 
-        [Display(Name = "Correo", Description = "xxxxx")]
+        [Display(Name = "Correo")]
+        [EmailAddress]
         public string EMAIL { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
