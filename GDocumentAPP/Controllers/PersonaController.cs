@@ -16,13 +16,25 @@ namespace GDocumentAPP.Controllers
         private GDocumentDBEntities db = new GDocumentDBEntities();
 
         // GET: Persona
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, string searchString)
         {
 
             int pageSize = 8;
             int pageNumber = (page ?? 1);
-            return View(db.PERSONAs.ToList().ToPagedList(pageNumber, pageSize));
-           
+
+            var personas = from s in db.PERSONAs
+                           select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                personas = personas.Where(s => s.NOMBRE.Contains(searchString)
+                                            || s.PRIMER_APELLIDO.Contains(searchString)
+                                            || s.IDENTIFICACION.Equals(searchString) );
+            }
+
+           // return View(db.PERSONAs.ToList().ToPagedList(pageNumber, pageSize));
+            return View(personas.ToList().ToPagedList(pageNumber, pageSize));
+
         }
 
         // GET: Persona/Details/5
