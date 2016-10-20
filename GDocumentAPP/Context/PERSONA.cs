@@ -24,23 +24,23 @@ namespace GDocumentAPP.Context
         public int PERSONA_ID { get; set; }
 
         [Required(ErrorMessage = "El nombre es requerido")]
-        [Display(Name = "Nombre Completo", Description = "xxxxx")]
+        [Display(Name = "Nombre Completo")]
         public string NOMBRE { get; set; }
 
         [Required(ErrorMessage = "El Primer Apellido es requerido")]
-        [Display(Name = "Primer Apellido", Description = "xxxxx")]
+        [Display(Name = "Primer Apellido")]
         public string PRIMER_APELLIDO { get; set; }
 
         [Required(ErrorMessage = "El Segundo Apellido es requerido")]
-        [Display(Name = "Segundo Apellido", Description = "xxxxx")]
+        [Display(Name = "Segundo Apellido")]
         public string SEGUNDO_APELLIDO { get; set; }
 
         [Required(ErrorMessage = "El Tipo Identificacion es requerido")]
-        [Display(Name = "Tipo Identificacion", Description = "xxxxx")]
+        [Display(Name = "Tipo Identificacion")]
         public string TIPO_IDENTIFICACION { get; set; }
 
         [Required(ErrorMessage = "La Identificacion  es requerido")]
-        [Display(Name = "Identificacion", Description = "xxxxx")]
+        [Display(Name = "Identificacion")]
         public string IDENTIFICACION { get; set; }
 
         [Required(ErrorMessage = "El Sexo es requerido")]
