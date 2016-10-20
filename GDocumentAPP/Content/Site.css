@@ -20,5 +20,11 @@
 input,
 select,
 textarea {
-    max-width: 680px;
+    max-width: 280px;
 }
+
+
+#search {
+    max-width:100%;
+}
+

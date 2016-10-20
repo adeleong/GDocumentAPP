@@ -19,7 +19,7 @@ namespace GDocumentAPP.Controllers
         public ActionResult Index(int? page, string searchString)
         {
 
-            int pageSize = 8;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
 
             var personas = from s in db.PERSONAs
