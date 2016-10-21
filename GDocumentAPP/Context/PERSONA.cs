@@ -12,6 +12,7 @@ namespace GDocumentAPP.Context
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
     public partial class PERSONA
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -25,22 +26,28 @@ namespace GDocumentAPP.Context
 
         [Required(ErrorMessage = "El nombre es requerido")]
         [Display(Name = "Nombre Completo")]
+        [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$", ErrorMessage = "Numeros y Caracteres especiales no son permitido en el Nombre.")]
         public string NOMBRE { get; set; }
 
         [Required(ErrorMessage = "El Primer Apellido es requerido")]
         [Display(Name = "Primer Apellido")]
+        [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$", ErrorMessage = "Numeros y Caracteres especiales no son permitido en el Primer Apellido.")]
         public string PRIMER_APELLIDO { get; set; }
 
-        [Required(ErrorMessage = "El Segundo Apellido es requerido")]
+        [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$", ErrorMessage = "Numeros y Caracteres especiales no son permitido en el Segundo Apellido.")]
         [Display(Name = "Segundo Apellido")]
         public string SEGUNDO_APELLIDO { get; set; }
 
-        [Required(ErrorMessage = "El Tipo Identificacion es requerido")]
-        [Display(Name = "Tipo Identificacion")]
+       
+
+        [Required(ErrorMessage = "El Tipo Identificación es requerido")]
+        [Display(Name = "Tipo Identificación")]
+        // public string TIPO_IDENTIFICACION { get; set; }
         public string TIPO_IDENTIFICACION { get; set; }
 
-        [Required(ErrorMessage = "La Identificacion  es requerido")]
-        [Display(Name = "Identificacion")]
+        [Required(ErrorMessage = "La Identificación  es requerido")]
+        [Display(Name = "Identificación")]
+        [StringLength(16, MinimumLength = 11, ErrorMessage = "La longitud debe ser entre 11 y 16 .")]
         public string IDENTIFICACION { get; set; }
 
         [Required(ErrorMessage = "El Sexo es requerido")]
@@ -48,7 +55,7 @@ namespace GDocumentAPP.Context
         public string SEXO { get; set; }
 
         [Display(Name = "Correo")]
-        [EmailAddress]
+        [EmailAddress(ErrorMessage = "El Correo es Invalido")]
         public string EMAIL { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -56,4 +63,6 @@ namespace GDocumentAPP.Context
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TELEFONO> TELEFONOes { get; set; }
     }
+
+   
 }

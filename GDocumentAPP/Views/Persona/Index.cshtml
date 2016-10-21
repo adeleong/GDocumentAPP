@@ -57,7 +57,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.First().EMAIL)
             </th>
-            <th colspan="3">Operaciones</th>
+            <th colspan="3"></th>
         </tr>
 
         @foreach (var item in Model)
@@ -79,21 +79,22 @@
                     @Html.DisplayFor(modelItem => item.IDENTIFICACION)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.SEXO)
+                     @{ var sexo = item.SEXO == "M" ? "Masculino" : "Femenino";} 
+                   <p>@sexo</p> 
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.EMAIL)
                 </td>
                 <td>
-                    @Html.ActionLink(" ", "Edit", new { id = item.PERSONA_ID }, new { @class = "btn btn-default btn-md  glyphicon glyphicon-pencil ",
+                    @Html.ActionLink(" ", "Edit", new { id = item.PERSONA_ID }, new { @class = " btn btn-default btn-md glyphicon glyphicon-pencil ",
                                                                                       @title = "Editar" })
                 </td>
                 <td>
-                    @Html.ActionLink(" ", "Details", new { id = item.PERSONA_ID }, new { @class = " btn btn-info btn-md  glyphicon glyphicon-eye-open" ,
-                                                                                         @title = "Detalle" })
+                    @Html.ActionLink(" ", "Details", new { id = item.PERSONA_ID }, new { @class = " btn btn-default btn-md  glyphicon glyphicon-eye-open",
+                   @title = "Detalle" })
                 </td>
                 <td>
-                    @Html.ActionLink(" ", "Delete", new { id = item.PERSONA_ID }, new { @class = "btn btn-danger btn-md  glyphicon glyphicon-minus-sign",
+                    @Html.ActionLink(" ", "Delete", new { id = item.PERSONA_ID }, new { @class = " label label-default  glyphicon glyphicon-remove",
                                                                                         @title = "Eliminar" })
                 </td>
             </tr>
