@@ -1,0 +1,81 @@
+﻿@model IEnumerable<GDocumentAPP.Context.DOCUMENTO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CANAL_GENERACION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DOCUMENTO_DATA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FECHA_CREACION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EXTENSION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SIZE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NOMBRE_DOCUMENTO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EMPLEADO.SUPERVISOR)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ESTATU.DESCRIPCION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.USUARIO.LOGIN)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CANAL_GENERACION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DOCUMENTO_DATA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FECHA_CREACION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EXTENSION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SIZE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOMBRE_DOCUMENTO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMPLEADO.SUPERVISOR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ESTATU.DESCRIPCION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.USUARIO.LOGIN)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.DOCUMENTO_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.DOCUMENTO_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.DOCUMENTO_ID })
+        </td>
+    </tr>
+}
+
+</table>
