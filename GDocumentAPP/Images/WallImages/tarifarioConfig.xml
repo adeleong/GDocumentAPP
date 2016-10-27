@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tarifarios ruta_padre=".">
+  <tarifario tipo="img" ruta="images/Certificados-Financieros.jpg" orden="3" />
+  <tarifario tipo="img" ruta="images/Banner Sucursal - Incentivo LBTR.jpg" orden="23" />
+  <tarifario tipo="img" ruta="images/Tarifario-Captacion1.jpg" orden="24" />
+  <tarifario tipo="img" ruta="images/Tarifario-Captacion2.jpg" orden="25" />
+  <tarifario tipo="img" ruta="images/Tarifario-Captacion3.jpg" orden="26" />
+  <tarifario tipo="img" ruta="images/Tarifario-Captacion6.jpg" orden="27" />
+  <tarifario tipo="img" ruta="images/Tarifario-Captacion4.jpg" orden="28" />
+  <tarifario tipo="img" ruta="images/Tarifario-Captacion7.jpg" orden="30" />
+  <tarifario tipo="img" ruta="images/PANTALLA-CAMBIO-TARIFA.JPG" orden="31" />
+  <tarifario tipo="img" ruta="images/Tarifario Sucursales-LBTR.JPG" orden="32" />
+  <tarifario tipo="img" ruta="images/SuperCuenta.jpg" orden="33" />
+  <tarifario tipo="img" ruta="images/Tarifario-TC1.jpg" orden="34" />
+  <tarifario tipo="img" ruta="images/Tarifario-TC2.jpg" orden="35" />
+  <tarifario tipo="img" ruta="images/Tarifario-TC3.jpg" orden="36" />
+  <tarifario tipo="img" ruta="images/Tarifario-TC4.jpg" orden="37" />
+  <tarifario tipo="img" ruta="images/Tarifario-TC5.jpg" orden="38" />
+  <tarifario tipo="img" ruta="images/Tarifario-TC6.jpg" orden="39" />
+  <tarifario tipo="img" ruta="images/MultiCuenta.jpg" orden="40" />
+  <tarifario tipo="img" ruta="images/Pagos de Servicios-Pantallas.jpg" orden="41" />
+  <tarifario tipo="img" ruta="images/Tarifario-TC8.jpg" orden="42" />
+  <tarifario tipo="img" ruta="images/Tarifario-TC7.jpg" orden="43" />
+  <tarifario tipo="img" ruta="images/Tarifario-TC9.jpg" orden="44" />
+  <tarifario tipo="img" ruta="images/BHD-LEÓN_CeroComision_tarifario-sucursales.jpg" orden="45" />
+  <tarifario tipo="img" ruta="images/BHD-LEÓN_Concentradoras_tarifario-sucursales.png" orden="46" />
+  <tarifario tipo="img" ruta="images/BHD-LEÓN_PremiumEmpresarial_tarifario-sucursales.png" orden="47" />
+  <tarifario tipo="img" ruta="images/Tarifario-Captacion5.jpg" orden="48" />
+</tarifarios>

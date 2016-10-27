@@ -1,8 +1,129 @@
 ﻿@model IEnumerable<GDocumentAPP.Context.DOCUMENTO>
 
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Documentos";
 }
+
+<h2>Imágenes</h2>
+
+<div class="jumbotron">
+    <form action="~/Home/SaveUploadedFile" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneForm">
+        <div class="fallback">
+            <input name="file" id="test" type="file" multiple accept='image/*' />
+            <input type="submit" value="Upload" />
+        </div>
+    </form>
+</div>
+
+
+@section Scripts
+{
+    <script type="text/javascript">
+
+        Dropzone.options.dropzoneForm = {
+            acceptedFiles: "image/*",
+            maxFiles: 10,
+            parallelUploads: 3,
+            dictDefaultMessage: "Soltar los archivos o haga click aquí para cargar.",
+            init: function () {
+
+                this.on("maxfilesexceeded", function (data) {
+                    var res = eval('(' + data.xhr.responseText + ')');
+
+                });
+
+                var thisDropzone = this;
+                var pathImage;
+
+                $.getJSON("/Documento/GetAttachments/").done(function (data) {
+                    if (data.Data != '') {
+
+                        $.each(data.Data, function (index, item) {
+                                //// Create the mock file:
+
+                                var mockFile = {
+                                    name: item.fileName,
+                                    size: 1214,
+                                };
+
+                                // Call the default addedfile event handler
+                                thisDropzone.emit("addedfile", mockFile);
+
+                                pathImage = item.attributeRuta;
+                                // And optionally show the thumbnail of the file:
+                                thisDropzone.emit("thumbnail", mockFile, item.pathImage);
+
+                        });
+                    }
+
+                });
+
+                this.on("addedfile", function (file) {
+
+                    var removeButton = Dropzone.createElement("<button type=\"button\" class=\"btn btn-danger btn-xs\">Eliminar</button>");
+                    var downloadButton = Dropzone.createElement("<button type=\"button\" class=\"btn btn-primary btn-xs\">Visualizar</button>");
+                    var separator = Dropzone.createElement("<a> <a/>");
+                        // Capture the Dropzone instance as closure.
+                        var _this = this;
+
+                        // Listen to the click event
+                        removeButton.addEventListener("click", function (e) {
+                            // Make sure the button click doesn't submit the form:
+
+                            e.preventDefault();
+                            e.stopPropagation();
+                            var confirmAction = false;
+                            // Remove the file preview.
+
+                            bootbox.confirm({
+                                size: 'small',
+                                message: "Eliminará la Imágen " + file.name + "  del Tarifario?",
+                                callback: function (result) {
+                                    if (result) {
+                                        _this.removeFile(file);
+
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "/Documento/DeleteFile/",
+                                            data: JSON.stringify({ fileName: file.name }),
+                                            contentType: "application/json; charset=utf-8",
+                                            dataType: "json",
+                                            // success: OnSuccess,
+                                            failure: function (response) {
+                                                alert(response.d);
+                                            }
+                                        });
+                                    }
+
+                                }
+                            })
+
+                        });
+
+                        downloadButton.addEventListener("click", function (e) {
+                            location.reload();
+                            window.open(pathImage + file.name);
+                        });
+
+                        file.previewElement.appendChild(removeButton);
+                        file.previewElement.appendChild(separator);
+                        file.previewElement.appendChild(downloadButton);
+
+                });
+
+            }
+
+        };
+
+
+    </script>
+}
+
+
+
+
+
 
 <h2>Index</h2>
 
