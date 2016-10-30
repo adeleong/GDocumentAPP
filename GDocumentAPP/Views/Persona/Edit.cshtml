@@ -47,14 +47,14 @@
                 @{
                     List<SelectListItem> listaTipoIdent = new List<SelectListItem>();
 
-                    SelectListItem cedula = new SelectListItem() { Text = "Cedula", Value = "C" };
+                    SelectListItem cedula = new SelectListItem() { Text = "Cédula", Value = "C" };
                     SelectListItem pasaporte = new SelectListItem() { Text = "Pasaporte", Value = "P" };
                     listaTipoIdent.Add(cedula);
                     listaTipoIdent.Add(pasaporte);
 
                 }
 
-                @Html.DropDownListFor(model => model.TIPO_IDENTIFICACION, listaTipoIdent, "Seleccionar...", new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.TIPO_IDENTIFICACION, listaTipoIdent, "<Seleccione>", new { @class = "form-control" })
 
 
                 @Html.ValidationMessageFor(model => model.TIPO_IDENTIFICACION, "", new { @class = "text-danger" })

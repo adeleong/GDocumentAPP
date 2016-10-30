@@ -73,7 +73,8 @@
                     @Html.DisplayFor(modelItem => item.SEGUNDO_APELLIDO)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TIPO_IDENTIFICACION)
+                    @{ var tipoIdentificacion = item.TIPO_IDENTIFICACION == "C" ? "Cédula" : "Pasaporte";}
+                    <p>@tipoIdentificacion</p>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.IDENTIFICACION)
@@ -94,7 +95,7 @@
                    @title = "Detalle" })
                 </td>
                 <td>
-                    @Html.ActionLink(" ", "Delete", new { id = item.PERSONA_ID }, new { @class = " btn btn-danger btn-md  glyphicon glyphicon-remove",
+                    @Html.ActionLink(" ", "Delete", new { id = item.PERSONA_ID }, new { @class = " btn btn-danger btn-md  glyphicon glyphicon-minus-sign",
                                                                                         @title = "Eliminar" })
                 </td>
             </tr>

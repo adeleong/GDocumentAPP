@@ -63,10 +63,15 @@ namespace GDocumentAPP.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PERSONA_ID,NOMBRE,PRIMER_APELLIDO,SEGUNDO_APELLIDO,TIPO_IDENTIFICACION,IDENTIFICACION,SEXO,EMAIL")] PERSONA pERSONA)
+        public ActionResult Create([Bind(Include = "PERSONA_ID,NOMBRE,PRIMER_APELLIDO,SEGUNDO_APELLIDO,TIPO_IDENTIFICACION,IDENTIFICACION,PASAPORTE,SEXO,EMAIL")] PERSONA pERSONA)
         {
             if (ModelState.IsValid)
             {
+                if (pERSONA.TIPO_IDENTIFICACION == "P")
+                {
+                    pERSONA.IDENTIFICACION = pERSONA.PASAPORTE;
+                }
+
                 db.PERSONAs.Add(pERSONA);
                 db.SaveChanges();
                 return RedirectToAction("Index");

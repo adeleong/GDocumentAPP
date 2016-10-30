@@ -28,3 +28,16 @@ textarea {
     max-width:100%;
 }
 
+img {
+    width:210px;
+    height:200px;
+}
+
+#dropZone {
+        background: gray;
+        border: black dashed 3px;
+        width: 200px;
+        padding: 50px;
+        text-align: center;
+        color: white;
+    }
