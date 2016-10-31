@@ -28,16 +28,27 @@ textarea {
     max-width:100%;
 }
 
-img {
-    width:210px;
-    height:200px;
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
 }
 
-#dropZone {
-        background: gray;
-        border: black dashed 3px;
-        width: 200px;
-        padding: 50px;
-        text-align: center;
-        color: white;
-    }
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}

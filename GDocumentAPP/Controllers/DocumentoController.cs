@@ -27,6 +27,7 @@ namespace GDocumentAPP.Controllers
         {
             var dOCUMENTOes = db.DOCUMENTOes.Include(d => d.EMPLEADO).Include(d => d.ESTATU).Include(d => d.USUARIO);
             return View(dOCUMENTOes.ToList());
+            
         }
 
         // GET: Documento/Details/5

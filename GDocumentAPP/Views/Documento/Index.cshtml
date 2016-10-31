@@ -1,6 +1,5 @@
 ﻿@model IEnumerable<GDocumentAPP.Context.DOCUMENTO>
 
-
 @{
     ViewBag.Title = "Documentos";
 }
@@ -120,11 +119,6 @@
     </script>
 }
 
-
-
-
-
-
 <h2>Index</h2>
 
 <p>
@@ -162,41 +156,42 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CANAL_GENERACION)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DOCUMENTO_DATA)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FECHA_CREACION)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EXTENSION)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SIZE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NOMBRE_DOCUMENTO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EMPLEADO.SUPERVISOR)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ESTATU.DESCRIPCION)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.USUARIO.LOGIN)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.DOCUMENTO_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.DOCUMENTO_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.DOCUMENTO_ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CANAL_GENERACION)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DOCUMENTO_DATA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FECHA_CREACION)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EXTENSION)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SIZE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NOMBRE_DOCUMENTO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EMPLEADO.SUPERVISOR)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ESTATU.DESCRIPCION)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.USUARIO.LOGIN)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.DOCUMENTO_ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.DOCUMENTO_ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.DOCUMENTO_ID })
+            </td>
+        </tr>
+    }
 
 </table>
