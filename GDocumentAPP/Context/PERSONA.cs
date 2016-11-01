@@ -12,6 +12,7 @@ namespace GDocumentAPP.Context
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Web.Mvc;
     public partial class PERSONA
     {
@@ -26,7 +27,7 @@ namespace GDocumentAPP.Context
 
         [Required(ErrorMessage = "El nombre es requerido")]
         [Display(Name = "Nombre Completo")]
-        [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$", ErrorMessage = "Numeros y Caracteres especiales no son permitido en el Nombre.")]
+        [RegularExpression(@"^[a-zA-Záéíóúñ''-'\s]{1,40}$", ErrorMessage = "Números y Caracteres especiales no son permitido en el Nombre.")]
         [StringLength(30, MinimumLength = 3, ErrorMessage = "La longitud debe ser entre 3 y 30")]
         public string NOMBRE { get; set; }
 
@@ -56,6 +57,7 @@ namespace GDocumentAPP.Context
       //  [Required(ErrorMessage = "La Identificación  es requerido")]
         [Display(Name = "Pasaporte")]
         [StringLength(16, MinimumLength = 10, ErrorMessage = "La longitud debe ser entre 10 y 16")]
+        []
         public string PASAPORTE { get; set; }
 
 

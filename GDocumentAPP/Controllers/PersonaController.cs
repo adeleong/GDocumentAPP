@@ -72,6 +72,8 @@ namespace GDocumentAPP.Controllers
                     pERSONA.IDENTIFICACION = pERSONA.PASAPORTE;
                 }
 
+                
+                
                 db.PERSONAs.Add(pERSONA);
                 db.SaveChanges();
                 return RedirectToAction("Index");
