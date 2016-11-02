@@ -9,6 +9,7 @@
 
 namespace GDocumentAPP.Context
 {
+    using Services;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -33,35 +34,25 @@ namespace GDocumentAPP.Context
 
         [Required(ErrorMessage = "El Primer Apellido es requerido")]
         [Display(Name = "Primer Apellido")]
-        [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$", ErrorMessage = "Numeros y Caracteres especiales no son permitido en el Primer Apellido.")]
+        [RegularExpression(@"^[a-zA-Záéíóúñ''-'\s]{1,40}$", ErrorMessage = "Numeros y Caracteres especiales no son permitido en el Primer Apellido.")]
         [StringLength(18, MinimumLength = 4, ErrorMessage = "La longitud debe ser entre 4 y 18")]
         public string PRIMER_APELLIDO { get; set; }
 
-        [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$", ErrorMessage = "Numeros y Caracteres especiales no son permitido en el Segundo Apellido.")]
+        [RegularExpression(@"^[a-zA-Záéíóúñ''-'\s]{1,40}$", ErrorMessage = "Numeros y Caracteres especiales no son permitido en el Segundo Apellido.")]
         [Display(Name = "Segundo Apellido")]
         [StringLength(18, MinimumLength = 4, ErrorMessage = "La longitud debe ser entre 4 y 18")]
         public string SEGUNDO_APELLIDO { get; set; }
-
-       
-
+        
         [Required(ErrorMessage = "El Tipo Identificación es requerido")]
         [Display(Name = "Tipo Identificación")]
-        // public string TIPO_IDENTIFICACION { get; set; }
         public string TIPO_IDENTIFICACION { get; set; }
 
       //  [Required(ErrorMessage = "La Identificación  es requerido")]
         [Display(Name = "Identificación")]
-        [StringLength(11, MinimumLength = 11, ErrorMessage = "La longitud debe ser de 11")]
+        //  [StringLength(11, MinimumLength = 11, ErrorMessage = "La longitud debe ser de 11")]
+        [CustomIdentificacionValidator]
         public string IDENTIFICACION { get; set; }
-
-      //  [Required(ErrorMessage = "La Identificación  es requerido")]
-        [Display(Name = "Pasaporte")]
-        [StringLength(16, MinimumLength = 10, ErrorMessage = "La longitud debe ser entre 10 y 16")]
-        []
-        public string PASAPORTE { get; set; }
-
-
-
+        
         [Required(ErrorMessage = "El Sexo es requerido")]
         [Display(Name = "Sexo")]
         public string SEXO { get; set; }
