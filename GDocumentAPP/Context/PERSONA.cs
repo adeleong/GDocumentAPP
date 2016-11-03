@@ -60,7 +60,12 @@ namespace GDocumentAPP.Context
         [Display(Name = "Correo")]
         [EmailAddress(ErrorMessage = "El Correo es Invalido")]
         public string EMAIL { get; set; }
-    
+
+        public string getPersonaDisplay()
+        {
+            return String.Format("{0} {1} - {2} ", NOMBRE, PRIMER_APELLIDO, IDENTIFICACION);
+        }
+               
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EMPLEADO> EMPLEADOes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
