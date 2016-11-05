@@ -53,9 +53,9 @@ $(function() {
             ipad: 5713,
             itouch: 1791
         }],
-        xkey: 'period',
+        xkey: 'periodos',
         ykeys: ['iphone', 'ipad', 'itouch'],
-        labels: ['iPhone', 'iPad', 'iPod Touch'],
+        labels: ['fisicos', 'digitales', 'asignados dependiencia'],
         pointSize: 2,
         hideHover: 'auto',
         resize: true
@@ -64,13 +64,13 @@ $(function() {
     Morris.Donut({
         element: 'morris-donut-chart',
         data: [{
-            label: "Download Sales",
+            label: "Completados",
             value: 12
         }, {
-            label: "In-Store Sales",
+            label: "Escaneados o Cargados",
             value: 30
         }, {
-            label: "Mail-Order Sales",
+            label: "Indexados",
             value: 20
         }],
         resize: true
