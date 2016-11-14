@@ -70,7 +70,13 @@
             <tr>
                 <td>
                     @{ var personaDisplay = item.PERSONA.getPersonaDisplay();}
-                    <p>@personaDisplay</p>
+                    @Html.ActionLink(@personaDisplay, "Details", "Persona", new { id = item.PERSONA_ID }, new
+                {
+                   
+                    @title = "Ir a Persona Detalle"
+                })
+                  
+                 
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.PUESTO)

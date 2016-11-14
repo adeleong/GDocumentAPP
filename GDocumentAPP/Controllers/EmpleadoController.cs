@@ -14,6 +14,8 @@ namespace GDocumentAPP.Controllers
     {
         private GDocumentDBEntities db = new GDocumentDBEntities();
 
+        PERSONA persona = new PERSONA();
+
         // GET: Empleado
         public ActionResult Index()
         {
@@ -39,6 +41,8 @@ namespace GDocumentAPP.Controllers
         // GET: Empleado/Create
         public ActionResult Create()
         {
+            var persona = from person in db.PERSONAs  select new { person.NOMBRE, person.IDENTIFICACION }  ;
+
             ViewBag.DEPENDENCIA_ID = new SelectList(db.DEPENDENCIAs, "DEPENDENCIA_ID", "DEPENDENCIA_NOMBRE");
             ViewBag.ESTATUS_ID = new SelectList(db.ESTATUS, "ESTATUS_ID", "DESCRIPCION");
             ViewBag.PERSONA_ID = new SelectList(db.PERSONAs, "PERSONA_ID", "NOMBRE");
