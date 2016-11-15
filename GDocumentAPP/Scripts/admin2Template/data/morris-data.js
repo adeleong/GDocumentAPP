@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
 
     Morris.Area({
         element: 'morris-area-chart',
@@ -53,9 +53,9 @@ $(function() {
             ipad: 5713,
             itouch: 1791
         }],
-        xkey: 'periodos',
+        xkey: 'period',
         ykeys: ['iphone', 'ipad', 'itouch'],
-        labels: ['fisicos', 'digitales', 'asignados dependiencia'],
+        labels: ['iPhone', 'iPad', 'iPod Touch'],
         pointSize: 2,
         hideHover: 'auto',
         resize: true
@@ -67,7 +67,7 @@ $(function() {
             label: "Completados",
             value: 12
         }, {
-            label: "Escaneados o Cargados",
+            label: "Escaneados",
             value: 30
         }, {
             label: "Indexados",
@@ -113,5 +113,5 @@ $(function() {
         hideHover: 'auto',
         resize: true
     });
-    
+
 });

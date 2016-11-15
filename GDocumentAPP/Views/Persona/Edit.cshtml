@@ -54,7 +54,7 @@
 
                 }
 
-                @Html.DropDownListFor(model => model.TIPO_IDENTIFICACION, listaTipoIdent, "<Seleccione>", new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.TIPO_IDENTIFICACION, listaTipoIdent, new { @class = "form-control" })
 
 
                 @Html.ValidationMessageFor(model => model.TIPO_IDENTIFICACION, "", new { @class = "text-danger" })

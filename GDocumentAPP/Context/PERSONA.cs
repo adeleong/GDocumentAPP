@@ -27,7 +27,7 @@ namespace GDocumentAPP.Context
         public int PERSONA_ID { get; set; }
 
         [Required(ErrorMessage = "El nombre es requerido")]
-        [Display(Name = "Nombre Completo")]
+        [Display(Name = "Nombre")]
         [RegularExpression(@"^[a-zA-Záéíóúñ''-'\s]{1,40}$", ErrorMessage = "Números y Caracteres especiales no son permitido en el Nombre.")]
         [StringLength(30, MinimumLength = 3, ErrorMessage = "La longitud debe ser entre 3 y 30")]
         public string NOMBRE { get; set; }
