@@ -67,7 +67,11 @@ namespace GDocumentAPP.Controllers
         {
             if (ModelState.IsValid)
             {
-              
+
+                string nombre = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(pERSONA.NOMBRE.ToString());
+
+                pERSONA.NOMBRE = nombre;
+
                 db.PERSONAs.Add(pERSONA);
                 db.SaveChanges();
                 return RedirectToAction("Index");
