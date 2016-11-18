@@ -32,7 +32,7 @@ namespace GDocumentAPP.Context
         public string SUPERVISOR { get; set; }
 
         [Required(ErrorMessage = "La Dependencia es requerida")]
-        [Display(Name = "Dependencia", Description = "Nombre + Identificación")]
+        [Display(Name = "Dependencia", Description = "Dependencia")]
         public int DEPENDENCIA_ID { get; set; }
 
         [Required(ErrorMessage = "El Puesto es requerido")]
@@ -42,11 +42,11 @@ namespace GDocumentAPP.Context
         [Required(ErrorMessage = "La Fecha Ingreso es requerida")]
         [Display(Name = "Fecha Ingreso")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime FECHA_INGRESO { get; set; }
 
         [Required(ErrorMessage = "El Sueldo es requerida")]
-        [Display(Name = "Sueldo", Description = "Nombre + Identificación")]
+        [Display(Name = "Sueldo", Description = "Sueldo")]
         public decimal SUELDO { get; set; }
 
         [Required(ErrorMessage = "El Banco es requerido")]
