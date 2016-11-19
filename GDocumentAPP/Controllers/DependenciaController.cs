@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 using GDocumentAPP.Context;
 
 namespace GDocumentAPP.Controllers
@@ -15,10 +16,27 @@ namespace GDocumentAPP.Controllers
         private GDocumentDBEntities db = new GDocumentDBEntities();
 
         // GET: Dependencia
-        public ActionResult Index()
+      
+
+        public ActionResult Index(int? page, string searchString)
         {
-            return View(db.DEPENDENCIAs.ToList());
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+
+            var dependencia = from s in db.DEPENDENCIAs
+                           select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                dependencia = dependencia.Where(s => s.DEPENDENCIA_NOMBRE.Contains(searchString));
+            }
+
+            // return View(db.PERSONAs.ToList().ToPagedList(pageNumber, pageSize));
+            return View(dependencia.ToList().ToPagedList(pageNumber, pageSize));
+
         }
+
 
         // GET: Dependencia/Details/5
         public ActionResult Details(int? id)
