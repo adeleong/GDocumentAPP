@@ -257,6 +257,7 @@
       <DependentUpon>ModelGDocument.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DependenciaController.cs" />
     <Compile Include="Controllers\DocumentoController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -600,6 +601,11 @@
     <Content Include="Views\Documento\Details.cshtml" />
     <Content Include="Views\Documento\Edit.cshtml" />
     <Content Include="Views\Documento\Index.cshtml" />
+    <Content Include="Views\Dependencia\Create.cshtml" />
+    <Content Include="Views\Dependencia\Delete.cshtml" />
+    <Content Include="Views\Dependencia\Details.cshtml" />
+    <Content Include="Views\Dependencia\Edit.cshtml" />
+    <Content Include="Views\Dependencia\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
