@@ -19,8 +19,10 @@ namespace GDocumentAPP.Controllers
 
         public string pathTarifarioImage = ConfigurationManager.AppSettings["pathTarifarioImage"].ToString();
         public string pathTarifarioXml = ConfigurationManager.AppSettings["pathTarifarioXML"].ToString();
-        public string pathTarifarioImageZonaTuristica = ConfigurationManager.AppSettings["pathTarifarioImageZonaTuristica"].ToString();
-        public string pathTarifarioImageTradicional = ConfigurationManager.AppSettings["pathTarifarioImageTradicional"].ToString();
+        public string pathDocumentoRepositorio = ConfigurationManager.AppSettings["pathDocumentoRepositorio"].ToString();
+
+       // public string pathTarifarioImageZonaTuristica = ConfigurationManager.AppSettings["pathTarifarioImageZonaTuristica"].ToString();
+       // public string pathTarifarioImageTradicional = ConfigurationManager.AppSettings["pathTarifarioImageTradicional"].ToString();
 
         // GET: Documento
         public ActionResult Index()
@@ -154,27 +156,30 @@ namespace GDocumentAPP.Controllers
                 HttpPostedFileBase file = Request.Files[fileName];
 
                 fName = file.FileName;
+
+                var contentType = file.ContentType;
+
                 if (file != null && file.ContentLength > 0)
                 {
-                    HandlerBackupFile(@pathTarifarioImage, fName);
+                    HandlerBackupFile(@pathDocumentoRepositorio, fName);
 
-                    bool isExists = System.IO.Directory.Exists(@pathTarifarioImage);
+                    bool isExists = System.IO.Directory.Exists(@pathDocumentoRepositorio);
 
                     if (!isExists)
-                        System.IO.Directory.CreateDirectory(@pathTarifarioImage);
+                        System.IO.Directory.CreateDirectory(@pathDocumentoRepositorio);
 
                     DOCUMENTO documento = new DOCUMENTO();
                     documento.EMPLEADO_ID = 1;
                     documento.NOMBRE_DOCUMENTO = file.FileName;
-                    documento.EXTENSION = @pathTarifarioXml;
+                    documento.EXTENSION = @pathDocumentoRepositorio;
                     documento.ESTATUS_ID = 1;
                     documento.FECHA_CREACION = DateTime.Now;
                     documento.CANAL_GENERACION = "DropZoneFileUpload";
                     documento.USUARIO_ID = 1;
-                    documento.SIZE = 200;
+                    documento.SIZE = file.ContentLength;
 
 
-                    SaveFile(file, pathTarifarioImage);
+                    SaveFile(file, pathDocumentoRepositorio);
 
                     if (ModelState.IsValid)
                     {
