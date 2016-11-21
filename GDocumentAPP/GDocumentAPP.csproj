@@ -274,6 +274,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Bundle.cs" />
     <Compile Include="Services\CustomIdentificacionValidator.cs" />
+    <Compile Include="Services\DocumentoService.cs" />
     <Compile Include="Services\HandlePathFile.cs" />
     <Compile Include="Services\HandleXMLService.cs" />
     <Compile Include="Startup.cs" />

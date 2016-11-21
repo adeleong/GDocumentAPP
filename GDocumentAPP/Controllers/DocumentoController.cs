@@ -27,7 +27,7 @@ namespace GDocumentAPP.Controllers
         {
             var dOCUMENTOes = db.DOCUMENTOes.Include(d => d.EMPLEADO).Include(d => d.ESTATU).Include(d => d.USUARIO);
             return View(dOCUMENTOes.ToList());
-            
+
         }
 
         // GET: Documento/Details/5
@@ -147,7 +147,7 @@ namespace GDocumentAPP.Controllers
             string fName = "";
 
             HandlePathFile handlePathDirectory = new HandlePathFile();
-            List<TarifarioXML> tarifarioList = new List<TarifarioXML>();
+            //List<TarifarioXML> tarifarioList = new List<TarifarioXML>();
 
             foreach (string fileName in Request.Files)
             {
@@ -163,25 +163,40 @@ namespace GDocumentAPP.Controllers
                     if (!isExists)
                         System.IO.Directory.CreateDirectory(@pathTarifarioImage);
 
-                    TarifarioXML tarifarioXml = new TarifarioXML();
-                    tarifarioXml.fileName = file.FileName;
-                    tarifarioXml.pathTarifarioXml = @pathTarifarioXml;
+                    DOCUMENTO documento = new DOCUMENTO();
+                    documento.EMPLEADO_ID = 1;
+                    documento.NOMBRE_DOCUMENTO = file.FileName;
+                    documento.EXTENSION = @pathTarifarioXml;
+                    documento.ESTATUS_ID = 1;
+                    documento.FECHA_CREACION = DateTime.Now;
+                    documento.CANAL_GENERACION = "DropZoneFileUpload";
+                    documento.USUARIO_ID = 1;
+                    documento.SIZE = 200;
+
 
                     SaveFile(file, pathTarifarioImage);
-                    SaveFile(file, pathTarifarioImageZonaTuristica);
-                    SaveFile(file, pathTarifarioImageTradicional);
 
-                    HandleXMLService handleXml = new HandleXMLService();
-                    bool isExistsImageInXML = handleXml.isExistsImage(tarifarioXml);
+                    if (ModelState.IsValid)
+                    {
+                        db.DOCUMENTOes.Add(documento);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
 
-                    if (!isExistsImageInXML)
-                        tarifarioList.Add(tarifarioXml);
+                    // SaveFile(file, pathTarifarioImageZonaTuristica);
+                    //  SaveFile(file, pathTarifarioImageTradicional);
+
+                    //HandleXMLService handleXml = new HandleXMLService();
+                  //  bool isExistsImageInXML = handleXml.isExistsImage(documento);
+
+                    //   if (!isExistsImageInXML)
+                    //    tarifarioList.Add(tarifarioXml);
 
                 }
             }
 
             ActionResult JsonResult = getJsonResult(isSavedSuccessfully, fName);
-            WriteXml(tarifarioList);
+            //  WriteXml(tarifarioList);
 
             return JsonResult;
 
@@ -273,10 +288,10 @@ namespace GDocumentAPP.Controllers
 
             return Json(new { Message = "Imagen Eliminada" });
         }
-    
 
-//------
-protected override void Dispose(bool disposing)
+
+        //------
+        protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
