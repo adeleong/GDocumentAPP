@@ -32,6 +32,7 @@ namespace GDocumentAPP.Context
         public int ESTATUS_ID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+               
         public virtual ICollection<DOCUMENTO_INDEXACION> DOCUMENTO_INDEXACION { get; set; }
         public virtual EMPLEADO EMPLEADO { get; set; }
         public virtual ESTATU ESTATU { get; set; }

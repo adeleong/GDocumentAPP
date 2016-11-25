@@ -57,17 +57,18 @@
                 });
 
                 var thisDropzone = this;
-                var pathImage;
+               // var pathImage;
 
-                $.getJSON("/Documento/GetAttachments/").done(function (data) {
+                $.getJSON("/Documento/ObtenerDocumentos/").done(function (data) {
                     if (data.Data != '') {
 
                         $.each(data.Data, function (index, item) {
                                 //// Create the mock file:
 
                                 var mockFile = {
-                                    name: item.fileName,
-                                    size: item.size,
+                                    name: item.NOMBRE_DOCUMENTO,
+                                    size: item.SIZE,
+                                    id: item.DOCUMENTO_ID 
                                 };
 
                                 var thumbnail = $('.dropzone .dz-preview.dz-file-preview .dz-image:last');
@@ -76,9 +77,9 @@
                                 // Call the default addedfile event handler
                                 thisDropzone.emit("addedfile", mockFile);
 
-                                pathImage = item.attributeRuta;
+                               // pathImage = item.attributeRuta;
                                 // And optionally show the thumbnail of the file:
-                                thisDropzone.emit("thumbnail", mockFile, item.pathImage);
+                                thisDropzone.emit("thumbnail", mockFile, "/images/wallimages/" + item.NOMBRE_DOCUMENTO /*item.pathImage*/);
 
                                 switch (item.fileName) {
                                     case 'RESUMEN1.pdf':
@@ -149,7 +150,7 @@
                         });
 
                         editButton.addEventListener("click", function (e) {
-                            window.location.href = "/Documento/Edit/1";
+                            window.location.href = "/Documento/Edit/" ;
                         });
 
                         file.previewElement.appendChild(indexarButton);

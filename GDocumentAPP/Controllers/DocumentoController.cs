@@ -258,7 +258,7 @@ namespace GDocumentAPP.Controllers
             return View();
         }
 
-        public ActionResult GetAttachments()
+        /*public ActionResult GetAttachments()
         {
 
             HandleXMLService handleXMLService = new HandleXMLService();
@@ -275,7 +275,28 @@ namespace GDocumentAPP.Controllers
             }
 
             return Json(new { Data = tarifarioList }, JsonRequestBehavior.AllowGet);
+        }*/
+
+        public ActionResult ObtenerDocumentos()
+        {
+          
+            var dOCUMENTOes = db.DOCUMENTOes.Include(d => d.EMPLEADO).Include(d => d.ESTATU).Include(d => d.USUARIO);
+
+            List<DOCUMENTO> documentoList = new List<DOCUMENTO>();
+
+            documentoList = dOCUMENTOes.ToList();
+
+            var ListaDocumento = documentoList.Select(D => new
+            {
+                DOCUMENTO_ID = D.DOCUMENTO_ID,
+                NOMBRE_DOCUMENTO = D.NOMBRE_DOCUMENTO,
+                SIZE = D.SIZE
+            });
+
+
+            return Json(new { Data = ListaDocumento }, JsonRequestBehavior.AllowGet);
         }
+
 
 
         public ActionResult DeleteFile(string fileName)
