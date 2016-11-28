@@ -279,7 +279,9 @@ namespace GDocumentAPP.Controllers
 
         public ActionResult ObtenerDocumentos()
         {
-          
+
+            string imagePath = ConfigurationManager.AppSettings["pathServerImage"].ToString();
+
             var dOCUMENTOes = db.DOCUMENTOes.Include(d => d.EMPLEADO).Include(d => d.ESTATU).Include(d => d.USUARIO);
 
             List<DOCUMENTO> documentoList = new List<DOCUMENTO>();
@@ -288,9 +290,10 @@ namespace GDocumentAPP.Controllers
 
             var ListaDocumento = documentoList.Select(D => new
             {
-                DOCUMENTO_ID = D.DOCUMENTO_ID,
-                NOMBRE_DOCUMENTO = D.NOMBRE_DOCUMENTO,
-                SIZE = D.SIZE
+                DocumentoId = D.DOCUMENTO_ID,
+                DocumentoNombre = D.NOMBRE_DOCUMENTO,
+                DocumentoSize = D.SIZE,
+                DocumentoRuta = imagePath
             });
 
 

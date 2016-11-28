@@ -66,9 +66,9 @@
                                 //// Create the mock file:
 
                                 var mockFile = {
-                                    name: item.NOMBRE_DOCUMENTO,
-                                    size: item.SIZE,
-                                    id: item.DOCUMENTO_ID 
+                                    name: item.DocumentoNombre,
+                                    size: item.DocumentoSize,
+                                    id: item.DocumentoId
                                 };
 
                                 var thumbnail = $('.dropzone .dz-preview.dz-file-preview .dz-image:last');
@@ -79,7 +79,7 @@
 
                                // pathImage = item.attributeRuta;
                                 // And optionally show the thumbnail of the file:
-                                thisDropzone.emit("thumbnail", mockFile, "/images/wallimages/" + item.NOMBRE_DOCUMENTO /*item.pathImage*/);
+                                thisDropzone.emit("thumbnail", mockFile, item.DocumentoRuta +item.DocumentoNombre /*item.pathImage*/);
 
                                 switch (item.fileName) {
                                     case 'RESUMEN1.pdf':
