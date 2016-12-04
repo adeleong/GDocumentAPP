@@ -46,21 +46,14 @@
             <th>
                 @Html.DisplayNameFor(model => model.SUELDO)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BANCO)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CUENTABANCARIA)
-            </th>
+           
             <th>
                 @Html.DisplayNameFor(model => model.SUPERVISOR)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ESTATUS_ID)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EMPRESA)
-            </th>
+           
                     
             <th colspan="3"></th>
         </tr>
@@ -90,29 +83,20 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.SUELDO)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BANCO)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CUENTABANCARIA)
-                </td>
+               
                 <td>
                     @Html.DisplayFor(modelItem => item.SUPERVISOR)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ESTATU.DESCRIPCION)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EMPRESA)
-                </td>
-                <td>
+               
+                <td align="right" colspan="3">
                     @Html.ActionLink(" ", "Edit", new { id = item.EMPLEADO_ID }, new { @class = "btn btn-default glyphicon glyphicon-pencil", @title = "Editar"})
-                </td>
-                <td>
+               
                     @Html.ActionLink(" ", "Details", new { id = item.EMPLEADO_ID }, new { @class = " btn btn-info glyphicon glyphicon-eye-open", @title = "Detalle" })
-                </td>
-                <td>
-                    @Html.ActionLink(" ", "Delete", new { id = item.EMPLEADO_ID }, new { @class = "btn btn-danger glyphicon glyphicon-minus-sign", @title = "Eliminar" })
+                
+                    @Html.ActionLink(" ", "Delete", new { id = item.EMPLEADO_ID }, new { @class = "btn btn-danger glyphicon glyphicon-trash", @title = "Eliminar" })
                 </td>
 
             </tr>

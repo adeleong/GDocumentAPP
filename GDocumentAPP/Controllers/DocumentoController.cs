@@ -19,15 +19,17 @@ namespace GDocumentAPP.Controllers
 
         public string pathTarifarioImage = ConfigurationManager.AppSettings["pathTarifarioImage"].ToString();
         public string pathTarifarioXml = ConfigurationManager.AppSettings["pathTarifarioXML"].ToString();
-        public string pathTarifarioImageZonaTuristica = ConfigurationManager.AppSettings["pathTarifarioImageZonaTuristica"].ToString();
-        public string pathTarifarioImageTradicional = ConfigurationManager.AppSettings["pathTarifarioImageTradicional"].ToString();
+        public string pathDocumentoRepositorio = ConfigurationManager.AppSettings["pathDocumentoRepositorio"].ToString();
+
+       // public string pathTarifarioImageZonaTuristica = ConfigurationManager.AppSettings["pathTarifarioImageZonaTuristica"].ToString();
+       // public string pathTarifarioImageTradicional = ConfigurationManager.AppSettings["pathTarifarioImageTradicional"].ToString();
 
         // GET: Documento
         public ActionResult Index()
         {
             var dOCUMENTOes = db.DOCUMENTOes.Include(d => d.EMPLEADO).Include(d => d.ESTATU).Include(d => d.USUARIO);
             return View(dOCUMENTOes.ToList());
-            
+
         }
 
         // GET: Documento/Details/5
@@ -147,41 +149,59 @@ namespace GDocumentAPP.Controllers
             string fName = "";
 
             HandlePathFile handlePathDirectory = new HandlePathFile();
-            List<TarifarioXML> tarifarioList = new List<TarifarioXML>();
+            //List<TarifarioXML> tarifarioList = new List<TarifarioXML>();
 
             foreach (string fileName in Request.Files)
             {
                 HttpPostedFileBase file = Request.Files[fileName];
 
                 fName = file.FileName;
+
+                var contentType = file.ContentType;
+
                 if (file != null && file.ContentLength > 0)
                 {
-                    HandlerBackupFile(@pathTarifarioImage, fName);
+                    HandlerBackupFile(@pathDocumentoRepositorio, fName);
 
-                    bool isExists = System.IO.Directory.Exists(@pathTarifarioImage);
+                    bool isExists = System.IO.Directory.Exists(@pathDocumentoRepositorio);
 
                     if (!isExists)
-                        System.IO.Directory.CreateDirectory(@pathTarifarioImage);
+                        System.IO.Directory.CreateDirectory(@pathDocumentoRepositorio);
 
-                    TarifarioXML tarifarioXml = new TarifarioXML();
-                    tarifarioXml.fileName = file.FileName;
-                    tarifarioXml.pathTarifarioXml = @pathTarifarioXml;
+                    DOCUMENTO documento = new DOCUMENTO();
+                    documento.EMPLEADO_ID = 1;
+                    documento.NOMBRE_DOCUMENTO = file.FileName;
+                    documento.EXTENSION = @pathDocumentoRepositorio;
+                    documento.ESTATUS_ID = 1;
+                    documento.FECHA_CREACION = DateTime.Now;
+                    documento.CANAL_GENERACION = "DropZoneFileUpload";
+                    documento.USUARIO_ID = 1;
+                    documento.SIZE = file.ContentLength;
 
-                    SaveFile(file, pathTarifarioImage);
-                    SaveFile(file, pathTarifarioImageZonaTuristica);
-                    SaveFile(file, pathTarifarioImageTradicional);
 
-                    HandleXMLService handleXml = new HandleXMLService();
-                    bool isExistsImageInXML = handleXml.isExistsImage(tarifarioXml);
+                    SaveFile(file, pathDocumentoRepositorio);
 
-                    if (!isExistsImageInXML)
-                        tarifarioList.Add(tarifarioXml);
+                    if (ModelState.IsValid)
+                    {
+                        db.DOCUMENTOes.Add(documento);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+
+                    // SaveFile(file, pathTarifarioImageZonaTuristica);
+                    //  SaveFile(file, pathTarifarioImageTradicional);
+
+                    //HandleXMLService handleXml = new HandleXMLService();
+                  //  bool isExistsImageInXML = handleXml.isExistsImage(documento);
+
+                    //   if (!isExistsImageInXML)
+                    //    tarifarioList.Add(tarifarioXml);
 
                 }
             }
 
             ActionResult JsonResult = getJsonResult(isSavedSuccessfully, fName);
-            WriteXml(tarifarioList);
+            //  WriteXml(tarifarioList);
 
             return JsonResult;
 
@@ -238,7 +258,7 @@ namespace GDocumentAPP.Controllers
             return View();
         }
 
-        public ActionResult GetAttachments()
+        /*public ActionResult GetAttachments()
         {
 
             HandleXMLService handleXMLService = new HandleXMLService();
@@ -255,7 +275,31 @@ namespace GDocumentAPP.Controllers
             }
 
             return Json(new { Data = tarifarioList }, JsonRequestBehavior.AllowGet);
+        }*/
+
+        public ActionResult ObtenerDocumentos()
+        {
+
+            string imagePath = ConfigurationManager.AppSettings["pathServerImage"].ToString();
+
+            var dOCUMENTOes = db.DOCUMENTOes.Include(d => d.EMPLEADO).Include(d => d.ESTATU).Include(d => d.USUARIO);
+
+            List<DOCUMENTO> documentoList = new List<DOCUMENTO>();
+
+            documentoList = dOCUMENTOes.ToList();
+
+            var ListaDocumento = documentoList.Select(D => new
+            {
+                DocumentoId = D.DOCUMENTO_ID,
+                DocumentoNombre = D.NOMBRE_DOCUMENTO,
+                DocumentoSize = D.SIZE,
+                DocumentoRuta = imagePath
+            });
+
+
+            return Json(new { Data = ListaDocumento }, JsonRequestBehavior.AllowGet);
         }
+
 
 
         public ActionResult DeleteFile(string fileName)
@@ -273,10 +317,10 @@ namespace GDocumentAPP.Controllers
 
             return Json(new { Message = "Imagen Eliminada" });
         }
-    
 
-//------
-protected override void Dispose(bool disposing)
+
+        //------
+        protected override void Dispose(bool disposing)
         {
             if (disposing)
             {

@@ -52,3 +52,9 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+
+
+img{
+    width: 180px;
+    height: 155px;
+}

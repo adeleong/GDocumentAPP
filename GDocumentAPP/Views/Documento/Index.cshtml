@@ -4,12 +4,29 @@
     ViewBag.Title = "Documentos";
 }
 
-<h2>Imágenes</h2>
+<h3>Expedientes Digitalizados</h3>
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="input-group">
+                <input type="text" class="form-control" name="SearchString" id="search" maxlength="150" placeholder="Nombre Documento, Empleado, Extension, Fecha Creacion">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit" id="btnSearch">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
+            </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+    </div><!-- /.row -->
+    <p></p>
+}
 
 <div class="jumbotron">
-    <form action="~/Home/SaveUploadedFile" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneForm">
+    <form action="~/Documento/SaveUploadedFile" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneForm">
         <div class="fallback">
-            <input name="file" id="test" type="file" multiple accept='image/*' />
+            <input name="file" id="test" type="file" multiple accept='image/*, application/pdf' />
             <input type="submit" value="Upload" />
         </div>
     </form>
@@ -20,12 +37,19 @@
 {
     <script type="text/javascript">
 
+
+
         Dropzone.options.dropzoneForm = {
-            acceptedFiles: "image/*",
+            acceptedFiles: "image/*, application/pdf",
             maxFiles: 10,
             parallelUploads: 3,
             dictDefaultMessage: "Soltar los archivos o haga click aquí para cargar.",
+
+
+
             init: function () {
+
+
 
                 this.on("maxfilesexceeded", function (data) {
                     var res = eval('(' + data.xhr.responseText + ')');
@@ -33,36 +57,56 @@
                 });
 
                 var thisDropzone = this;
-                var pathImage;
+               // var pathImage;
 
-                $.getJSON("/Documento/GetAttachments/").done(function (data) {
+                $.getJSON("/Documento/ObtenerDocumentos/").done(function (data) {
                     if (data.Data != '') {
 
                         $.each(data.Data, function (index, item) {
                                 //// Create the mock file:
 
                                 var mockFile = {
-                                    name: item.fileName,
-                                    size: 1214,
+                                    name: item.DocumentoNombre,
+                                    size: item.DocumentoSize,
+                                    id: item.DocumentoId
                                 };
+
+                                var thumbnail = $('.dropzone .dz-preview.dz-file-preview .dz-image:last');
+
 
                                 // Call the default addedfile event handler
                                 thisDropzone.emit("addedfile", mockFile);
 
-                                pathImage = item.attributeRuta;
+                               // pathImage = item.attributeRuta;
                                 // And optionally show the thumbnail of the file:
-                                thisDropzone.emit("thumbnail", mockFile, item.pathImage);
+                                thisDropzone.emit("thumbnail", mockFile, item.DocumentoRuta +item.DocumentoNombre /*item.pathImage*/);
+
+                                switch (item.fileName) {
+                                    case 'RESUMEN1.pdf':
+                                        //thumbnail.css('background', 'url(/images/wallimages/pdf.png');
+                                        thisDropzone.emit("thumbnail", mockFile, '/images/wallimages/pdf.png');
+                                        break;
+                                    case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+                                        thumbnail.css('background', 'url(img/doc.png');
+                                        break;
+                                }
+
 
                         });
                     }
 
                 });
 
+
                 this.on("addedfile", function (file) {
 
-                    var removeButton = Dropzone.createElement("<button type=\"button\" class=\"btn btn-danger btn-xs\">Eliminar</button>");
-                    var downloadButton = Dropzone.createElement("<button type=\"button\" class=\"btn btn-primary btn-xs\">Visualizar</button>");
+                    var indexarButton = Dropzone.createElement("<button type=\"button\" class=\"btn btn-primary btn-sm glyphicon glyphicon-pushpin\" title=\"indexar\"> </button>");
+                    var editButton = Dropzone.createElement("<button type=\"button\" class=\"btn btn-default btn-sm glyphicon glyphicon-pencil\" title=\"Editar\"> </button>");
+                    var removeButton = Dropzone.createElement("<button type=\"button\" class=\"btn btn-danger btn-sm glyphicon glyphicon-trash\" title=\"Eliminar\"> </button>");
+                    var downloadButton = Dropzone.createElement("<button type=\"button\" class=\"btn btn-info btn-sm glyphicon glyphicon-eye-open\" title=\"Detalle\"></button>");
                     var separator = Dropzone.createElement("<a> <a/>");
+                    var separator2 = Dropzone.createElement("<a> <a/>");
+                    var separator3 = Dropzone.createElement("<a> <a/>");
                         // Capture the Dropzone instance as closure.
                         var _this = this;
 
@@ -105,9 +149,19 @@
                             window.open(pathImage + file.name);
                         });
 
-                        file.previewElement.appendChild(removeButton);
-                        file.previewElement.appendChild(separator);
+                        editButton.addEventListener("click", function (e) {
+                            window.location.href = "/Documento/Edit/" ;
+                        });
+
+                        file.previewElement.appendChild(indexarButton);
+                        file.previewElement.appendChild(separator3);
                         file.previewElement.appendChild(downloadButton);
+                        file.previewElement.appendChild(separator2);
+                        file.previewElement.appendChild(editButton);
+                        file.previewElement.appendChild(separator);
+                        file.previewElement.appendChild(removeButton);
+                      
+                      
 
                 });
 
@@ -118,80 +172,3 @@
 
     </script>
 }
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CANAL_GENERACION)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DOCUMENTO_DATA)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FECHA_CREACION)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EXTENSION)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SIZE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NOMBRE_DOCUMENTO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EMPLEADO.SUPERVISOR)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ESTATU.DESCRIPCION)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.USUARIO.LOGIN)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CANAL_GENERACION)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DOCUMENTO_DATA)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FECHA_CREACION)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EXTENSION)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SIZE)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NOMBRE_DOCUMENTO)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EMPLEADO.SUPERVISOR)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ESTATU.DESCRIPCION)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.USUARIO.LOGIN)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.DOCUMENTO_ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.DOCUMENTO_ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.DOCUMENTO_ID })
-            </td>
-        </tr>
-    }
-
-</table>

@@ -54,31 +54,27 @@
         </td>
 
 
-
-
-
-        <td>
+        <td align="right">
             @Html.ActionLink(" ", "Edit", new { id = item.DEPENDENCIA_ID }, new
                {
                    @class = " btn btn-default btn-md glyphicon glyphicon-pencil ",
                    @title = "Editar"
                })
-        </td>
-        <td>
+        
+        
             @Html.ActionLink(" ", "Details", new { id = item.DEPENDENCIA_ID }, new
                {
                    @class = " btn btn-info btn-md  glyphicon glyphicon-eye-open",
                    @title = "Detalle"
                })
-        </td>
-        <td>
+        
+        
             @Html.ActionLink(" ", "Delete", new { id = item.DEPENDENCIA_ID }, new
                {
-                   @class = " btn btn-danger btn-md  glyphicon glyphicon-minus-sign",
+                   @class = " btn btn-danger btn-md  glyphicon glyphicon-trash",
                    @title = "Eliminar"
                })
         </td>
-
     
     </tr>
 }
