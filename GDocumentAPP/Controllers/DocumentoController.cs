@@ -10,6 +10,7 @@ using GDocumentAPP.Models;
 using GDocumentAPP.Context;
 using System.Configuration;
 using GDocumentAPP.Services;
+using System.IO;
 
 namespace GDocumentAPP.Controllers
 {
@@ -25,10 +26,28 @@ namespace GDocumentAPP.Controllers
        // public string pathTarifarioImageTradicional = ConfigurationManager.AppSettings["pathTarifarioImageTradicional"].ToString();
 
         // GET: Documento
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            var dOCUMENTOes = db.DOCUMENTOes.Include(d => d.EMPLEADO).Include(d => d.ESTATU).Include(d => d.USUARIO);
-            return View(dOCUMENTOes.ToList());
+
+
+            //var dOCUMENTOes = db.DOCUMENTOes.Include(d => d.EMPLEADO).Include(d => d.ESTATU).Include(d => d.USUARIO);
+            var documentos = from d in db.DOCUMENTOes
+                              select d;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                documentos = documentos.Where(d => d.NOMBRE_DOCUMENTO.Contains(searchString)
+                                            || d.CANAL_GENERACION.Contains(searchString)
+                                            || d.EMPLEADO_ID.Equals(searchString));
+            }
+
+            // return View(db.PERSONAs.ToList().ToPagedList(pageNumber, pageSize));
+           // return View(personas.ToList().ToPagedList(pageNumber, pageSize));
+
+
+
+            
+            return View(documentos.ToList());
 
         }
 
@@ -179,7 +198,7 @@ namespace GDocumentAPP.Controllers
                     documento.SIZE = file.ContentLength;
 
 
-                    SaveFile(file, pathDocumentoRepositorio);
+                    SaveFileInRepositorio(file, pathDocumentoRepositorio);
 
                     if (ModelState.IsValid)
                     {
@@ -187,6 +206,8 @@ namespace GDocumentAPP.Controllers
                         db.SaveChanges();
                         return RedirectToAction("Index");
                     }
+
+
 
                     // SaveFile(file, pathTarifarioImageZonaTuristica);
                     //  SaveFile(file, pathTarifarioImageTradicional);
@@ -207,10 +228,27 @@ namespace GDocumentAPP.Controllers
 
         }
 
-        private void SaveFile(HttpPostedFileBase file, string pathImage)
+        private void SaveFileInRepositorio(HttpPostedFileBase file, string pathDocumento)
         {
-            var path = string.Format("{0}\\{1}", @pathImage, file.FileName);
-            file.SaveAs(path);
+            var pathDocumentoRepositorio = string.Format("{0}\\{1}", @pathDocumento, file.FileName);
+            file.SaveAs(pathDocumentoRepositorio);
+            CopiarFileEnCarpetaProyecto(file.FileName, pathDocumento);
+
+        }
+
+        private static void CopiarFileEnCarpetaProyecto(string fileName, string pathDocumento)
+        {
+            string directoryImageConfig = ConfigurationManager.AppSettings["directoryImage"].ToString();
+
+            var pathDocumentoSource = System.IO.Path.Combine(pathDocumento, fileName);
+
+            var currentDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
+
+            var directoryImage = new DirectoryInfo(string.Format("{0}" + directoryImageConfig, currentDirectory.ToString()));
+
+            string pathDocumentoTarget = System.IO.Path.Combine(directoryImage.ToString(), fileName);
+
+            System.IO.File.Copy(pathDocumentoSource, pathDocumentoTarget, true);
         }
 
         private ActionResult getJsonResult(bool isSavedSuccessfully, string fName)

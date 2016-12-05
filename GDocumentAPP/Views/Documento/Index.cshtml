@@ -81,7 +81,10 @@
                                 // And optionally show the thumbnail of the file:
                                 thisDropzone.emit("thumbnail", mockFile, item.DocumentoRuta +item.DocumentoNombre /*item.pathImage*/);
 
-                                switch (item.fileName) {
+                                if (item.DocumentoNombre.substr(item.DocumentoNombre.lastIndexOf("."), item.DocumentoNombre.lenght) == ".pdf")
+                                     thisDropzone.emit("thumbnail", mockFile, '/images/wallimages/pdf.png');
+                             
+                              /*  switch (item.fileName) {
                                     case 'RESUMEN1.pdf':
                                         //thumbnail.css('background', 'url(/images/wallimages/pdf.png');
                                         thisDropzone.emit("thumbnail", mockFile, '/images/wallimages/pdf.png');
@@ -89,7 +92,7 @@
                                     case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
                                         thumbnail.css('background', 'url(img/doc.png');
                                         break;
-                                }
+                                }*/
 
 
                         });
@@ -145,12 +148,13 @@
                         });
 
                         downloadButton.addEventListener("click", function (e) {
-                            location.reload();
-                            window.open(pathImage + file.name);
+                            /*location.reload();
+                            window.open(pathImage + file.name);*/
+                            window.location.href = "/Documento/Details/" + file.id;
                         });
 
                         editButton.addEventListener("click", function (e) {
-                            window.location.href = "/Documento/Edit/" ;
+                            window.location.href = "/Documento/Edit/" + file.id;
                         });
 
                         file.previewElement.appendChild(indexarButton);
