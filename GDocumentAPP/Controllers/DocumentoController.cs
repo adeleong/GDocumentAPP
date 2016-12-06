@@ -132,7 +132,7 @@ namespace GDocumentAPP.Controllers
         }
 
         // GET: Documento/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -157,18 +157,16 @@ namespace GDocumentAPP.Controllers
             return RedirectToAction("Index");
         }
 
-
-        //------
-
-        public ActionResult SaveUploadedFile()
+        [HttpPost]
+        public ActionResult SaveUploadedFile(string EMPLEADO_ID)
         {
+            int EmpleadoId = int.Parse(EMPLEADO_ID);
 
             bool isSavedSuccessfully = true;
             string fName = "";
 
             HandlePathFile handlePathDirectory = new HandlePathFile();
-            //List<TarifarioXML> tarifarioList = new List<TarifarioXML>();
-
+          
             foreach (string fileName in Request.Files)
             {
                 HttpPostedFileBase file = Request.Files[fileName];
@@ -185,6 +183,8 @@ namespace GDocumentAPP.Controllers
 
                     if (!isExists)
                         System.IO.Directory.CreateDirectory(@pathDocumentoRepositorio);
+
+                  //  ViewBag.EMPLEADO_ID = new SelectList(db.EMPLEADOes, "EMPLEADO_ID", "SUPERVISOR");
 
                     DOCUMENTO documento = new DOCUMENTO();
                     documento.EMPLEADO_ID = 1;
@@ -205,24 +205,11 @@ namespace GDocumentAPP.Controllers
                         db.SaveChanges();
                         return RedirectToAction("Index");
                     }
-
-
-
-                    // SaveFile(file, pathTarifarioImageZonaTuristica);
-                    //  SaveFile(file, pathTarifarioImageTradicional);
-
-                    //HandleXMLService handleXml = new HandleXMLService();
-                  //  bool isExistsImageInXML = handleXml.isExistsImage(documento);
-
-                    //   if (!isExistsImageInXML)
-                    //    tarifarioList.Add(tarifarioXml);
-
                 }
             }
 
             ActionResult JsonResult = getJsonResult(isSavedSuccessfully, fName);
-            //  WriteXml(tarifarioList);
-
+           
             return JsonResult;
 
         }
@@ -262,16 +249,6 @@ namespace GDocumentAPP.Controllers
             }
         }
 
-       /* private static void WriteXml(List<TarifarioXML> tarifarioList)
-        {
-
-            HandleXMLService handleXml = new HandleXMLService();
-            foreach (TarifarioXML tarifarioXml in tarifarioList)
-            {
-                handleXml.WriteNewImageXml(tarifarioXml);
-            }
-        }*/
-
         private static void HandlerBackupFile(string sourcePath, string fileName)
         {
             string sourceFile = System.IO.Path.Combine(sourcePath, fileName);
@@ -294,25 +271,6 @@ namespace GDocumentAPP.Controllers
         {
             return View();
         }
-
-        /*public ActionResult GetAttachments()
-        {
-
-            HandleXMLService handleXMLService = new HandleXMLService();
-
-            string tarifarioXMLPath = @pathTarifarioXml;
-            string imagePath = ConfigurationManager.AppSettings["pathServerImage"].ToString();
-            List<TarifarioXML> tarifarioList = new List<TarifarioXML>();
-
-            foreach (TarifarioXML tarifario in handleXMLService.getAllTarifarioXML(tarifarioXMLPath))
-            {
-                if (tarifario.attributeTipo == StructTarifario.tipoFile)
-                    tarifario.attributeRuta = imagePath;
-                tarifarioList.Add(tarifario);
-            }
-
-            return Json(new { Data = tarifarioList }, JsonRequestBehavior.AllowGet);
-        }*/
 
         public ActionResult ObtenerDocumentos()
         {
@@ -337,26 +295,6 @@ namespace GDocumentAPP.Controllers
             return Json(new { Data = ListaDocumento }, JsonRequestBehavior.AllowGet);
         }
 
-
-
-      /*  public ActionResult DeleteFile(string fileName)
-        {
-            TarifarioXML tarifarioXml = new TarifarioXML();
-
-            tarifarioXml.fileName = fileName;
-            tarifarioXml.pathTarifarioXml = @pathTarifarioXml;
-
-            HandleXMLService handleXml = new HandleXMLService();
-            handleXml.deleteNodeXml(tarifarioXml);
-
-            HandlePathFile handlePathImage = new HandlePathFile();
-            handlePathImage.deleteFile("path");
-
-            return Json(new { Message = "Imagen Eliminada" });
-        }*/
-
-
-        //------
         protected override void Dispose(bool disposing)
         {
             if (disposing)
