@@ -28,17 +28,16 @@ namespace GDocumentAPP.Controllers
         // GET: Documento
         public ActionResult Index(string searchString)
         {
-
-
+            ViewBag.EMPLEADO_ID = new SelectList(db.EMPLEADOes, "EMPLEADO_ID", "SUPERVISOR");
             //var dOCUMENTOes = db.DOCUMENTOes.Include(d => d.EMPLEADO).Include(d => d.ESTATU).Include(d => d.USUARIO);
-            var documentos = from d in db.DOCUMENTOes
-                              select d;
+            var documentos = from d in db.DOCUMENTOes.Include(d => d.EMPLEADO).Include(d => d.ESTATU).Include(d => d.USUARIO) //db.DOCUMENTOes
+                             select d;
 
             if (!String.IsNullOrEmpty(searchString))
             {
                 documentos = documentos.Where(d => d.NOMBRE_DOCUMENTO.Contains(searchString)
                                             || d.CANAL_GENERACION.Contains(searchString)
-                                            || d.EMPLEADO_ID.Equals(searchString));
+                                            );
             }
 
             // return View(db.PERSONAs.ToList().ToPagedList(pageNumber, pageSize));
@@ -133,7 +132,7 @@ namespace GDocumentAPP.Controllers
         }
 
         // GET: Documento/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
             if (id == null)
             {
@@ -263,7 +262,7 @@ namespace GDocumentAPP.Controllers
             }
         }
 
-        private static void WriteXml(List<TarifarioXML> tarifarioList)
+       /* private static void WriteXml(List<TarifarioXML> tarifarioList)
         {
 
             HandleXMLService handleXml = new HandleXMLService();
@@ -271,7 +270,7 @@ namespace GDocumentAPP.Controllers
             {
                 handleXml.WriteNewImageXml(tarifarioXml);
             }
-        }
+        }*/
 
         private static void HandlerBackupFile(string sourcePath, string fileName)
         {
@@ -340,7 +339,7 @@ namespace GDocumentAPP.Controllers
 
 
 
-        public ActionResult DeleteFile(string fileName)
+      /*  public ActionResult DeleteFile(string fileName)
         {
             TarifarioXML tarifarioXml = new TarifarioXML();
 
@@ -354,7 +353,7 @@ namespace GDocumentAPP.Controllers
             handlePathImage.deleteFile("path");
 
             return Json(new { Message = "Imagen Eliminada" });
-        }
+        }*/
 
 
         //------
