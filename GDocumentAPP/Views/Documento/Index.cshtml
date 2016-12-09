@@ -8,7 +8,7 @@
 
 <h3>Expedientes Digitalizados</h3>
 
-@using (Html.BeginForm("SaveUploadedFile", "Documento", FormMethod.Post, new { EMPLEADO_ID = Model.SingleOrDefault() }))
+@using (Html.BeginForm("SaveUploadedFile", "Documento", FormMethod.Post, new { EMPLEADO_ID = Model.First().EMPLEADO_ID }))
 {
     <div class="input-group">
         <span class="input-group-addon" id="sizing-addon2">Empleado</span>
@@ -16,7 +16,7 @@
         @Html.DropDownList("EMPLEADO_ID", null, htmlAttributes: new { @class = "form-control" })
         @Html.ValidationMessageFor(Model => Model.First().EMPLEADO_ID, "", new { @class = "text-danger" })
         <span class="input-group-btn">
-            <button class="btn btn-primary" type="submit" id="btnSearch">
+            <button class="btn btn-primary" type="submit" id="btnEmpleado">
                 <span class="glyphicon glyphicon-user"></span>
             </button>
         </span>
