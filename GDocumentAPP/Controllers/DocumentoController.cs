@@ -273,26 +273,29 @@ namespace GDocumentAPP.Controllers
             }
         }
 
-       /* public ActionResult DisplayImages()
-        {
-            return View();
-        }*/
+    
 
         public ActionResult ObtenerDocumentos(string empleadoId, string search)
         {
 
             string imagePath = ConfigurationManager.AppSettings["pathServerImage"].ToString();
             List<DOCUMENTO> documentoList = new List<DOCUMENTO>();
-            int IdEmpleado = int.Parse(empleadoId);
+            int IdEmpleado = 0;
+
+            bool hayDatoEnEmpleadoId = String.IsNullOrEmpty(empleadoId) ? false : true;
+            bool hayDatoEnSearch = String.IsNullOrEmpty(search) ? false : true;
+
+            if (hayDatoEnEmpleadoId)
+                IdEmpleado = int.Parse(empleadoId);
 
             var documentos = db.DOCUMENTOes.Include(d => d.EMPLEADO).Include(d => d.ESTATU).Include(d => d.USUARIO);
 
-            if (!String.IsNullOrEmpty(empleadoId))
+            if (hayDatoEnEmpleadoId)
             {
                 documentos = documentos.Where(d => d.EMPLEADO_ID.Equals(IdEmpleado));
             }
 
-            if (!String.IsNullOrEmpty(search))
+            if (hayDatoEnSearch)
             {
                 documentos = documentos.Where(d => d.NOMBRE_DOCUMENTO.Contains(search)
                                             || d.CANAL_GENERACION.Contains(search)

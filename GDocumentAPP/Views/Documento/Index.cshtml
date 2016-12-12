@@ -13,7 +13,7 @@
     <div class="input-group">
         <span class="input-group-addon" id="sizing-addon2">Empleado</span>
    
-        @Html.DropDownList("EMPLEADO_ID", null, htmlAttributes: new { @class = "form-control", @name = "EMPLEADO_ID" })
+        @Html.DropDownList("EMPLEADO_ID", null, "<seleccione>", htmlAttributes: new { @class = "form-control", @name = "EMPLEADO_ID" })
         @Html.ValidationMessageFor(Model => Model.First().EMPLEADO_ID, "", new { @class = "text-danger" })
         <span class="input-group-btn">
             <button class="btn btn-primary" type="button" id="btnEmpleado">
@@ -31,7 +31,7 @@
                 <input type="text" class="form-control" name="SearchString" id="search" maxlength="150" placeholder="Nombre Documento, Extension, Fecha Creacion">
                 <input type="hidden"   name="hiddenSearch" id="hiddenSearch" value="" />
                 <span class="input-group-btn">
-                    <button class="btn btn-primary" type="submit" id="btnSearch" onclick="return validar()">
+                    <button class="btn btn-primary" type="button" id="btnSearch">
                         <span class="glyphicon glyphicon-search"></span>
                     </button>
                 </span>
@@ -58,9 +58,9 @@
     <script type="text/javascript">
 
       
-        function validar() {
+        /*function validar() {
             var test = $("input[name=hiddenSearch]:hidden").val($("#search").val());          
-        }
+        }*/
 
            
         
@@ -74,7 +74,7 @@
             init: function () {
 
 
-                var empleadoId = $("#EMPLEADO_ID").val();
+              //  var empleadoId = $("#EMPLEADO_ID").val();
                 var search = $("#hiddenSearch").val();
 
                 this.on("maxfilesexceeded", function (data) {
@@ -83,39 +83,50 @@
                 });
 
                 var thisDropzone = this;
-               // var pathImage;
+               
+                /*---------Obterner Documentos desde El Controller Documento action ObternerDocumentos---------*/
+                $(function () {
+                    $("#btnSearch").click(function () {
+                       
+                        var empleadoId = $("#EMPLEADO_ID").val();                     
+                        var search = $("#search").val();
+                                                               
+                       //*poner el refresh partial del form dropzo
 
-                $.getJSON("/Documento/ObtenerDocumentos?empleadoId=" + empleadoId + "&search=" + search).done(function (data) {
-                    if (data.Data != '') {
+                        $.getJSON("/Documento/ObtenerDocumentos?empleadoId=" + empleadoId + "&search=" + search).done(function (data) {
+                            if (data.Data != '') {
 
-                        $.each(data.Data, function (index, item) {
-                                //// Create the mock file:
+                                $.each(data.Data, function (index, item) {
+                                        //// Create the mock file:
 
-                                var mockFile = {
-                                    name: item.DocumentoNombre,
-                                    size: item.DocumentoSize,
-                                    id: item.DocumentoId
-                                };
+                                        var mockFile = {
+                                            name: item.DocumentoNombre,
+                                            size: item.DocumentoSize,
+                                            id: item.DocumentoId
+                                        };
 
-                                var thumbnail = $('.dropzone .dz-preview.dz-file-preview .dz-image:last');
+                                        var thumbnail = $('.dropzone .dz-preview.dz-file-preview .dz-image:last');
 
 
-                                // Call the default addedfile event handler
-                                thisDropzone.emit("addedfile", mockFile);
+                                        // Call the default addedfile event handler
+                                        thisDropzone.emit("addedfile", mockFile);
 
-                               // pathImage = item.attributeRuta;
-                                // And optionally show the thumbnail of the file:
-                                thisDropzone.emit("thumbnail", mockFile, item.DocumentoRuta +item.DocumentoNombre /*item.pathImage*/);
+                                       // pathImage = item.attributeRuta;
+                                        // And optionally show the thumbnail of the file:
+                                        thisDropzone.emit("thumbnail", mockFile, item.DocumentoRuta +item.DocumentoNombre /*item.pathImage*/);
 
-                                if (item.DocumentoNombre.substr(item.DocumentoNombre.lastIndexOf("."), item.DocumentoNombre.lenght) == ".pdf")
-                                     thisDropzone.emit("thumbnail", mockFile, '/images/wallimages/pdf.png');
+                                        if (item.DocumentoNombre.substr(item.DocumentoNombre.lastIndexOf("."), item.DocumentoNombre.lenght) == ".pdf")
+                                             thisDropzone.emit("thumbnail", mockFile, '/images/wallimages/pdf.png');
                              
                             
+                                });
+                            }
+
                         });
-                    }
-
+                        return false;
+                    });
                 });
-
+            /* ----------------------------------------------Fin Obtener Documento-------------------------------------------------------*/
 
                 this.on("addedfile", function (file) {
 
@@ -193,4 +204,5 @@
 
 
     </script>
+
 }
