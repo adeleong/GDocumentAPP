@@ -1,104 +1,189 @@
 ﻿@model GDocumentAPP.Context.DOCUMENTO
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Documentos";
 }
 
-<h2>Create</h2>
+<h3>Expedientes Digitalizados</h3>
 
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>DOCUMENTO</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.EMPLEADO_ID, "EMPLEADO_ID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("EMPLEADO_ID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.EMPLEADO_ID, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    <div class="input-group">
+        <span class="input-group-addon" id="sizing-addon2">Empleado</span>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.CANAL_GENERACION, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CANAL_GENERACION, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CANAL_GENERACION, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @Html.DropDownList("EMPLEADO_ID", null, htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.EMPLEADO_ID, "", new { @class = "text-danger" })
+        <span class="input-group-btn">
+            <button class="btn btn-primary" type="submit" id="btnEmpleado">
+                <span class="glyphicon glyphicon-user"></span>
+            </button>
+        </span>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DOCUMENTO_DATA, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DOCUMENTO_DATA, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DOCUMENTO_DATA, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.FECHA_CREACION, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FECHA_CREACION, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FECHA_CREACION, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.USUARIO_ID, "USUARIO_ID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("USUARIO_ID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.USUARIO_ID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.EXTENSION, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.EXTENSION, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.EXTENSION, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SIZE, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SIZE, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SIZE, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.NOMBRE_DOCUMENTO, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NOMBRE_DOCUMENTO, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NOMBRE_DOCUMENTO, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ESTATUS_ID, "ESTATUS_ID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("ESTATUS_ID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ESTATUS_ID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
     </div>
+    <br />
+
+
+@using (Html.BeginForm())
+{
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="input-group">
+                <input type="text" class="form-control" name="SearchString" id="search" maxlength="150" placeholder="Nombre Documento, Extension, Fecha Creacion">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit" id="btnSearch">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
+            </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+    </div><!-- /.row -->
+    <p></p>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<div class="jumbotron">
+
+    <form action="~/Documento/SaveUploadedFile" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneForm">
+
+        <div class="fallback">
+            <input name="file" id="test" type="file" multiple accept='image/*, application/pdf' />
+            <input type="submit" value="Upload" />
+        </div>
+    </form>
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+
+@section Scripts
+{
+    <script type="text/javascript">
+
+
+
+        Dropzone.options.dropzoneForm = {
+            acceptedFiles: "image/*, application/pdf",
+            maxFiles: 10,
+            parallelUploads: 3,
+            dictDefaultMessage: "Soltar los archivos o haga click aquí para cargar.",
+
+
+
+            init: function () {
+
+
+
+                this.on("maxfilesexceeded", function (data) {
+                    var res = eval('(' + data.xhr.responseText + ')');
+
+                });
+
+                var thisDropzone = this;
+               // var pathImage;
+
+                $.getJSON("/Documento/ObtenerDocumentos/").done(function (data) {
+                    if (data.Data != '') {
+
+                        $.each(data.Data, function (index, item) {
+                                //// Create the mock file:
+
+                                var mockFile = {
+                                    name: item.DocumentoNombre,
+                                    size: item.DocumentoSize,
+                                    id: item.DocumentoId
+                                };
+
+                                var thumbnail = $('.dropzone .dz-preview.dz-file-preview .dz-image:last');
+
+
+                                // Call the default addedfile event handler
+                                thisDropzone.emit("addedfile", mockFile);
+
+                               // pathImage = item.attributeRuta;
+                                // And optionally show the thumbnail of the file:
+                                thisDropzone.emit("thumbnail", mockFile, item.DocumentoRuta +item.DocumentoNombre /*item.pathImage*/);
+
+                                if (item.DocumentoNombre.substr(item.DocumentoNombre.lastIndexOf("."), item.DocumentoNombre.lenght) == ".pdf")
+                                     thisDropzone.emit("thumbnail", mockFile, '/images/wallimages/pdf.png');
+
+
+                        });
+                    }
+
+                });
+
+
+                this.on("addedfile", function (file) {
+
+                    var indexarButton = Dropzone.createElement("<button type=\"button\" class=\"btn btn-primary btn-sm glyphicon glyphicon-pushpin\" title=\"indexar\"> </button>");
+                    var editButton = Dropzone.createElement("<button type=\"button\" class=\"btn btn-default btn-sm glyphicon glyphicon-pencil\" title=\"Editar\"> </button>");
+                    var removeButton = Dropzone.createElement("<button type=\"button\" class=\"btn btn-danger btn-sm glyphicon glyphicon-trash\" title=\"Eliminar\"> </button>");
+                    var downloadButton = Dropzone.createElement("<button type=\"button\" class=\"btn btn-info btn-sm glyphicon glyphicon-eye-open\" title=\"Detalle\"></button>");
+                    var separator = Dropzone.createElement("<a> <a/>");
+                    var separator2 = Dropzone.createElement("<a> <a/>");
+                    var separator3 = Dropzone.createElement("<a> <a/>");
+                        // Capture the Dropzone instance as closure.
+                        var _this = this;
+
+                        // Listen to the click event
+                        removeButton.addEventListener("click", function (e) {
+                            // Make sure the button click doesn't submit the form:
+
+                            e.preventDefault();
+                            e.stopPropagation();
+                            var confirmAction = false;
+                            // Remove the file preview.
+
+                            bootbox.confirm({
+                                size: 'small',
+                                message: "Eliminará el Documento " + file.name + "  del Expediente?",
+                                callback: function (result) {
+                                    if (result) {
+                                         window.location.href = "/Documento/Delete/" + file.id;
+                                        _this.removeFile(file);
+
+                                       /* $.ajax({
+                                            type: "GET",
+                                            url: "/Documento/Delete/",
+                                            data: JSON.stringify({ id: file.id }),
+                                            contentType: "application/json; charset=utf-8",
+                                            dataType: "json",
+                                            // success: OnSuccess,
+                                            failure: function (response) {
+                                                alert(response.d);
+                                            }
+                                        });*/
+                                    }
+
+                                }
+                            })
+
+                        });
+
+                        downloadButton.addEventListener("click", function (e) {
+                            /*location.reload();
+                            window.open(pathImage + file.name);*/
+                            window.location.href = "/Documento/Details/" + file.id;
+                        });
+
+                        editButton.addEventListener("click", function (e) {
+                            window.location.href = "/Documento/Edit/" + file.id;
+                        });
+
+                        file.previewElement.appendChild(indexarButton);
+                        file.previewElement.appendChild(separator3);
+                        file.previewElement.appendChild(downloadButton);
+                        file.previewElement.appendChild(separator2);
+                        file.previewElement.appendChild(editButton);
+                        file.previewElement.appendChild(separator);
+                        file.previewElement.appendChild(removeButton);
+
+
+
+                });
+
+            }
+
+        };
+
+
+    </script>
 }

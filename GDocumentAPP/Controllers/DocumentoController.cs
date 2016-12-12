@@ -17,21 +17,27 @@ namespace GDocumentAPP.Controllers
     public class DocumentoController : Controller
     {
         private GDocumentDBEntities db = new GDocumentDBEntities();
-
+        
         public string pathTarifarioImage = ConfigurationManager.AppSettings["pathTarifarioImage"].ToString();
         public string pathTarifarioXml = ConfigurationManager.AppSettings["pathTarifarioXML"].ToString();
         public string pathDocumentoRepositorio = ConfigurationManager.AppSettings["pathDocumentoRepositorio"].ToString();
-
-       // public string pathTarifarioImageZonaTuristica = ConfigurationManager.AppSettings["pathTarifarioImageZonaTuristica"].ToString();
-       // public string pathTarifarioImageTradicional = ConfigurationManager.AppSettings["pathTarifarioImageTradicional"].ToString();
-
+               
         // GET: Documento
-        public ActionResult Index(string searchString)
+        public ActionResult Index(string searchString, string EMPLEADO_ID)
         {
-           // ViewBag.EMPLEADO_ID = new SelectList(db.EMPLEADOes, "EMPLEADO_ID", "SUPERVISOR");
-            //var dOCUMENTOes = db.DOCUMENTOes.Include(d => d.EMPLEADO).Include(d => d.ESTATU).Include(d => d.USUARIO);
-            var documentos = from d in db.DOCUMENTOes.Include(d => d.EMPLEADO).Include(d => d.ESTATU).Include(d => d.USUARIO) //db.DOCUMENTOes
+
+            ViewBag.EMPLEADO_ID = new SelectList(db.EMPLEADOes, "EMPLEADO_ID", "SUPERVISOR");
+
+            bool hayDatoEnEmpleadoId = String.IsNullOrEmpty(EMPLEADO_ID) ? false : true;
+      
+            var documentos = from d in db.DOCUMENTOes.Include(d => d.EMPLEADO).Include(d => d.ESTATU).Include(d => d.USUARIO)
                              select d;
+
+            if (hayDatoEnEmpleadoId)
+            {
+                int empleadoId = int.Parse(EMPLEADO_ID);
+                documentos = documentos.Where(d => d.EMPLEADO_ID.Equals(empleadoId));
+            }
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -40,12 +46,6 @@ namespace GDocumentAPP.Controllers
                                             );
             }
 
-            // return View(db.PERSONAs.ToList().ToPagedList(pageNumber, pageSize));
-           // return View(personas.ToList().ToPagedList(pageNumber, pageSize));
-
-
-
-            
             return View(documentos.ToList());
 
         }
@@ -157,10 +157,16 @@ namespace GDocumentAPP.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        public ActionResult SaveUploadedFile(string EMPLEADO_ID)
+       // [HttpPost]
+        public ActionResult GuardarArchivoCargado()
         {
-            int EmpleadoId = int.Parse(EMPLEADO_ID);
+
+
+            List<int> listValues = new List<int>();
+            Request.Form.AllKeys
+                .Where(n => n.StartsWith("EmpleadoId"))
+                .ToList()
+                .ForEach(x => listValues.Add(int.Parse(Request.Form[x])));
 
             bool isSavedSuccessfully = true;
             string fName = "";
@@ -267,21 +273,33 @@ namespace GDocumentAPP.Controllers
             }
         }
 
-        public ActionResult DisplayImages()
+       /* public ActionResult DisplayImages()
         {
             return View();
-        }
+        }*/
 
-        public ActionResult ObtenerDocumentos()
+        public ActionResult ObtenerDocumentos(string empleadoId, string search)
         {
 
             string imagePath = ConfigurationManager.AppSettings["pathServerImage"].ToString();
-
-            var dOCUMENTOes = db.DOCUMENTOes.Include(d => d.EMPLEADO).Include(d => d.ESTATU).Include(d => d.USUARIO);
-
             List<DOCUMENTO> documentoList = new List<DOCUMENTO>();
+            int IdEmpleado = int.Parse(empleadoId);
 
-            documentoList = dOCUMENTOes.ToList();
+            var documentos = db.DOCUMENTOes.Include(d => d.EMPLEADO).Include(d => d.ESTATU).Include(d => d.USUARIO);
+
+            if (!String.IsNullOrEmpty(empleadoId))
+            {
+                documentos = documentos.Where(d => d.EMPLEADO_ID.Equals(IdEmpleado));
+            }
+
+            if (!String.IsNullOrEmpty(search))
+            {
+                documentos = documentos.Where(d => d.NOMBRE_DOCUMENTO.Contains(search)
+                                            || d.CANAL_GENERACION.Contains(search)
+                                            );
+            }
+                      
+            documentoList = documentos.ToList();
 
             var ListaDocumento = documentoList.Select(D => new
             {
@@ -290,7 +308,6 @@ namespace GDocumentAPP.Controllers
                 DocumentoSize = D.SIZE,
                 DocumentoRuta = imagePath
             });
-
 
             return Json(new { Data = ListaDocumento }, JsonRequestBehavior.AllowGet);
         }
