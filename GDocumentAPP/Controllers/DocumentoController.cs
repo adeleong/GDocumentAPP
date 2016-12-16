@@ -163,10 +163,10 @@ namespace GDocumentAPP.Controllers
 
 
             List<int> listValues = new List<int>();
-            Request.Form.AllKeys
+            Request.Params.AllKeys
                 .Where(n => n.StartsWith("EmpleadoId"))
                 .ToList()
-                .ForEach(x => listValues.Add(int.Parse(Request.Form[x])));
+                .ForEach(x => listValues.Add(int.Parse(Request.Params[x])));
 
             bool isSavedSuccessfully = true;
             string fName = "";
@@ -193,7 +193,7 @@ namespace GDocumentAPP.Controllers
                   //  ViewBag.EMPLEADO_ID = new SelectList(db.EMPLEADOes, "EMPLEADO_ID", "SUPERVISOR");
 
                     DOCUMENTO documento = new DOCUMENTO();
-                    documento.EMPLEADO_ID = 1;
+                    documento.EMPLEADO_ID = listValues.First();
                     documento.NOMBRE_DOCUMENTO = file.FileName;
                     documento.EXTENSION = @pathDocumentoRepositorio;
                     documento.ESTATUS_ID = 1;

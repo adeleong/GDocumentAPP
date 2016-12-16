@@ -70,12 +70,17 @@
             maxFiles: 10,
             parallelUploads: 3,
             dictDefaultMessage: "Soltar los archivos o haga click aquí para cargar.",
+           // headers: { "EmpleadoId":  $("#EMPLEADO_ID").val() },
             
             init: function () {
 
 
               //  var empleadoId = $("#EMPLEADO_ID").val();
-                var search = $("#hiddenSearch").val();
+              //  var search = $("#hiddenSearch").val();
+
+                this.on('sending', function (file, xhr, data) {
+                    data.append('EmpleadoId', $("#EMPLEADO_ID").val());
+                });
 
                 this.on("maxfilesexceeded", function (data) {
                     var res = eval('(' + data.xhr.responseText + ')');
@@ -88,10 +93,13 @@
                 $(function () {
                     $("#btnSearch").click(function () {
                        
-                        var empleadoId = $("#EMPLEADO_ID").val();                     
+                        var empleadoId = $("#EMPLEADO_ID").val();
+                       
                         var search = $("#search").val();
                                                                
                        //*poner el refresh partial del form dropzo
+                        thisDropzone.removeAllFiles();
+                        //_this.removeAllFiles();
 
                         $.getJSON("/Documento/ObtenerDocumentos?empleadoId=" + empleadoId + "&search=" + search).done(function (data) {
                             if (data.Data != '') {
