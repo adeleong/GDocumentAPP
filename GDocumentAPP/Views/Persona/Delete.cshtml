@@ -5,7 +5,7 @@
 }
 
 
-<h3>¿Estás seguro que quieres eliminar esta Persona?</h3>
+<h3>¿Estás seguro que desea eliminar esta Persona?</h3>
 <div>
     <hr />
     <dl class="dl-horizontal">
@@ -37,8 +37,9 @@
             @Html.DisplayNameFor(model => model.TIPO_IDENTIFICACION)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TIPO_IDENTIFICACION)
+        <dd>           
+            @{ var tipoIdentificacion = Model.TIPO_IDENTIFICACION == "C" ? "Cédula" : "Pasaporte";}
+            @tipoIdentificacion
         </dd>
 
         <dt>
@@ -49,12 +50,13 @@
             @Html.DisplayFor(model => model.IDENTIFICACION)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SEXO)
+        <dt>       
+           @Html.DisplayNameFor(model => model.SEXO)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.SEXO)
+            @Html.RadioButtonFor(model => model.SEXO, "M")  Masculino
+            @Html.RadioButtonFor(model => model.SEXO, "F")  Femenino
         </dd>
 
         <dt>
@@ -70,9 +72,10 @@
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        <div>
-            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
-            @Html.ActionLink("Volver al Listado", "Index")
-        </div>
+    <div class="input-group col-md-push-1">         
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> 
+        <span> </span>
+        @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn btn-info" })  
+    </div>
     }
 </div>

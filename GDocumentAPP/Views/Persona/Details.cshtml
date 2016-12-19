@@ -38,7 +38,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.TIPO_IDENTIFICACION)
+            @{ var tipoIdentificacion = Model.TIPO_IDENTIFICACION == "C" ? "Cédula" : "Pasaporte";}
+            @tipoIdentificacion
         </dd>
 
         <dt>
@@ -54,8 +55,10 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.SEXO)
+            @Html.RadioButtonFor(model => model.SEXO, "M")  Masculino
+            @Html.RadioButtonFor(model => model.SEXO, "F")  Femenino
         </dd>
+
 
         <dt>
             @Html.DisplayNameFor(model => model.EMAIL)
@@ -67,7 +70,10 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.PERSONA_ID }) |
-    @Html.ActionLink("Volver al Listado", "Index")
-</p>
+
+<div class="input-group col-md-push-1">
+    @Html.ActionLink("Editar", "Edit", new { id = Model.PERSONA_ID }, new { @class = "btn btn-default" })
+    <span> </span>
+    @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn btn-info" })
+</div>
+
