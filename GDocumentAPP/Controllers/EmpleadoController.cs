@@ -17,10 +17,34 @@ namespace GDocumentAPP.Controllers
         PERSONA persona = new PERSONA();
 
         // GET: Empleado
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
+
             var eMPLEADOes = db.EMPLEADOes.Include(e => e.DEPENDENCIA).Include(e => e.ESTATU).Include(e => e.PERSONA);
-            return View(eMPLEADOes.ToList());
+            //return View(eMPLEADOes.ToList());
+
+            bool hayDatoEnSearch = String.IsNullOrEmpty(searchString) ? false : true;
+
+            var empleados = from d in db.EMPLEADOes.Include(e => e.DEPENDENCIA).Include(e => e.ESTATU).Include(e => e.PERSONA)
+                             select d;
+
+           
+
+            if (hayDatoEnSearch)
+            {
+                empleados = empleados.Where(e => e.PUESTO.Contains(searchString)
+                                            || e.DEPENDENCIA.DEPENDENCIA_NOMBRE.Contains(searchString)
+                                            || e.PERSONA.NOMBRE.Contains(searchString)
+                                            || e.PERSONA.PRIMER_APELLIDO.Contains(searchString)
+                                            || e.PERSONA.IDENTIFICACION.Equals(searchString)
+                                            || e.SUPERVISOR.Contains(searchString)
+                                            );
+            }
+
+            return View(empleados.ToList());
+
+
+          
         }
 
         // GET: Empleado/Details/5

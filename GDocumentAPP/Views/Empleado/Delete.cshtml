@@ -4,13 +4,17 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
+<h3>¿Estás seguro que desea eliminar este Empleado?</h3>
 <div>
-    <h4>EMPLEADO</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PERSONA.NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PERSONA.NOMBRE)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.SUPERVISOR)
         </dt>
@@ -83,22 +87,17 @@
             @Html.DisplayFor(model => model.ESTATU.DESCRIPCION)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PERSONA.NOMBRE)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PERSONA.NOMBRE)
-        </dd>
+       
 
     </dl>
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+        <div class="input-group col-md-push-1">
+            <input type="submit" value="Eliminar" class="btn btn-danger" />
+            <span> </span>
+            @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn btn-info" })
         </div>
     }
 </div>

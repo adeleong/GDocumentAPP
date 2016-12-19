@@ -11,7 +11,8 @@ namespace GDocumentAPP.Context
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ESTATU
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,6 +24,9 @@ namespace GDocumentAPP.Context
         }
     
         public int ESTATUS_ID { get; set; }
+
+        [Required(ErrorMessage = "El Estatus es requerido")]
+        [Display(Name = "Estatus")]
         public string DESCRIPCION { get; set; }
         public string TIPO { get; set; }
         public string VALOR_LOGICO { get; set; }

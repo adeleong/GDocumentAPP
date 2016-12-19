@@ -10,6 +10,14 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.PERSONA.NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PERSONA.NOMBRE)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.SUPERVISOR)
         </dt>
 
@@ -81,17 +89,11 @@
             @Html.DisplayFor(model => model.ESTATU.DESCRIPCION)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PERSONA.NOMBRE)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PERSONA.NOMBRE)
-        </dd>
-
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.EMPLEADO_ID }) |
-    @Html.ActionLink("Volver al Listado", "Index")
-</p>
+
+<div class="input-group col-md-push-1">
+    @Html.ActionLink("Editar", "Edit", new { id = Model.PERSONA_ID }, new { @class = "btn btn-default" })
+    <span> </span>
+    @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn btn-info" })
+</div>

@@ -11,7 +11,8 @@ namespace GDocumentAPP.Context
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class DEPENDENCIA
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,6 +23,9 @@ namespace GDocumentAPP.Context
         }
     
         public int DEPENDENCIA_ID { get; set; }
+
+        [Required(ErrorMessage = "La Dependencia es requerida")]
+        [Display(Name = "Dependencia", Description = "Dependencia")]
         public string DEPENDENCIA_NOMBRE { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
