@@ -162,11 +162,18 @@ namespace GDocumentAPP.Controllers
         {
 
 
-            List<int> listValues = new List<int>();
-            Request.Params.AllKeys
-                .Where(n => n.StartsWith("EmpleadoId"))
-                .ToList()
-                .ForEach(x => listValues.Add(int.Parse(Request.Params[x])));
+            List<int> listValuesEmpleado = new List<int>();
+            try
+            {
+                Request.Params.AllKeys
+                    .Where(n => n.StartsWith("EmpleadoId"))
+                    .ToList()
+                    .ForEach(x => listValuesEmpleado.Add(int.Parse(Request.Params[x])));
+            }
+            catch(FormatException exceptionEmptyEmployee ) {
+                ViewBag.ExceptionEmpleadoEnBlanco = "Debe Seleccionar un Empleado para Crear Documento";
+                return View(ViewBag.ExceptionEmpleadoEnBlanco);
+            }
 
             bool isSavedSuccessfully = true;
             string fName = "";
@@ -188,18 +195,16 @@ namespace GDocumentAPP.Controllers
                     bool isExists = System.IO.Directory.Exists(@pathDocumentoRepositorio);
 
                     if (!isExists)
-                        System.IO.Directory.CreateDirectory(@pathDocumentoRepositorio);
-
-                  //  ViewBag.EMPLEADO_ID = new SelectList(db.EMPLEADOes, "EMPLEADO_ID", "SUPERVISOR");
+                        System.IO.Directory.CreateDirectory(@pathDocumentoRepositorio);               
 
                     DOCUMENTO documento = new DOCUMENTO();
-                    documento.EMPLEADO_ID = listValues.First();
+                    documento.EMPLEADO_ID = listValuesEmpleado.First();
                     documento.NOMBRE_DOCUMENTO = file.FileName;
                     documento.EXTENSION = @pathDocumentoRepositorio;
                     documento.ESTATUS_ID = 1;
                     documento.FECHA_CREACION = DateTime.Now;
                     documento.CANAL_GENERACION = "DropZoneFileUpload";
-                    documento.USUARIO_ID = 1;
+                    documento.USUARIO_ID = 2;
                     documento.SIZE = file.ContentLength;
 
 
