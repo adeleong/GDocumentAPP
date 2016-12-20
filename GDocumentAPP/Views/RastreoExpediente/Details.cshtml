@@ -1,0 +1,90 @@
+﻿@model GDocumentAPP.Context.RASTREO_EXPEDIENTE
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RASTREO_EXPEDIENTE</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EMPLEADO_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMPLEADO_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FECHA_SALIDA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHA_SALIDA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FECHA_DEVOLUCION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHA_DEVOLUCION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FIRMA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FIRMA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ESTATUS_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ESTATUS_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PERSONA_ASIGNACION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PERSONA_ASIGNACION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.COMENTARIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COMENTARIO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DEPENDENCIA.DEPENDENCIA_NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DEPENDENCIA.DEPENDENCIA_NOMBRE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.USUARIO.LOGIN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USUARIO.LOGIN)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RATRAEO_EXPEDIENTE_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,74 @@
+﻿@model GDocumentAPP.Context.DOCUMENTO_INDEXACION
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DOCUMENTO_INDEXACION</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FECHA_INDEXACION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHA_INDEXACION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NIVEL_CALIDAD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NIVEL_CALIDAD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLAVE_DOCUMENTO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLAVE_DOCUMENTO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DESCRIPCION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DESCRIPCION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DOCUMENTO.CANAL_GENERACION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DOCUMENTO.CANAL_GENERACION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIPO_DOCUMENTO.DESCRIPCION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPO_DOCUMENTO.DESCRIPCION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.USUARIO.LOGIN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USUARIO.LOGIN)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.INDEXACION_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

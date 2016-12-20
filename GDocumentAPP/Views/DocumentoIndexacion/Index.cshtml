@@ -1,0 +1,69 @@
+﻿@model IEnumerable<GDocumentAPP.Context.DOCUMENTO_INDEXACION>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FECHA_INDEXACION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NIVEL_CALIDAD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CLAVE_DOCUMENTO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DESCRIPCION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DOCUMENTO.CANAL_GENERACION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TIPO_DOCUMENTO.DESCRIPCION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.USUARIO.LOGIN)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FECHA_INDEXACION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NIVEL_CALIDAD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLAVE_DOCUMENTO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DESCRIPCION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DOCUMENTO.CANAL_GENERACION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TIPO_DOCUMENTO.DESCRIPCION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.USUARIO.LOGIN)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.INDEXACION_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.INDEXACION_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.INDEXACION_ID })
+        </td>
+    </tr>
+}
+
+</table>

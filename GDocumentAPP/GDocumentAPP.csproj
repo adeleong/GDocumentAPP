@@ -259,10 +259,12 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DependenciaController.cs" />
     <Compile Include="Controllers\DocumentoController.cs" />
+    <Compile Include="Controllers\DocumentoIndexacionController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PersonaController.cs" />
+    <Compile Include="Controllers\RastreoExpedienteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -607,6 +609,16 @@
     <Content Include="Views\Dependencia\Details.cshtml" />
     <Content Include="Views\Dependencia\Edit.cshtml" />
     <Content Include="Views\Dependencia\Index.cshtml" />
+    <Content Include="Views\RastreoExpediente\Create.cshtml" />
+    <Content Include="Views\RastreoExpediente\Delete.cshtml" />
+    <Content Include="Views\RastreoExpediente\Details.cshtml" />
+    <Content Include="Views\RastreoExpediente\Edit.cshtml" />
+    <Content Include="Views\RastreoExpediente\Index.cshtml" />
+    <Content Include="Views\DocumentoIndexacion\Create.cshtml" />
+    <Content Include="Views\DocumentoIndexacion\Delete.cshtml" />
+    <Content Include="Views\DocumentoIndexacion\Details.cshtml" />
+    <Content Include="Views\DocumentoIndexacion\Edit.cshtml" />
+    <Content Include="Views\DocumentoIndexacion\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
