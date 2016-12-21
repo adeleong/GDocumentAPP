@@ -1,81 +1,112 @@
-﻿@model IEnumerable<GDocumentAPP.Context.RASTREO_EXPEDIENTE>
+﻿@using PagedList.Mvc;
+@using PagedList;
+
+@model PagedList.IPagedList<RASTREO_EXPEDIENTE>
+
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+
+ <!-- Custom CSS -->
+<link href="~/Scripts/admin2Template/dist/css/sb-admin-2.css" rel="stylesheet" />
+
+<h3>Listado de Expedientes Fisico</h3>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink(" ", "Create", null, new { @class = "btn btn-outline btn-success btn-md glyphicon glyphicon-plus-sign", @title = "Crear" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.EMPLEADO_ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FECHA_SALIDA)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FECHA_DEVOLUCION)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FIRMA)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ESTATUS_ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PERSONA_ASIGNACION)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.COMENTARIO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DEPENDENCIA.DEPENDENCIA_NOMBRE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.USUARIO.LOGIN)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.EMPLEADO_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FECHA_SALIDA)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FECHA_DEVOLUCION)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FIRMA)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ESTATUS_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PERSONA_ASIGNACION)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.COMENTARIO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DEPENDENCIA.DEPENDENCIA_NOMBRE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.USUARIO.LOGIN)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.RATRAEO_EXPEDIENTE_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.RATRAEO_EXPEDIENTE_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.RATRAEO_EXPEDIENTE_ID })
-        </td>
-    </tr>
-}
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().EMPLEADO_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().FECHA_SALIDA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().FECHA_DEVOLUCION)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().FIRMA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().ESTATUS_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().PERSONA_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().COMENTARIO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().DEPENDENCIA.DEPENDENCIA_NOMBRE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().USUARIO.LOGIN)
+            </th>
+            <th></th>
+        </tr>
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EMPLEADO_ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FECHA_SALIDA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FECHA_DEVOLUCION)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FIRMA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ESTATUS_ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PERSONA_ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.COMENTARIO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DEPENDENCIA.DEPENDENCIA_NOMBRE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.USUARIO.LOGIN)
+                </td>
+                <td align="right">
+                    @Html.ActionLink(" ", "Edit", new { id = item.RATRAEO_EXPEDIENTE_ID }, new
+                       {
+                           @class = " btn btn-default btn-md glyphicon glyphicon-pencil ",
+                           @title = "Editar"
+                       })
+
+
+                                    @Html.ActionLink(" ", "Details", new { id = item.RATRAEO_EXPEDIENTE_ID }, new
+                       {
+                           @class = " btn btn-info btn-md  glyphicon glyphicon-eye-open",
+                           @title = "Detalle"
+                       })
+
+
+                                    @Html.ActionLink(" ", "Delete", new { id = item.RATRAEO_EXPEDIENTE_ID }, new
+                       {
+                           @class = " btn btn-danger btn-md  glyphicon glyphicon-trash",
+                           @title = "Eliminar"
+                       })
+                  </td>
+
+            </tr>
+        }
+
+    </table>
+</div>
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

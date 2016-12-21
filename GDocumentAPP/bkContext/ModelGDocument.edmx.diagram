@@ -32,6 +32,9 @@
         <AssociationConnector Association="GDocumentDBModel.FK_RASTREO_USUARIO" ManuallyRouted="false" />
         <AssociationConnector Association="GDocumentDBModel.FK_USUARIO_ROL" ManuallyRouted="false" />
         <AssociationConnector Association="GDocumentDBModel.FK_USUARIOROL_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="GDocumentDBModel.FK_RASTREO_EMPLEADO" />
+        <AssociationConnector Association="GDocumentDBModel.FK_RASTREO_ESTATUS" />
+        <AssociationConnector Association="GDocumentDBModel.FK_RASTREO_PERSONA" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

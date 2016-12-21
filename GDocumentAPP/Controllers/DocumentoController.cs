@@ -6,8 +6,6 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using GDocumentAPP.Models;
-using GDocumentAPP.Context;
 using System.Configuration;
 using GDocumentAPP.Services;
 using System.IO;
@@ -16,7 +14,7 @@ namespace GDocumentAPP.Controllers
 {
     public class DocumentoController : Controller
     {
-        private GDocumentDBEntities db = new GDocumentDBEntities();
+        private ModelDocumentoApp db = new ModelDocumentoApp();
         
         public string pathTarifarioImage = ConfigurationManager.AppSettings["pathTarifarioImage"].ToString();
         public string pathTarifarioXml = ConfigurationManager.AppSettings["pathTarifarioXML"].ToString();

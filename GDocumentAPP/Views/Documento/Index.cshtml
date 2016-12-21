@@ -1,6 +1,8 @@
-﻿@model IEnumerable<GDocumentAPP.Context.DOCUMENTO>
+﻿@model IEnumerable<DOCUMENTO>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!-- Custom CSS -->
+<link href="~/Scripts/admin2Template/dist/css/sb-admin-2.css" rel="stylesheet" />
 
 @{
     ViewBag.Title = "Documentos";
@@ -16,7 +18,7 @@
         @Html.DropDownList("EMPLEADO_ID", null, "<seleccione>", htmlAttributes: new { @class = "form-control", @name = "EMPLEADO_ID" })
         @Html.ValidationMessageFor(Model => Model.First().EMPLEADO_ID, "", new { @class = "text-danger" })
         <span class="input-group-btn">
-            <button class="btn btn-primary" type="button" id="btnEmpleado">
+            <button class="btn btn-primary disabled" type="button" id="btnEmpleado" title="Empleado">
                 <span class="glyphicon glyphicon-user"></span>
             </button>
         </span>
@@ -132,10 +134,10 @@
 
                 this.on("addedfile", function (file) {
 
-                    var indexarButton = Dropzone.createElement("<button type=\"button\" class=\"btn btn-primary btn-sm glyphicon glyphicon-pushpin\" title=\"indexar\"> </button>");
-                    var editButton = Dropzone.createElement("<button type=\"button\" class=\"btn btn-default btn-sm glyphicon glyphicon-pencil\" title=\"Editar\"> </button>");
-                    var removeButton = Dropzone.createElement("<button type=\"button\" class=\"btn btn-danger btn-sm glyphicon glyphicon-trash\" title=\"Eliminar\"> </button>");
-                    var downloadButton = Dropzone.createElement("<button type=\"button\" class=\"btn btn-info btn-sm glyphicon glyphicon-eye-open\" title=\"Detalle\"></button>");
+                    var indexarButton = Dropzone.createElement("<button type=\"button\" class=\"btn btn-outline btn-primary btn-sm glyphicon glyphicon-pushpin\" title=\"indexar\"> </button>");
+                    var editButton = Dropzone.createElement("<button type=\"button\" class=\"btn btn-outline btn-warning btn-sm glyphicon glyphicon-pencil\" title=\"Editar\"> </button>");
+                    var removeButton = Dropzone.createElement("<button type=\"button\" class=\"btn btn-outline btn-danger btn-sm glyphicon glyphicon-trash\" title=\"Eliminar\"> </button>");
+                    var downloadButton = Dropzone.createElement("<button type=\"button\" class=\"btn btn-outline btn-info btn-sm glyphicon glyphicon-eye-open\" title=\"Detalle\"></button>");
                     var separator = Dropzone.createElement("<a> <a/>");
                     var separator2 = Dropzone.createElement("<a> <a/>");
                     var separator3 = Dropzone.createElement("<a> <a/>");

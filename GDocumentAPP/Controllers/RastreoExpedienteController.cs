@@ -6,19 +6,33 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using GDocumentAPP.Context;
+using PagedList;
 
 namespace GDocumentAPP.Controllers
 {
     public class RastreoExpedienteController : Controller
     {
-        private GDocumentDBEntities db = new GDocumentDBEntities();
+        private ModelDocumentoApp db = new ModelDocumentoApp();
 
         // GET: RastreoExpediente
-        public ActionResult Index()
+        public ActionResult Index(int? page, string searchString)
         {
-            var rASTREO_EXPEDIENTE = db.RASTREO_EXPEDIENTE.Include(r => r.DEPENDENCIA).Include(r => r.USUARIO);
-            return View(rASTREO_EXPEDIENTE.ToList());
+            /*var rASTREO_EXPEDIENTE = db.RASTREO_EXPEDIENTE.Include(r => r.DEPENDENCIA).Include(r => r.USUARIO).Include(r => r.EMPLEADO).Include(r => r.ESTATU).Include(r => r.PERSONA);
+            return View(rASTREO_EXPEDIENTE.ToList());*/
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+
+            var expedientesFisico = from s in db.RASTREO_EXPEDIENTE.Include(r => r.DEPENDENCIA).Include(r => r.USUARIO).Include(r => r.EMPLEADO).Include(r => r.ESTATU).Include(r => r.PERSONA)
+                                    select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                expedientesFisico = expedientesFisico.Where(s => s.COMENTARIO.Contains(searchString));
+            }
+
+            // return View(db.PERSONAs.ToList().ToPagedList(pageNumber, pageSize));
+            return View(expedientesFisico.ToList().ToPagedList(pageNumber, pageSize));
         }
 
         // GET: RastreoExpediente/Details/5
@@ -41,6 +55,9 @@ namespace GDocumentAPP.Controllers
         {
             ViewBag.DEPENDENCIA_ID = new SelectList(db.DEPENDENCIAs, "DEPENDENCIA_ID", "DEPENDENCIA_NOMBRE");
             ViewBag.USUARIO_ID = new SelectList(db.USUARIOs, "USUARIO_ID", "LOGIN");
+            ViewBag.EMPLEADO_ID = new SelectList(db.EMPLEADOes, "EMPLEADO_ID", "SUPERVISOR");
+            ViewBag.ESTATUS_ID = new SelectList(db.ESTATUS, "ESTATUS_ID", "DESCRIPCION");
+            ViewBag.PERSONA_ID = new SelectList(db.PERSONAs, "PERSONA_ID", "NOMBRE");
             return View();
         }
 
@@ -49,7 +66,7 @@ namespace GDocumentAPP.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RATRAEO_EXPEDIENTE_ID,EMPLEADO_ID,USUARIO_ID,DEPENDENCIA_ID,FECHA_SALIDA,FECHA_DEVOLUCION,FIRMA,ESTATUS_ID,PERSONA_ASIGNACION,COMENTARIO")] RASTREO_EXPEDIENTE rASTREO_EXPEDIENTE)
+        public ActionResult Create([Bind(Include = "RATRAEO_EXPEDIENTE_ID,EMPLEADO_ID,USUARIO_ID,DEPENDENCIA_ID,FECHA_SALIDA,FECHA_DEVOLUCION,FIRMA,ESTATUS_ID,PERSONA_ID,COMENTARIO")] RASTREO_EXPEDIENTE rASTREO_EXPEDIENTE)
         {
             if (ModelState.IsValid)
             {
@@ -60,6 +77,9 @@ namespace GDocumentAPP.Controllers
 
             ViewBag.DEPENDENCIA_ID = new SelectList(db.DEPENDENCIAs, "DEPENDENCIA_ID", "DEPENDENCIA_NOMBRE", rASTREO_EXPEDIENTE.DEPENDENCIA_ID);
             ViewBag.USUARIO_ID = new SelectList(db.USUARIOs, "USUARIO_ID", "LOGIN", rASTREO_EXPEDIENTE.USUARIO_ID);
+            ViewBag.EMPLEADO_ID = new SelectList(db.EMPLEADOes, "EMPLEADO_ID", "SUPERVISOR", rASTREO_EXPEDIENTE.EMPLEADO_ID);
+            ViewBag.ESTATUS_ID = new SelectList(db.ESTATUS, "ESTATUS_ID", "DESCRIPCION", rASTREO_EXPEDIENTE.ESTATUS_ID);
+            ViewBag.PERSONA_ID = new SelectList(db.PERSONAs, "PERSONA_ID", "NOMBRE", rASTREO_EXPEDIENTE.PERSONA_ID);
             return View(rASTREO_EXPEDIENTE);
         }
 
@@ -85,7 +105,7 @@ namespace GDocumentAPP.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RATRAEO_EXPEDIENTE_ID,EMPLEADO_ID,USUARIO_ID,DEPENDENCIA_ID,FECHA_SALIDA,FECHA_DEVOLUCION,FIRMA,ESTATUS_ID,PERSONA_ASIGNACION,COMENTARIO")] RASTREO_EXPEDIENTE rASTREO_EXPEDIENTE)
+        public ActionResult Edit([Bind(Include = "RATRAEO_EXPEDIENTE_ID,EMPLEADO_ID,USUARIO_ID,DEPENDENCIA_ID,FECHA_SALIDA,FECHA_DEVOLUCION,FIRMA,ESTATUS_ID,PERSONA_ID,COMENTARIO")] RASTREO_EXPEDIENTE rASTREO_EXPEDIENTE)
         {
             if (ModelState.IsValid)
             {

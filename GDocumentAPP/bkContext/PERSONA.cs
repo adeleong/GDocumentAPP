@@ -13,8 +13,7 @@ namespace GDocumentAPP.Context
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Web.Mvc;
+
     public partial class PERSONA
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,9 +21,8 @@ namespace GDocumentAPP.Context
         {
             this.EMPLEADOes = new HashSet<EMPLEADO>();
             this.TELEFONOes = new HashSet<TELEFONO>();
+            this.RASTREO_EXPEDIENTE = new HashSet<RASTREO_EXPEDIENTE>();
         }
-    
-        public int PERSONA_ID { get; set; }
 
         [Required(ErrorMessage = "El nombre es requerido")]
         [Display(Name = "Nombre")]
@@ -42,17 +40,17 @@ namespace GDocumentAPP.Context
         [Display(Name = "Segundo Apellido")]
         [StringLength(18, MinimumLength = 4, ErrorMessage = "La longitud debe ser entre 4 y 18")]
         public string SEGUNDO_APELLIDO { get; set; }
-        
+
         [Required(ErrorMessage = "El Tipo Identificación es requerido")]
         [Display(Name = "Tipo Identificación")]
         public string TIPO_IDENTIFICACION { get; set; }
 
-      //  [Required(ErrorMessage = "La Identificación  es requerido")]
+        //  [Required(ErrorMessage = "La Identificación  es requerido")]
         [Display(Name = "Identificación")]
         //  [StringLength(11, MinimumLength = 11, ErrorMessage = "La longitud debe ser de 11")]
         [CustomIdentificacionValidator]
         public string IDENTIFICACION { get; set; }
-        
+
         [Required(ErrorMessage = "El Sexo es requerido")]
         [Display(Name = "Sexo")]
         public string SEXO { get; set; }
@@ -65,12 +63,13 @@ namespace GDocumentAPP.Context
         {
             return String.Format("{0} {1} - {2} ", NOMBRE, PRIMER_APELLIDO, IDENTIFICACION);
         }
-               
+
+       
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EMPLEADO> EMPLEADOes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TELEFONO> TELEFONOes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RASTREO_EXPEDIENTE> RASTREO_EXPEDIENTE { get; set; }
     }
-
-   
 }

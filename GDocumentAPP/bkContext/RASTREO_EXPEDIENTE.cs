@@ -11,21 +11,37 @@ namespace GDocumentAPP.Context
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class RASTREO_EXPEDIENTE
     {
         public int RATRAEO_EXPEDIENTE_ID { get; set; }
         public int EMPLEADO_ID { get; set; }
         public int USUARIO_ID { get; set; }
         public int DEPENDENCIA_ID { get; set; }
+
+        [Required(ErrorMessage = "La Fecha Ingreso es requerida")]
+        [Display(Name = "Fecha Ingreso")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime FECHA_SALIDA { get; set; }
+
+        [Required(ErrorMessage = "La Fecha Asignación es requerida")]
+        [Display(Name = "Fecha Asignación")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> FECHA_DEVOLUCION { get; set; }
+
         public string FIRMA { get; set; }
         public int ESTATUS_ID { get; set; }
-        public string PERSONA_ASIGNACION { get; set; }
+       
         public string COMENTARIO { get; set; }
+        public int PERSONA_ID { get; set; }
     
         public virtual DEPENDENCIA DEPENDENCIA { get; set; }
         public virtual USUARIO USUARIO { get; set; }
+        public virtual EMPLEADO EMPLEADO { get; set; }
+        public virtual ESTATU ESTATU { get; set; }
+        public virtual PERSONA PERSONA { get; set; }
     }
 }

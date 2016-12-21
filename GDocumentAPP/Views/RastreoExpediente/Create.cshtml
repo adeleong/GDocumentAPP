@@ -1,10 +1,10 @@
-﻿@model GDocumentAPP.Context.RASTREO_EXPEDIENTE
+﻿@model RASTREO_EXPEDIENTE
 
 @{
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h3>Crear Registro de Expediente Empleado</h3>
 
 
 @using (Html.BeginForm()) 
@@ -12,16 +12,17 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>RASTREO_EXPEDIENTE</h4>
+      
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+       
         <div class="form-group">
-            @Html.LabelFor(model => model.EMPLEADO_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.EMPLEADO_ID, "EMPLEADO_ID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.EMPLEADO_ID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("EMPLEADO_ID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.EMPLEADO_ID, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>      
 
         <div class="form-group">
             @Html.LabelFor(model => model.USUARIO_ID, "USUARIO_ID", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -64,18 +65,18 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ESTATUS_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ESTATUS_ID, "ESTATUS_ID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ESTATUS_ID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("ESTATUS_ID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ESTATUS_ID, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.PERSONA_ASIGNACION, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PERSONA_ID, "PERSONA_ID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PERSONA_ASIGNACION, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PERSONA_ASIGNACION, "", new { @class = "text-danger" })
+                @Html.DropDownList("PERSONA_ID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PERSONA_ID, "", new { @class = "text-danger" })
             </div>
         </div>
 

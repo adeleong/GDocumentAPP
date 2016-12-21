@@ -19,9 +19,8 @@ namespace GDocumentAPP.Context
         public EMPLEADO()
         {
             this.DOCUMENTOes = new HashSet<DOCUMENTO>();
+            this.RASTREO_EXPEDIENTE = new HashSet<RASTREO_EXPEDIENTE>();
         }
-    
-        public int EMPLEADO_ID { get; set; }
 
         [Required(ErrorMessage = "La Persona es requerida")]
         [Display(Name = "Persona", Description = "Nombre + Identificación")]
@@ -65,11 +64,13 @@ namespace GDocumentAPP.Context
         [Required(ErrorMessage = "El Estatus es requerido")]
         [Display(Name = "Estatus")]
         public int ESTATUS_ID { get; set; }
-    
+
         public virtual DEPENDENCIA DEPENDENCIA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DOCUMENTO> DOCUMENTOes { get; set; }
         public virtual ESTATU ESTATU { get; set; }
         public virtual PERSONA PERSONA { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RASTREO_EXPEDIENTE> RASTREO_EXPEDIENTE { get; set; }
     }
 }

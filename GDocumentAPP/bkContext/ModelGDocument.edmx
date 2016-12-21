@@ -90,7 +90,7 @@
           <Property Name="FECHA_DEVOLUCION" Type="date" />
           <Property Name="FIRMA" Type="varchar(max)" />
           <Property Name="ESTATUS_ID" Type="int" Nullable="false" />
-          <Property Name="PERSONA_ASIGNACION" Type="varchar" MaxLength="50" />
+          <Property Name="PERSONA_ID" Type="int" Nullable="false" />
           <Property Name="COMENTARIO" Type="varchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="ROL">
@@ -256,6 +256,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_RASTREO_EMPLEADO">
+          <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="1" />
+          <End Role="RASTREO_EXPEDIENTE" Type="Self.RASTREO_EXPEDIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLEADO">
+              <PropertyRef Name="EMPLEADO_ID" />
+            </Principal>
+            <Dependent Role="RASTREO_EXPEDIENTE">
+              <PropertyRef Name="EMPLEADO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RASTREO_ESTATUS">
+          <End Role="ESTATUS" Type="Self.ESTATUS" Multiplicity="1" />
+          <End Role="RASTREO_EXPEDIENTE" Type="Self.RASTREO_EXPEDIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESTATUS">
+              <PropertyRef Name="ESTATUS_ID" />
+            </Principal>
+            <Dependent Role="RASTREO_EXPEDIENTE">
+              <PropertyRef Name="ESTATUS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RASTREO_PERSONA">
+          <End Role="PERSONA" Type="Self.PERSONA" Multiplicity="1" />
+          <End Role="RASTREO_EXPEDIENTE" Type="Self.RASTREO_EXPEDIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERSONA">
+              <PropertyRef Name="PERSONA_ID" />
+            </Principal>
+            <Dependent Role="RASTREO_EXPEDIENTE">
+              <PropertyRef Name="PERSONA_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_RASTREO_USUARIO">
           <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
           <End Role="RASTREO_EXPEDIENTE" Type="Self.RASTREO_EXPEDIENTE" Multiplicity="*" />
@@ -369,6 +405,18 @@
             <End Role="DEPENDENCIA" EntitySet="DEPENDENCIA" />
             <End Role="RASTREO_EXPEDIENTE" EntitySet="RASTREO_EXPEDIENTE" />
           </AssociationSet>
+          <AssociationSet Name="FK_RASTREO_EMPLEADO" Association="Self.FK_RASTREO_EMPLEADO">
+            <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+            <End Role="RASTREO_EXPEDIENTE" EntitySet="RASTREO_EXPEDIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RASTREO_ESTATUS" Association="Self.FK_RASTREO_ESTATUS">
+            <End Role="ESTATUS" EntitySet="ESTATUS" />
+            <End Role="RASTREO_EXPEDIENTE" EntitySet="RASTREO_EXPEDIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RASTREO_PERSONA" Association="Self.FK_RASTREO_PERSONA">
+            <End Role="PERSONA" EntitySet="PERSONA" />
+            <End Role="RASTREO_EXPEDIENTE" EntitySet="RASTREO_EXPEDIENTE" />
+          </AssociationSet>
           <AssociationSet Name="FK_RASTREO_USUARIO" Association="Self.FK_RASTREO_USUARIO">
             <End Role="USUARIO" EntitySet="USUARIO" />
             <End Role="RASTREO_EXPEDIENTE" EntitySet="RASTREO_EXPEDIENTE" />
@@ -457,6 +505,7 @@
           <NavigationProperty Name="DOCUMENTOes" Relationship="Self.FK_DOCUMENTO_EMPLEADO" FromRole="EMPLEADO" ToRole="DOCUMENTO" />
           <NavigationProperty Name="ESTATU" Relationship="Self.FK_EMPLEADO_ESTATUS" FromRole="EMPLEADO" ToRole="ESTATUS" />
           <NavigationProperty Name="PERSONA" Relationship="Self.FK_EMPLEADO_PERSONA" FromRole="EMPLEADO" ToRole="PERSONA" />
+          <NavigationProperty Name="RASTREO_EXPEDIENTE" Relationship="GDocumentDBModel.FK_RASTREO_EMPLEADO" FromRole="EMPLEADO" ToRole="RASTREO_EXPEDIENTE" />
         </EntityType>
         <EntityType Name="ESTATU">
           <Key>
@@ -469,6 +518,7 @@
           <NavigationProperty Name="DOCUMENTOes" Relationship="Self.FK_DOCUMENTO_ESTATUS" FromRole="ESTATUS" ToRole="DOCUMENTO" />
           <NavigationProperty Name="EMPLEADOes" Relationship="Self.FK_EMPLEADO_ESTATUS" FromRole="ESTATUS" ToRole="EMPLEADO" />
           <NavigationProperty Name="USUARIOs" Relationship="Self.FK_USUARIO_ESTATUS" FromRole="ESTATUS" ToRole="USUARIO" />
+          <NavigationProperty Name="RASTREO_EXPEDIENTE" Relationship="GDocumentDBModel.FK_RASTREO_ESTATUS" FromRole="ESTATU" ToRole="RASTREO_EXPEDIENTE" />
         </EntityType>
         <EntityType Name="PERSONA">
           <Key>
@@ -484,6 +534,7 @@
           <Property Name="EMAIL" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="EMPLEADOes" Relationship="Self.FK_EMPLEADO_PERSONA" FromRole="PERSONA" ToRole="EMPLEADO" />
           <NavigationProperty Name="TELEFONOes" Relationship="Self.FK_TELEFONO_PERSONA" FromRole="PERSONA" ToRole="TELEFONO" />
+          <NavigationProperty Name="RASTREO_EXPEDIENTE" Relationship="GDocumentDBModel.FK_RASTREO_PERSONA" FromRole="PERSONA" ToRole="RASTREO_EXPEDIENTE" />
         </EntityType>
         <EntityType Name="RASTREO_EXPEDIENTE">
           <Key>
@@ -497,10 +548,13 @@
           <Property Name="FECHA_DEVOLUCION" Type="DateTime" Precision="0" />
           <Property Name="FIRMA" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="ESTATUS_ID" Type="Int32" Nullable="false" />
-          <Property Name="PERSONA_ASIGNACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PERSONA_ID" Type="Int32" Nullable="false" />
           <Property Name="COMENTARIO" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="DEPENDENCIA" Relationship="Self.FK_RASTREO__DEPENDENCIA" FromRole="RASTREO_EXPEDIENTE" ToRole="DEPENDENCIA" />
-          <NavigationProperty Name="USUARIO" Relationship="Self.FK_RASTREO_USUARIO" FromRole="RASTREO_EXPEDIENTE" ToRole="USUARIO" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.FK_RASTREO_USUARIO" FromRole="RASTREO_EXPEDIENTE" ToRole="USUARIO" />         
+          <NavigationProperty Name="EMPLEADO" Relationship="GDocumentDBModel.FK_RASTREO_EMPLEADO" FromRole="RASTREO_EXPEDIENTE" ToRole="EMPLEADO" />
+          <NavigationProperty Name="ESTATU" Relationship="GDocumentDBModel.FK_RASTREO_ESTATUS" FromRole="RASTREO_EXPEDIENTE" ToRole="ESTATU" />
+          <NavigationProperty Name="PERSONA" Relationship="GDocumentDBModel.FK_RASTREO_PERSONA" FromRole="RASTREO_EXPEDIENTE" ToRole="PERSONA" />
         </EntityType>
         <EntityType Name="ROL">
           <Key>
@@ -808,7 +862,55 @@
             <End Role="USUARIO" EntitySet="USUARIOs" />
             <End Role="USUARIO_ROL" EntitySet="USUARIO_ROL" />
           </AssociationSet>
+          <AssociationSet Name="FK_RASTREO_EMPLEADO" Association="GDocumentDBModel.FK_RASTREO_EMPLEADO">
+            <End Role="EMPLEADO" EntitySet="EMPLEADOes" />
+            <End Role="RASTREO_EXPEDIENTE" EntitySet="RASTREO_EXPEDIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RASTREO_ESTATUS" Association="GDocumentDBModel.FK_RASTREO_ESTATUS">
+            <End Role="ESTATU" EntitySet="ESTATUS" />
+            <End Role="RASTREO_EXPEDIENTE" EntitySet="RASTREO_EXPEDIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RASTREO_PERSONA" Association="GDocumentDBModel.FK_RASTREO_PERSONA">
+            <End Role="PERSONA" EntitySet="PERSONAs" />
+            <End Role="RASTREO_EXPEDIENTE" EntitySet="RASTREO_EXPEDIENTE" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_RASTREO_EMPLEADO">
+          <End Type="GDocumentDBModel.EMPLEADO" Role="EMPLEADO" Multiplicity="1" />
+          <End Type="GDocumentDBModel.RASTREO_EXPEDIENTE" Role="RASTREO_EXPEDIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLEADO">
+              <PropertyRef Name="EMPLEADO_ID" />
+            </Principal>
+            <Dependent Role="RASTREO_EXPEDIENTE">
+              <PropertyRef Name="EMPLEADO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RASTREO_ESTATUS">
+          <End Type="GDocumentDBModel.ESTATU" Role="ESTATU" Multiplicity="1" />
+          <End Type="GDocumentDBModel.RASTREO_EXPEDIENTE" Role="RASTREO_EXPEDIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESTATU">
+              <PropertyRef Name="ESTATUS_ID" />
+            </Principal>
+            <Dependent Role="RASTREO_EXPEDIENTE">
+              <PropertyRef Name="ESTATUS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RASTREO_PERSONA">
+          <End Type="GDocumentDBModel.PERSONA" Role="PERSONA" Multiplicity="1" />
+          <End Type="GDocumentDBModel.RASTREO_EXPEDIENTE" Role="RASTREO_EXPEDIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERSONA">
+              <PropertyRef Name="PERSONA_ID" />
+            </Principal>
+            <Dependent Role="RASTREO_EXPEDIENTE">
+              <PropertyRef Name="PERSONA_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -897,6 +999,7 @@
           <EntitySetMapping Name="RASTREO_EXPEDIENTE">
             <EntityTypeMapping TypeName="GDocumentDBModel.RASTREO_EXPEDIENTE">
               <MappingFragment StoreEntitySet="RASTREO_EXPEDIENTE">
+                <ScalarProperty Name="PERSONA_ID" ColumnName="PERSONA_ID" />
                 <ScalarProperty Name="RATRAEO_EXPEDIENTE_ID" ColumnName="RATRAEO_EXPEDIENTE_ID" />
                 <ScalarProperty Name="EMPLEADO_ID" ColumnName="EMPLEADO_ID" />
                 <ScalarProperty Name="USUARIO_ID" ColumnName="USUARIO_ID" />
@@ -905,7 +1008,6 @@
                 <ScalarProperty Name="FECHA_DEVOLUCION" ColumnName="FECHA_DEVOLUCION" />
                 <ScalarProperty Name="FIRMA" ColumnName="FIRMA" />
                 <ScalarProperty Name="ESTATUS_ID" ColumnName="ESTATUS_ID" />
-                <ScalarProperty Name="PERSONA_ASIGNACION" ColumnName="PERSONA_ASIGNACION" />
                 <ScalarProperty Name="COMENTARIO" ColumnName="COMENTARIO" />
               </MappingFragment>
             </EntityTypeMapping>

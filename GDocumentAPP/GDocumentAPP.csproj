@@ -205,57 +205,6 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Context\DEPENDENCIA.cs">
-      <DependentUpon>ModelGDocument.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Context\DOCUMENTO.cs">
-      <DependentUpon>ModelGDocument.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Context\DOCUMENTO_INDEXACION.cs">
-      <DependentUpon>ModelGDocument.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Context\EMPLEADO.cs">
-      <DependentUpon>ModelGDocument.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Context\ESTATU.cs">
-      <DependentUpon>ModelGDocument.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Context\ModelGDocument.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelGDocument.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Context\ModelGDocument.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelGDocument.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Context\ModelGDocument.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelGDocument.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Context\PERSONA.cs">
-      <DependentUpon>ModelGDocument.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Context\RASTREO_EXPEDIENTE.cs">
-      <DependentUpon>ModelGDocument.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Context\ROL.cs">
-      <DependentUpon>ModelGDocument.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Context\TELEFONO.cs">
-      <DependentUpon>ModelGDocument.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Context\TIPO_DOCUMENTO.cs">
-      <DependentUpon>ModelGDocument.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Context\USUARIO.cs">
-      <DependentUpon>ModelGDocument.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Context\USUARIO_ROL.cs">
-      <DependentUpon>ModelGDocument.tt</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DependenciaController.cs" />
     <Compile Include="Controllers\DocumentoController.cs" />
@@ -265,21 +214,34 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PersonaController.cs" />
     <Compile Include="Controllers\RastreoExpedienteController.cs" />
+    <Compile Include="Models\DEPENDENCIA.cs" />
+    <Compile Include="Models\DOCUMENTO.cs" />
+    <Compile Include="Models\DOCUMENTO_INDEXACION.cs" />
+    <Compile Include="Models\EMPLEADO.cs" />
+    <Compile Include="Models\ESTATU.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Context\ModelDocumentoApp.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AttachmentsModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\TarifarioXML.cs" />
+    <Compile Include="Models\PERSONA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Models\RASTREO_EXPEDIENTE.cs" />
+    <Compile Include="Models\ROL.cs" />
     <Compile Include="Services\Bundle.cs" />
     <Compile Include="Services\CustomIdentificacionValidator.cs" />
     <Compile Include="Services\DocumentoService.cs" />
     <Compile Include="Services\HandlePathFile.cs" />
     <Compile Include="Services\HandleXMLService.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Models\TELEFONO.cs" />
+    <Compile Include="Models\TIPO_DOCUMENTO.cs" />
+    <Compile Include="Models\USUARIO.cs" />
+    <Compile Include="Models\USUARIO_ROL.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -326,16 +288,6 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
-    <Content Include="Context\ModelGDocument.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelGDocument.edmx</DependentUpon>
-      <LastGenOutput>ModelGDocument.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Context\ModelGDocument.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelGDocument.edmx</DependentUpon>
-      <LastGenOutput>ModelGDocument.cs</LastGenOutput>
-    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -467,13 +419,6 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <EntityDeploy Include="Context\ModelGDocument.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelGDocument.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Context\ModelGDocument.edmx.diagram">
-      <DependentUpon>ModelGDocument.edmx</DependentUpon>
     </Content>
     <Content Include="Scripts\admin2Template\.gitignore" />
     <Content Include="Scripts\admin2Template\bower.json" />

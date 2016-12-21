@@ -6,13 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using GDocumentAPP.Context;
 
 namespace GDocumentAPP.Controllers
 {
     public class EmpleadoController : Controller
     {
-        private GDocumentDBEntities db = new GDocumentDBEntities();
+        private ModelDocumentoApp db = new ModelDocumentoApp();
 
         PERSONA persona = new PERSONA();
 

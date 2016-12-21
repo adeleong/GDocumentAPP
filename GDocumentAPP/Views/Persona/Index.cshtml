@@ -1,10 +1,12 @@
 ﻿@using PagedList.Mvc;
 @using PagedList;
 
-@model PagedList.IPagedList<GDocumentAPP.Context.PERSONA>
+@model PagedList.IPagedList<PERSONA>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<!-- Custom CSS -->
+<link href="~/Scripts/admin2Template/dist/css/sb-admin-2.css" rel="stylesheet" />
 
 @{
     ViewBag.Title = "Persona";
@@ -13,7 +15,7 @@
 <h3>Listado de Persona</h3>
 
 <p>
-    @Html.ActionLink(" ", "Create", null, new { @class = "btn btn-success btn-md glyphicon glyphicon-plus-sign", @title = "Crear" })
+    @Html.ActionLink(" ", "Create", null, new { @class = "btn btn-outline btn-success btn-md glyphicon glyphicon-plus-sign", @title = "Crear" })
 </p>
 
 @using (Html.BeginForm())
@@ -87,14 +89,14 @@
                     @Html.DisplayFor(modelItem => item.EMAIL)
                 </td>
                 <td align="right" >
-                    @Html.ActionLink(" ", "Edit", new { id = item.PERSONA_ID }, new { @class = " btn btn-default btn-md glyphicon glyphicon-pencil ",
+                    @Html.ActionLink(" ", "Edit", new { id = item.PERSONA_ID }, new { @class = " btn btn-outline btn-warning btn-md glyphicon glyphicon-pencil ",
                                                                                       @title = "Editar" })
                 
-                    @Html.ActionLink(" ", "Details", new { id = item.PERSONA_ID }, new { @class = " btn btn-info btn-md  glyphicon glyphicon-eye-open",
+                    @Html.ActionLink(" ", "Details", new { id = item.PERSONA_ID }, new { @class = " btn btn-outline btn-info btn-md  glyphicon glyphicon-eye-open",
                    @title = "Detalle" })
                 
                 
-                    @Html.ActionLink(" ", "Delete", new { id = item.PERSONA_ID }, new { @class = " btn btn-danger btn-md  glyphicon glyphicon-trash",
+                    @Html.ActionLink(" ", "Delete", new { id = item.PERSONA_ID }, new { @class = " btn btn-outline btn-danger btn-md  glyphicon glyphicon-trash",
                                                                                         @title = "Eliminar" })
                 </td>
             </tr>

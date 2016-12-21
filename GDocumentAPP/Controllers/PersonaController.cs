@@ -7,13 +7,12 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
-using GDocumentAPP.Context;
 
 namespace GDocumentAPP.Controllers
 {
     public class PersonaController : Controller
     {
-        private GDocumentDBEntities db = new GDocumentDBEntities();
+        private ModelDocumentoApp db = new ModelDocumentoApp();
 
         // GET: Persona
         public ActionResult Index(int? page, string searchString)

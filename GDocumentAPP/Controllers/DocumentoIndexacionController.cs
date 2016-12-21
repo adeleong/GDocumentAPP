@@ -6,13 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using GDocumentAPP.Context;
 
 namespace GDocumentAPP.Controllers
 {
     public class DocumentoIndexacionController : Controller
     {
-        private GDocumentDBEntities db = new GDocumentDBEntities();
+        private ModelDocumentoApp db = new ModelDocumentoApp();
 
         // GET: DocumentoIndexacion
         public ActionResult Index()
