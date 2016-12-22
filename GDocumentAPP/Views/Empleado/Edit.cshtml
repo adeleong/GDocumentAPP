@@ -4,6 +4,9 @@
     ViewBag.Title = "Editar";
 }
 
+<!-- Custom CSS -->
+<link href="~/Scripts/admin2Template/dist/css/sb-admin-2.css" rel="stylesheet" />
+
 <h2>Editar Empleado</h2>
 
 
@@ -100,7 +103,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Guardar" class="btn btn-primary active" />
-                @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn btn-info" })
+                @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn btn-outline btn-info" })
             </div>
         </div>       
     </div>

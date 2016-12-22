@@ -4,11 +4,13 @@
 @{
     ViewBag.Title = "Index";
 }
+<!-- Custom CSS -->
+<link href="~/Scripts/admin2Template/dist/css/sb-admin-2.css" rel="stylesheet" />
 
-<h3>Listado de Empleados</h3>
+<h2>Listado de Empleados</h2>
 
 <p>
-    @Html.ActionLink(" ", "Create", null, new { @class = "btn btn-success btn-md glyphicon glyphicon-plus-sign", @title = "Crear" })
+    @Html.ActionLink(" ", "Create", null, new { @class = "btn btn-circle btn-success btn-md glyphicon glyphicon-plus-sign", @title = "Crear" })
 </p>
 
 @using (Html.BeginForm())
@@ -92,11 +94,11 @@
                 </td>
                
                 <td align="right" colspan="3">
-                    @Html.ActionLink(" ", "Edit", new { id = item.EMPLEADO_ID }, new { @class = "btn btn-default glyphicon glyphicon-pencil", @title = "Editar"})
+                    @Html.ActionLink(" ", "Edit", new { id = item.EMPLEADO_ID }, new { @class = "btn btn-circle btn-outline btn-warning glyphicon glyphicon-pencil", @title = "Editar"})
                
-                    @Html.ActionLink(" ", "Details", new { id = item.EMPLEADO_ID }, new { @class = " btn btn-info glyphicon glyphicon-eye-open", @title = "Detalle" })
+                    @Html.ActionLink(" ", "Details", new { id = item.EMPLEADO_ID }, new { @class = " btn btn-circle btn-outline btn-info glyphicon glyphicon-eye-open", @title = "Detalle" })
                 
-                    @Html.ActionLink(" ", "Delete", new { id = item.EMPLEADO_ID }, new { @class = "btn btn-danger glyphicon glyphicon-trash", @title = "Eliminar" })
+                    @Html.ActionLink(" ", "Delete", new { id = item.EMPLEADO_ID }, new { @class = "btn btn-circle btn-outline btn-danger glyphicon glyphicon-trash", @title = "Eliminar" })
                 </td>
 
             </tr>

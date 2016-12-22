@@ -4,6 +4,9 @@
     ViewBag.Title = "Details";
 }
 
+<!-- Custom CSS -->
+<link href="~/Scripts/admin2Template/dist/css/sb-admin-2.css" rel="stylesheet" />
+
 <h2>Persona Detalle</h2>
 
 <div>
@@ -72,8 +75,8 @@
 </div>
 
 <div class="input-group col-md-push-1">
-    @Html.ActionLink("Editar", "Edit", new { id = Model.PERSONA_ID }, new { @class = "btn btn-default" })
+    @Html.ActionLink("Editar", "Edit", new { id = Model.PERSONA_ID }, new { @class = "btn btn-warning" })
     <span> </span>
-    @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn btn-info" })
+    @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn btn-outline btn-info" })
 </div>
 

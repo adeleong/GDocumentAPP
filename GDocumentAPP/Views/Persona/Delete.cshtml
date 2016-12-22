@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "Delete";
 }
+<!-- Custom CSS -->
+<link href="~/Scripts/admin2Template/dist/css/sb-admin-2.css" rel="stylesheet" />
 
 
 <h3>¿Estás seguro que desea eliminar esta Persona?</h3>
@@ -75,7 +77,7 @@
     <div class="input-group col-md-push-1">         
         <input type="submit" value="Eliminar" class="btn btn-danger" /> 
         <span> </span>
-        @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn btn-info" })  
+        @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn btn-outline btn-info" })  
     </div>
     }
 </div>
