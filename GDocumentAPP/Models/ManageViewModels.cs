@@ -2,6 +2,9 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
 
 namespace GDocumentAPP.Models
 {
@@ -83,4 +86,26 @@ namespace GDocumentAPP.Models
         public string SelectedProvider { get; set; }
         public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
     }
+
+    public class ListaValoresPersona
+    {
+
+        private ModelDocumentoApp db = new ModelDocumentoApp();
+
+        public IQueryable getListaPersona()
+        {
+            IQueryable ListaPersona = from persona in db.PERSONAs 
+                                      select new
+                                      {
+                                          PersonaId = persona.PERSONA_ID,
+                                          PersonaDescripcion = persona.NOMBRE + " " +
+                                                               persona.PRIMER_APELLIDO + " | " +
+                                                               persona.TIPO_IDENTIFICACION + " | " +
+                                                               persona.IDENTIFICACION
+                                      };
+
+            return ListaPersona;
+        }
+    }
+       
 }

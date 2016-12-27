@@ -76,8 +76,7 @@
                     @Html.DisplayFor(modelItem => item.SEGUNDO_APELLIDO)
                 </td>
                 <td>
-                    @{ var tipoIdentificacion = item.TIPO_IDENTIFICACION == "C" ? "Cédula" : "Pasaporte";}
-                    <p>@tipoIdentificacion</p>
+                    @Html.DisplayFor(modelItem => item.TIPO_IDENTIFICACION)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.IDENTIFICACION)

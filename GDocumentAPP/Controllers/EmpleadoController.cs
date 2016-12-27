@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GDocumentAPP.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -25,9 +26,9 @@ namespace GDocumentAPP.Controllers
             bool hayDatoEnSearch = String.IsNullOrEmpty(searchString) ? false : true;
 
             var empleados = from d in db.EMPLEADOes.Include(e => e.DEPENDENCIA).Include(e => e.ESTATU).Include(e => e.PERSONA)
-                             select d;
+                            select d;
 
-           
+
 
             if (hayDatoEnSearch)
             {
@@ -43,7 +44,7 @@ namespace GDocumentAPP.Controllers
             return View(empleados.ToList());
 
 
-          
+
         }
 
         // GET: Empleado/Details/5
@@ -64,11 +65,14 @@ namespace GDocumentAPP.Controllers
         // GET: Empleado/Create
         public ActionResult Create()
         {
-            var persona = from person in db.PERSONAs  select new { person.NOMBRE, person.IDENTIFICACION }  ;
 
+            ListaValoresPersona ListaPersona = new ListaValoresPersona();
+
+            var ListaValoresPersona = ListaPersona.getListaPersona();
+           
             ViewBag.DEPENDENCIA_ID = new SelectList(db.DEPENDENCIAs, "DEPENDENCIA_ID", "DEPENDENCIA_NOMBRE");
             ViewBag.ESTATUS_ID = new SelectList(db.ESTATUS, "ESTATUS_ID", "DESCRIPCION");
-            ViewBag.PERSONA_ID = new SelectList(db.PERSONAs, "PERSONA_ID", "NOMBRE");
+            ViewBag.PERSONA_ID = new SelectList(ListaValoresPersona, "PersonaId", "PersonaDescripcion");
             return View();
         }
 
@@ -95,6 +99,10 @@ namespace GDocumentAPP.Controllers
         // GET: Empleado/Edit/5
         public ActionResult Edit(int? id)
         {
+            ListaValoresPersona ListaPersona = new ListaValoresPersona();
+
+            var ListaValoresPersona = ListaPersona.getListaPersona();
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -106,7 +114,7 @@ namespace GDocumentAPP.Controllers
             }
             ViewBag.DEPENDENCIA_ID = new SelectList(db.DEPENDENCIAs, "DEPENDENCIA_ID", "DEPENDENCIA_NOMBRE", eMPLEADO.DEPENDENCIA_ID);
             ViewBag.ESTATUS_ID = new SelectList(db.ESTATUS, "ESTATUS_ID", "DESCRIPCION", eMPLEADO.ESTATUS_ID);
-            ViewBag.PERSONA_ID = new SelectList(db.PERSONAs, "PERSONA_ID", "NOMBRE", eMPLEADO.PERSONA_ID);
+            ViewBag.PERSONA_ID = new SelectList(ListaValoresPersona, "PersonaId", "PersonaDescripcion", eMPLEADO.PERSONA_ID);
             return View(eMPLEADO);
         }
 

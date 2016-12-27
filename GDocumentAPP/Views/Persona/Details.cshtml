@@ -41,8 +41,7 @@
         </dt>
 
         <dd>
-            @{ var tipoIdentificacion = Model.TIPO_IDENTIFICACION == "C" ? "Cédula" : "Pasaporte";}
-            @tipoIdentificacion
+            @Html.DisplayFor(model => model.TIPO_IDENTIFICACION)           
         </dd>
 
         <dt>
