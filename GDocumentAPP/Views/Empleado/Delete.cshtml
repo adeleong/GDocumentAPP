@@ -12,11 +12,17 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.PERSONA.NOMBRE)
+           Persona
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PERSONA.NOMBRE)
+                       
+                @{ var personaDisplay = Model.PERSONA.getPersonaDisplayFull();}
+                @Html.ActionLink(@personaDisplay, "Details", "Persona", new { id = Model.PERSONA_ID }, new
+               {
+
+                   @title = "Ir a Persona Detalle"
+               })
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.SUPERVISOR)

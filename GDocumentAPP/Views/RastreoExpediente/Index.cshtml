@@ -50,10 +50,10 @@
             <tr>
                 <td>
                     @{ var personaFromEmpleadoDisplay = item.EMPLEADO.PERSONA.getPersonaDisplay();}
-                    @Html.ActionLink(@personaFromEmpleadoDisplay, "Details", "Persona", new { id = item.PERSONA_ID }, new
+                    @Html.ActionLink(@personaFromEmpleadoDisplay, "Details", "Empleado", new { id = item.EMPLEADO_ID }, new
                {
 
-                   @title = "Ir a Persona Detalle"
+                   @title = "Ir a Empleado Detalle"
                })
                    
                 </td>

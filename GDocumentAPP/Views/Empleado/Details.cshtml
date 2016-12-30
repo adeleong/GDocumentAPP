@@ -13,11 +13,13 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.PERSONA.NOMBRE)
+            Persona
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PERSONA.NOMBRE)
+        <dd>  
+
+            @{ var personaDisplay = Model.PERSONA.getPersonaDisplayFull();}
+            @personaDisplay
         </dd>
 
         <dt>

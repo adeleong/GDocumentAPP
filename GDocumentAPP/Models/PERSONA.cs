@@ -57,7 +57,11 @@ namespace GDocumentAPP
 
         public string getPersonaDisplay()
         {
-            return String.Format("{0} {1} - {2} ", NOMBRE, PRIMER_APELLIDO, IDENTIFICACION);
+            return String.Format("{0} {1} - {2}", NOMBRE, PRIMER_APELLIDO, IDENTIFICACION);
+        }
+        public string getPersonaDisplayFull()
+        {
+            return String.Format("{0} {1} | {2} | {3}", NOMBRE, PRIMER_APELLIDO, TIPO_IDENTIFICACION, IDENTIFICACION);
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
