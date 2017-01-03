@@ -9,13 +9,15 @@ using System.Web.Mvc;
 using System.Configuration;
 using GDocumentAPP.Services;
 using System.IO;
+using GDocumentAPP.Models;
 
 namespace GDocumentAPP.Controllers
 {
     public class DocumentoController : Controller
     {
         private ModelDocumentoApp db = new ModelDocumentoApp();
-        
+        ListaValoresEmpleado listaEmpleado = new ListaValoresEmpleado();
+
         public string pathTarifarioImage = ConfigurationManager.AppSettings["pathTarifarioImage"].ToString();
         public string pathTarifarioXml = ConfigurationManager.AppSettings["pathTarifarioXML"].ToString();
         public string pathDocumentoRepositorio = ConfigurationManager.AppSettings["pathDocumentoRepositorio"].ToString();
@@ -23,8 +25,9 @@ namespace GDocumentAPP.Controllers
         // GET: Documento
         public ActionResult Index(string searchString, string EMPLEADO_ID)
         {
+            var listaValoresEmpleado = listaEmpleado.getListaEmpleado();
 
-            ViewBag.EMPLEADO_ID = new SelectList(db.EMPLEADOes, "EMPLEADO_ID", "SUPERVISOR");
+            ViewBag.EMPLEADO_ID = new SelectList(listaValoresEmpleado, "EmpleadoId", "EmpleadoDescripcion");
 
             bool hayDatoEnEmpleadoId = String.IsNullOrEmpty(EMPLEADO_ID) ? false : true;
       
@@ -79,6 +82,8 @@ namespace GDocumentAPP.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "DOCUMENTO_ID,EMPLEADO_ID,CANAL_GENERACION,DOCUMENTO_DATA,FECHA_CREACION,USUARIO_ID,EXTENSION,SIZE,NOMBRE_DOCUMENTO,ESTATUS_ID")] DOCUMENTO dOCUMENTO)
         {
+            var listaValoresEmpleado = listaEmpleado.getListaEmpleado();
+
             if (ModelState.IsValid)
             {
                 db.DOCUMENTOes.Add(dOCUMENTO);
@@ -86,7 +91,7 @@ namespace GDocumentAPP.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EMPLEADO_ID = new SelectList(db.EMPLEADOes, "EMPLEADO_ID", "SUPERVISOR", dOCUMENTO.EMPLEADO_ID);
+            ViewBag.EMPLEADO_ID = new SelectList(listaValoresEmpleado, "EmpleadoId", "EmpleadoDescripcion", dOCUMENTO.EMPLEADO_ID);
             ViewBag.ESTATUS_ID = new SelectList(db.ESTATUS, "ESTATUS_ID", "DESCRIPCION", dOCUMENTO.ESTATUS_ID);
             ViewBag.USUARIO_ID = new SelectList(db.USUARIOs, "USUARIO_ID", "LOGIN", dOCUMENTO.USUARIO_ID);
             return View(dOCUMENTO);
@@ -95,6 +100,10 @@ namespace GDocumentAPP.Controllers
         // GET: Documento/Edit/5
         public ActionResult Edit(int? id)
         {
+            //ListaValoresEmpleado listaEmpleado = new ListaValoresEmpleado();
+
+            var listaValoresEmpleado = listaEmpleado.getListaEmpleado();
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -104,7 +113,7 @@ namespace GDocumentAPP.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.EMPLEADO_ID = new SelectList(db.EMPLEADOes, "EMPLEADO_ID", "SUPERVISOR", dOCUMENTO.EMPLEADO_ID);
+            ViewBag.EMPLEADO_ID = new SelectList(listaValoresEmpleado, "EmpleadoId", "EmpleadoDescripcion", dOCUMENTO.EMPLEADO_ID);
             ViewBag.ESTATUS_ID = new SelectList(db.ESTATUS, "ESTATUS_ID", "DESCRIPCION", dOCUMENTO.ESTATUS_ID);
             ViewBag.USUARIO_ID = new SelectList(db.USUARIOs, "USUARIO_ID", "LOGIN", dOCUMENTO.USUARIO_ID);
             return View(dOCUMENTO);
@@ -169,7 +178,7 @@ namespace GDocumentAPP.Controllers
                     .ForEach(x => listValuesEmpleado.Add(int.Parse(Request.Params[x])));
             }
             catch(FormatException exceptionEmptyEmployee ) {
-                ViewBag.ExceptionEmpleadoEnBlanco = "Debe Seleccionar un Empleado para Crear Documento";
+                ViewBag.ExceptionEmpleadoEnBlanco = "Debe Seleccionar un Empleado para Crear Documento --> "+ exceptionEmptyEmployee.StackTrace;
                 return View(ViewBag.ExceptionEmpleadoEnBlanco);
             }
 

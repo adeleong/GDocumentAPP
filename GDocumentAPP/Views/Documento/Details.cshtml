@@ -4,87 +4,97 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<!-- Custom CSS -->
+<link href="~/Scripts/admin2Template/dist/css/sb-admin-2.css" rel="stylesheet" />
 
-<div>
-    <h4>DOCUMENTO</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CANAL_GENERACION)
-        </dt>
+<h2> Documento Detalle </h2>
 
-        <dd>
-            @Html.DisplayFor(model => model.CANAL_GENERACION)
-        </dd>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Documento</h3>
+    </div>
+    <div class="panel-body">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DOCUMENTO_DATA)
-        </dt>
+        <div>
+           
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.CANAL_GENERACION)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DOCUMENTO_DATA)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.CANAL_GENERACION)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FECHA_CREACION)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.FECHA_CREACION)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FECHA_CREACION)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.FECHA_CREACION)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EXTENSION)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.EXTENSION)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.EXTENSION)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.EXTENSION)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SIZE)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.SIZE)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.SIZE)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.SIZE)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NOMBRE_DOCUMENTO)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.NOMBRE_DOCUMENTO)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.NOMBRE_DOCUMENTO)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.NOMBRE_DOCUMENTO)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EMPLEADO.SUPERVISOR)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.EMPLEADO.SUPERVISOR)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.EMPLEADO.SUPERVISOR)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.EMPLEADO.SUPERVISOR)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ESTATU.DESCRIPCION)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ESTATU.DESCRIPCION)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ESTATU.DESCRIPCION)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.ESTATU.DESCRIPCION)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.USUARIO.LOGIN)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.USUARIO.LOGIN)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.USUARIO.LOGIN)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.USUARIO.LOGIN)
+                </dd>
 
-    </dl>
+            </dl>
+        </div>
+
+    </div>
+
+    <div class="panel-footer">
+
+        <div class="input-group col-md-push-1">
+            @Html.ActionLink("Editar", "Edit", new { id = Model.DOCUMENTO_ID }, new { @class = "btn btn-warning" })
+            <span> </span>
+            @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn btn-outline btn-info" })
+        </div>
+    </div>
+
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.DOCUMENTO_ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

@@ -102,10 +102,32 @@ namespace GDocumentAPP.Models
                                                                persona.PRIMER_APELLIDO + " | " +
                                                                persona.TIPO_IDENTIFICACION + " | " +
                                                                persona.IDENTIFICACION
+                                                              
                                       };
-
+            
             return ListaPersona;
         }
     }
-       
+
+    public class ListaValoresEmpleado
+    {
+
+        private ModelDocumentoApp db = new ModelDocumentoApp();
+
+        public IQueryable getListaEmpleado()
+        {
+            IQueryable ListaEmpleado = from Empleado in db.EMPLEADOes
+                                      select new
+                                      {
+                                          EmpleadoId = Empleado.EMPLEADO_ID,
+                                          EmpleadoDescripcion = Empleado.PERSONA.NOMBRE + " " +
+                                                                Empleado.PERSONA.PRIMER_APELLIDO + " | " +
+                                                                Empleado.PERSONA.IDENTIFICACION + " | " +
+                                                                Empleado.PUESTO
+
+                                      };
+
+            return ListaEmpleado;
+        }
+    }
 }

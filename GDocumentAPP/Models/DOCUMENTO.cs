@@ -18,27 +18,39 @@ namespace GDocumentAPP
         [Key]
         public int DOCUMENTO_ID { get; set; }
 
+        [Required(ErrorMessage = "El Empleado es requerido")]
+        [Display(Name = "Empleado", Description = "Nombre + Identificación")]
         public int EMPLEADO_ID { get; set; }
 
         [Required]
         [StringLength(30)]
+        [Display(Name = "Canal Generación")]
         public string CANAL_GENERACION { get; set; }
 
         public byte[] DOCUMENTO_DATA { get; set; }
 
         [Column(TypeName = "date")]
+        [Required(ErrorMessage = "La Fecha Creación es requerida")]
+        [Display(Name = "Fecha Creación")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime FECHA_CREACION { get; set; }
 
+        [Display(Name = "Usuario")]
         public int USUARIO_ID { get; set; }
 
         [StringLength(200)]
+        [Display(Name = "Ruta del Documento")]
         public string EXTENSION { get; set; }
 
+        [Display(Name = "Tamaño")]
         public int? SIZE { get; set; }
 
         [StringLength(50)]
+        [Display(Name = "Nombre Documento")]
         public string NOMBRE_DOCUMENTO { get; set; }
 
+        [Display(Name = "Estatus")]
         public int ESTATUS_ID { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
