@@ -4,92 +4,101 @@
     ViewBag.Title = "Delete";
 }
 
-<h3>¿Estás seguro que desea eliminar este Documento?</h3>
+<!-- Custom CSS -->
+<link href="~/Scripts/admin2Template/dist/css/sb-admin-2.css" rel="stylesheet" />
 
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CANAL_GENERACION)
-        </dt>
+<h2>Eliminar Documento</h2>
 
-        <dd>
-            @Html.DisplayFor(model => model.CANAL_GENERACION)
-        </dd>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">¿Estás seguro que desea eliminar este Documento?</h3>
+    </div>
+    <div class="panel-body">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DOCUMENTO_DATA)
-        </dt>
+        <div>
 
-        <dd>
-            @Html.DisplayFor(model => model.DOCUMENTO_DATA)
-        </dd>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.CANAL_GENERACION)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FECHA_CREACION)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.CANAL_GENERACION)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FECHA_CREACION)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.FECHA_CREACION)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EXTENSION)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.FECHA_CREACION)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.EXTENSION)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.EXTENSION)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SIZE)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.EXTENSION)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.SIZE)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.SIZE)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NOMBRE_DOCUMENTO)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.SIZE)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.NOMBRE_DOCUMENTO)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.NOMBRE_DOCUMENTO)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EMPLEADO.SUPERVISOR)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.NOMBRE_DOCUMENTO)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.EMPLEADO.SUPERVISOR)
-        </dd>
+                <dt>
+                    Empleado
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ESTATU.DESCRIPCION)
-        </dt>
+                <dd>
+                    @{ var EmpleadoDisplay = Model.EMPLEADO.getEmpleadoDisplay();}
+                    @EmpleadoDisplay
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ESTATU.DESCRIPCION)
-        </dd>
+                <dt>
+                    Estatus
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.USUARIO.LOGIN)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.ESTATU.DESCRIPCION)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.USUARIO.LOGIN)
-        </dd>
+                <dt>
+                    Usuario
+                </dt>
 
-    </dl>
+                <dd>
+                    @Html.DisplayFor(model => model.USUARIO.LOGIN)
+                </dd>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="input-group col-md-push-1">
-            <input type="submit" value="Eliminar" class="btn btn-danger" />
-            <span> </span>
-            @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn btn-info" })
+            </dl>
         </div>
-    }
+    </div>
+    <div class="panel-footer">
+        @using (Html.BeginForm())
+            {
+            @Html.AntiForgeryToken()
+
+
+            <div class="input-group col-md-push-1">
+                <input type="submit" value="Eliminar" class="btn btn-danger" />
+                <span> </span>
+                @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn btn-info" })
+            </div>
+
+        }
+
+    </div>
 </div>

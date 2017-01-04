@@ -68,6 +68,11 @@ namespace GDocumentAPP
         [Display(Name = "Estatus")]
         public int ESTATUS_ID { get; set; }
 
+        public string getEmpleadoDisplay() {
+
+            return string.Format("{0} {1} | {2} | {3} ", PERSONA.NOMBRE, PERSONA.PRIMER_APELLIDO, PERSONA.IDENTIFICACION, PUESTO );
+        }
+
         public virtual DEPENDENCIA DEPENDENCIA { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

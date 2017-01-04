@@ -59,11 +59,12 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.EMPLEADO.SUPERVISOR)
+                    Empleado
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.EMPLEADO.SUPERVISOR)
+                    @{ var EmpleadoDisplay = Model.EMPLEADO.getEmpleadoDisplay();}
+                    @EmpleadoDisplay
                 </dd>
 
                 <dt>
@@ -92,7 +93,7 @@
         <div class="input-group col-md-push-1">
             @Html.ActionLink("Editar", "Edit", new { id = Model.DOCUMENTO_ID }, new { @class = "btn btn-warning" })
             <span> </span>
-            @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn btn-outline btn-info" })
+            @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn btn-info" })
         </div>
     </div>
 
