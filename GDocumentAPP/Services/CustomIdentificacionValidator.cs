@@ -21,21 +21,14 @@ namespace GDocumentAPP.Services
                 {
                     return new ValidationResult(Bundle.mensajeCedulaNumero);
                 }
-
-               /* if(persona.IDENTIFICACION.Length != Bundle.longitudCedula)
-                {
-                    return new ValidationResult(Bundle.mensajeCedulaLongitud);
-                }*/
             }
 
-
-             if (persona.TIPO_IDENTIFICACION == Bundle.tipoIdentificacionPasaporte)
-             {
-                if (!(Regex.IsMatch(persona.IDENTIFICACION, @"^([A-Z]{2,3})([0-9]{7,11})$")))                                                 
+            if (persona.TIPO_IDENTIFICACION == Bundle.tipoIdentificacionPasaporte)
+            {
+                if (!(Regex.IsMatch(persona.IDENTIFICACION, @"^([A-Z]{2,3})([0-9]{7,11})$")))
                 {
                     return new ValidationResult(Bundle.mensajePasaporteLetraNumero);
                 }
-
             }
 
             return ValidationResult.Success;

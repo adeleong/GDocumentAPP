@@ -6,77 +6,87 @@
 <!-- Custom CSS -->
 <link href="~/Scripts/admin2Template/dist/css/sb-admin-2.css" rel="stylesheet" />
 
+<h2>Eliminar Persona</h2>
 
-<h3>¿Estás seguro que desea eliminar esta Persona?</h3>
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NOMBRE)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NOMBRE)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PRIMER_APELLIDO)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PRIMER_APELLIDO)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SEGUNDO_APELLIDO)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SEGUNDO_APELLIDO)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TIPO_IDENTIFICACION)
-        </dt>
-
-        <dd>           
-            @Html.DisplayFor(model => model.TIPO_IDENTIFICACION)        
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IDENTIFICACION)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IDENTIFICACION)
-        </dd>
-
-        <dt>       
-           @Html.DisplayNameFor(model => model.SEXO)
-        </dt>
-
-        <dd>
-            @Html.RadioButtonFor(model => model.SEXO, "M")  Masculino
-            @Html.RadioButtonFor(model => model.SEXO, "F")  Femenino
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EMAIL)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EMAIL)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-    <div class="input-group col-md-push-1">         
-        <input type="submit" value="Eliminar" class="btn btn-danger" /> 
-        <span> </span>
-        @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn  btn-info" })  
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">¿Estás seguro que desea eliminar esta Persona?</h3>
     </div>
-    }
-</div>
+    <div class="panel-body">
+
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.NOMBRE)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.NOMBRE)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.PRIMER_APELLIDO)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PRIMER_APELLIDO)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.SEGUNDO_APELLIDO)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.SEGUNDO_APELLIDO)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.TIPO_IDENTIFICACION)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TIPO_IDENTIFICACION)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.IDENTIFICACION)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.IDENTIFICACION)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.SEXO)
+                </dt>
+
+                <dd>
+                    @Html.RadioButtonFor(model => model.SEXO, "M")  Masculino
+                    @Html.RadioButtonFor(model => model.SEXO, "F")  Femenino
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.EMAIL)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.EMAIL)
+                </dd>
+
+            </dl>
+        </div>
+        <div class="panel-footer">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+
+                <div class="input-group col-md-push-1">
+                    <input type="submit" value="Eliminar" class="btn btn-danger" />
+                    <span> </span>
+                    @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn btn-info" })
+                </div>
+
+              
+            }
+        </div>
+    </div>

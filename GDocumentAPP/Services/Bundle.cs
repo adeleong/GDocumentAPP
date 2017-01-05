@@ -7,8 +7,8 @@ namespace GDocumentAPP.Services
 {
     public static class Bundle
     {
-        public const string tipoIdentificacionCedula = "C";
-        public const string tipoIdentificacionPasaporte = "P";
+        public const string tipoIdentificacionCedula = "Cédula";
+        public const string tipoIdentificacionPasaporte = "Pasaporte";
         public const int longitudCedula = 11;
         public const string mensajeIdentificacionRequerida = "La Identificación es requerida";
         public const string mensajeCedulaNumero = "La Cédula debe ser solo número y longitud de 11";
