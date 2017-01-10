@@ -7,91 +7,102 @@
 <!-- Custom CSS -->
 <link href="~/Scripts/admin2Template/dist/css/sb-admin-2.css" rel="stylesheet" />
 
-<h3>¿Estás seguro que desea eliminar este Expediente Fisico?</h3>
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.EMPLEADO_ID)
-        </dt>
+<h2>Eliminar Expediente Fisico</h2>
 
-        <dd>
-            @Html.DisplayFor(model => model.EMPLEADO_ID)
-        </dd>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">¿Estás seguro que desea eliminar este Registro de Expediente Fisico?</h3>
+    </div>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt>
+                Empleado
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FECHA_SALIDA)
-        </dt>
+            <dd>
+                @{ var EmpleadoDisplay = Model.EMPLEADO.getEmpleadoDisplay();}
+                @EmpleadoDisplay
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FECHA_SALIDA)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FECHA_SALIDA)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FECHA_DEVOLUCION)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FECHA_SALIDA)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FECHA_DEVOLUCION)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FECHA_DEVOLUCION)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FIRMA)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FECHA_DEVOLUCION)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FIRMA)
-        </dd>
+            <!--
+            <dt>
+                @Html.DisplayNameFor(model => model.FIRMA)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ESTATUS_ID)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FIRMA)
+            </dd> -->
 
-        <dd>
-            @Html.DisplayFor(model => model.ESTATUS_ID)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ESTATUS_ID)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PERSONA_ID)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ESTATU.DESCRIPCION)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.PERSONA_ID)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.PERSONA_ID)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.COMENTARIO)
-        </dt>
+            <dd>
+                @{ var personaDisplay = Model.PERSONA.getPersonaDisplayFull();}
+                @personaDisplay
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.COMENTARIO)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.COMENTARIO)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DEPENDENCIA.DEPENDENCIA_NOMBRE)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.COMENTARIO)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DEPENDENCIA.DEPENDENCIA_NOMBRE)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DEPENDENCIA.DEPENDENCIA_NOMBRE)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.USUARIO.LOGIN)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DEPENDENCIA.DEPENDENCIA_NOMBRE)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.USUARIO.LOGIN)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.USUARIO.LOGIN)
+            </dt>
 
-    </dl>
+            <dd>
+                @Html.DisplayFor(model => model.USUARIO.LOGIN)
+            </dd>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+        </dl>
+    </div>
 
-        <div class="input-group col-md-push-1">
-            <input type="submit" value="Eliminar" class="btn btn-danger" />
-            <span> </span>
-            @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn btn-outline btn-info" })
-        </div>
-    }
+    <div class="panel-footer">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="input-group col-md-push-1">
+                <input type="submit" value="Eliminar" class="btn btn-danger" />
+                <span> </span>
+                @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn btn-info" })
+            </div>
+        }
+    </div>
 </div>

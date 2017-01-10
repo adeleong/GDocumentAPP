@@ -16,6 +16,7 @@ namespace GDocumentAPP.Controllers
         private ModelDocumentoApp db = new ModelDocumentoApp();
 
         ListaValoresEmpleado listaEmpleado = new ListaValoresEmpleado();
+        ListaValoresPersona ListaPersona = new ListaValoresPersona();
 
         // GET: RastreoExpediente
         public ActionResult Index(int? page, string searchString)
@@ -54,12 +55,14 @@ namespace GDocumentAPP.Controllers
         public ActionResult Create()
         {
             var listaValoresEmpleado = listaEmpleado.getListaEmpleado();
+            var ListaValoresPersona = ListaPersona.getListaPersona();
+           
 
             ViewBag.DEPENDENCIA_ID = new SelectList(db.DEPENDENCIAs, "DEPENDENCIA_ID", "DEPENDENCIA_NOMBRE");
             ViewBag.USUARIO_ID = new SelectList(db.USUARIOs, "USUARIO_ID", "LOGIN");
             ViewBag.EMPLEADO_ID = new SelectList(listaValoresEmpleado, "EmpleadoId", "EmpleadoDescripcion");
             ViewBag.ESTATUS_ID = new SelectList(db.ESTATUS, "ESTATUS_ID", "DESCRIPCION");
-            ViewBag.PERSONA_ID = new SelectList(db.PERSONAs, "PERSONA_ID", "NOMBRE");
+            ViewBag.PERSONA_ID = new SelectList(ListaValoresPersona, "PersonaId", "PersonaDescripcion");
             return View();
         }
 
@@ -78,6 +81,7 @@ namespace GDocumentAPP.Controllers
             }
 
             var listaValoresEmpleado = listaEmpleado.getListaEmpleado();
+            var ListaValoresPersona = ListaPersona.getListaPersona();
 
             ViewBag.DEPENDENCIA_ID = new SelectList(db.DEPENDENCIAs, "DEPENDENCIA_ID", "DEPENDENCIA_NOMBRE", rASTREO_EXPEDIENTE.DEPENDENCIA_ID);
             ViewBag.USUARIO_ID = new SelectList(db.USUARIOs, "USUARIO_ID", "LOGIN", rASTREO_EXPEDIENTE.USUARIO_ID);
@@ -85,7 +89,8 @@ namespace GDocumentAPP.Controllers
             ViewBag.EMPLEADO_ID = new SelectList(listaValoresEmpleado, "EmpleadoId", "EmpleadoDescripcion", rASTREO_EXPEDIENTE.EMPLEADO_ID);
 
             ViewBag.ESTATUS_ID = new SelectList(db.ESTATUS, "ESTATUS_ID", "DESCRIPCION", rASTREO_EXPEDIENTE.ESTATUS_ID);
-            ViewBag.PERSONA_ID = new SelectList(db.PERSONAs, "PERSONA_ID", "NOMBRE", rASTREO_EXPEDIENTE.PERSONA_ID);
+            ViewBag.PERSONA_ID = new SelectList(ListaValoresPersona, "PersonaId", "PersonaDescripcion", rASTREO_EXPEDIENTE.PERSONA_ID);
+           
             return View(rASTREO_EXPEDIENTE);
         }
 
@@ -96,13 +101,22 @@ namespace GDocumentAPP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            
             RASTREO_EXPEDIENTE rASTREO_EXPEDIENTE = db.RASTREO_EXPEDIENTE.Find(id);
             if (rASTREO_EXPEDIENTE == null)
             {
                 return HttpNotFound();
             }
+
+            var listaValoresEmpleado = listaEmpleado.getListaEmpleado();
+            var ListaValoresPersona = ListaPersona.getListaPersona();
+
+            ViewBag.EMPLEADO_ID = new SelectList(listaValoresEmpleado, "EmpleadoId", "EmpleadoDescripcion", rASTREO_EXPEDIENTE.EMPLEADO_ID);
             ViewBag.DEPENDENCIA_ID = new SelectList(db.DEPENDENCIAs, "DEPENDENCIA_ID", "DEPENDENCIA_NOMBRE", rASTREO_EXPEDIENTE.DEPENDENCIA_ID);
             ViewBag.USUARIO_ID = new SelectList(db.USUARIOs, "USUARIO_ID", "LOGIN", rASTREO_EXPEDIENTE.USUARIO_ID);
+            ViewBag.ESTATUS_ID = new SelectList(db.ESTATUS, "ESTATUS_ID", "DESCRIPCION", rASTREO_EXPEDIENTE.ESTATUS_ID);
+            ViewBag.PERSONA_ID = new SelectList(ListaValoresPersona, "PersonaId", "PersonaDescripcion", rASTREO_EXPEDIENTE.PERSONA_ID);
+
             return View(rASTREO_EXPEDIENTE);
         }
 
@@ -119,8 +133,16 @@ namespace GDocumentAPP.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            var listaValoresEmpleado = listaEmpleado.getListaEmpleado();
+            var ListaValoresPersona = ListaPersona.getListaPersona();
+
+            ViewBag.EMPLEADO_ID = new SelectList(listaValoresEmpleado, "EmpleadoId", "EmpleadoDescripcion", rASTREO_EXPEDIENTE.EMPLEADO_ID);
             ViewBag.DEPENDENCIA_ID = new SelectList(db.DEPENDENCIAs, "DEPENDENCIA_ID", "DEPENDENCIA_NOMBRE", rASTREO_EXPEDIENTE.DEPENDENCIA_ID);
             ViewBag.USUARIO_ID = new SelectList(db.USUARIOs, "USUARIO_ID", "LOGIN", rASTREO_EXPEDIENTE.USUARIO_ID);
+            ViewBag.ESTATUS_ID = new SelectList(db.ESTATUS, "ESTATUS_ID", "DESCRIPCION", rASTREO_EXPEDIENTE.ESTATUS_ID);
+            ViewBag.PERSONA_ID = new SelectList(ListaValoresPersona, "PersonaId", "PersonaDescripcion", rASTREO_EXPEDIENTE.PERSONA_ID);
+
             return View(rASTREO_EXPEDIENTE);
         }
 

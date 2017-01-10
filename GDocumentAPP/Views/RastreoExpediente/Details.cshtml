@@ -4,87 +4,99 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Expediente Fisico Detalle</h2>
 
-<div>
-    <h4>RASTREO_EXPEDIENTE</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.EMPLEADO_ID)
-        </dt>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Expediente Fisico</h3>
+    </div>
+    <div class="panel-body">
 
-        <dd>
-            @Html.DisplayFor(model => model.EMPLEADO_ID)
-        </dd>
+        <dl class="dl-horizontal">
+            <dt>
+                Empleado
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FECHA_SALIDA)
-        </dt>
+            <dd>
+                @{ var EmpleadoDisplay = Model.EMPLEADO.getEmpleadoDisplay();}
+                @EmpleadoDisplay
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FECHA_SALIDA)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FECHA_SALIDA)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FECHA_DEVOLUCION)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FECHA_SALIDA)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FECHA_DEVOLUCION)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FECHA_DEVOLUCION)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FIRMA)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FECHA_DEVOLUCION)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FIRMA)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FIRMA)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ESTATUS_ID)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FIRMA)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ESTATUS_ID)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ESTATUS_ID)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PERSONA_ID)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ESTATUS_ID)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.PERSONA_ID)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.PERSONA_ID)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.COMENTARIO)
-        </dt>
+            <dd>
+                @{ var personaDisplay = Model.PERSONA.getPersonaDisplayFull();}
+                @personaDisplay
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.COMENTARIO)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.COMENTARIO)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DEPENDENCIA.DEPENDENCIA_NOMBRE)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.COMENTARIO)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DEPENDENCIA.DEPENDENCIA_NOMBRE)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DEPENDENCIA.DEPENDENCIA_NOMBRE)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.USUARIO.LOGIN)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DEPENDENCIA.DEPENDENCIA_NOMBRE)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.USUARIO.LOGIN)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.USUARIO.LOGIN)
+            </dt>
 
-    </dl>
+            <dd>
+                @Html.DisplayFor(model => model.USUARIO.LOGIN)
+            </dd>
+
+        </dl>
+    </div>
+
+    <div class="panel-footer">
+        <div class="input-group col-md-push-1">
+            @Html.ActionLink("Editar", "Edit", new { id = Model.RATRAEO_EXPEDIENTE_ID }, new { @class = "btn btn-warning" })
+            <span> </span>
+            @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn btn-info" })
+        </div>
+    </div>
+
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.RATRAEO_EXPEDIENTE_ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+   
