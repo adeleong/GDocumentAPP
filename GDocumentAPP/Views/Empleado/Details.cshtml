@@ -8,97 +8,106 @@
 <link href="~/Scripts/admin2Template/dist/css/sb-admin-2.css" rel="stylesheet" />
 
 <h2> Empleado Detalle </h2>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Empleado</h3>
+    </div>
+    <div class="panel-body">
 
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Persona
-        </dt>
+        <div>
 
-        <dd>  
+            <dl class="dl-horizontal">
+                <dt>
+                    Persona
+                </dt>
 
-            @{ var personaDisplay = Model.PERSONA.getPersonaDisplayFull();}
-            @personaDisplay
-        </dd>
+                <dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SUPERVISOR)
-        </dt>
+                    @{ var personaDisplay = Model.PERSONA.getPersonaDisplayFull();}
+                    @personaDisplay
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.SUPERVISOR)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.SUPERVISOR)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PUESTO)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.SUPERVISOR)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.PUESTO)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.PUESTO)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FECHA_INGRESO)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.PUESTO)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FECHA_INGRESO)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.FECHA_INGRESO)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SUELDO)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.FECHA_INGRESO)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.SUELDO)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.SUELDO)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.BANCO)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.SUELDO)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.BANCO)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.BANCO)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CUENTABANCARIA)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.BANCO)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CUENTABANCARIA)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.CUENTABANCARIA)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EMPRESA)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.CUENTABANCARIA)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.EMPRESA)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.EMPRESA)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DEPENDENCIA.DEPENDENCIA_NOMBRE)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.EMPRESA)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DEPENDENCIA.DEPENDENCIA_NOMBRE)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.DEPENDENCIA.DEPENDENCIA_NOMBRE)
+                </dt>
 
-        <dt>
-           Estatus
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.DEPENDENCIA.DEPENDENCIA_NOMBRE)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ESTATU.DESCRIPCION)
-        </dd>
+                <dt>
+                    Estatus
+                </dt>
 
-    </dl>
-</div>
+                <dd>
+                    @Html.DisplayFor(model => model.ESTATU.DESCRIPCION)
+                </dd>
 
-<div class="input-group col-md-push-1">
-    @Html.ActionLink("Editar", "Edit", new { id = Model.EMPLEADO_ID }, new { @class = "btn btn-warning" })
-    <span> </span>
-    @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn btn-info" })
+            </dl>
+        </div>
+    </div>
+
+    <div class="panel-footer">
+        <div class="input-group col-md-push-1">
+            @Html.ActionLink("Editar", "Edit", new { id = Model.EMPLEADO_ID }, new { @class = "btn btn-warning" })
+            <span> </span>
+            @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn btn-info" })
+        </div>
+    </div>
 </div>

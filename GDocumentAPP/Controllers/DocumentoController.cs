@@ -214,13 +214,11 @@ namespace GDocumentAPP.Controllers
                     documento.USUARIO_ID = 2;
                     documento.SIZE = file.ContentLength;
 
-
-                    SaveFileInRepositorio(file, pathDocumentoRepositorio);
-
                     if (ModelState.IsValid)
                     {
                         db.DOCUMENTOes.Add(documento);
                         db.SaveChanges();
+                        SaveFileInRepositorio(file, pathDocumentoRepositorio);
                         return RedirectToAction("Index");
                     }
                 }

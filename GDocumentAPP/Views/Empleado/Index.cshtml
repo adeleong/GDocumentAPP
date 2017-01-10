@@ -1,5 +1,7 @@
-﻿
-@model IEnumerable<EMPLEADO>
+﻿@using PagedList.Mvc;
+@using PagedList;
+
+@model PagedList.IPagedList<EMPLEADO>
 
 @{
     ViewBag.Title = "Index";
@@ -9,100 +11,107 @@
 
 <h2>Listado de Empleados</h2>
 
-<p>
-    @Html.ActionLink(" ", "Create", null, new { @class = "btn btn-circle btn-success btn-md glyphicon glyphicon-plus-sign", @title = "Crear" })
-</p>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <p class="panel-title">@Html.ActionLink(" ", "Create", null, new { @class = "btn btn-circle btn-md btn-success active glyphicon glyphicon-plus-sign", @title = "Crear" }) </p>
+    </div>
+    <div class="panel-body">
 
-@using (Html.BeginForm())
-{
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="input-group">
-                <input type="text" class="form-control" name="SearchString" id="search" maxlength="150" placeholder="Persona, Puesto, Dependencia, Supervisor ">
-                <span class="input-group-btn">
-                    <button class="btn btn-primary" type="submit" id="btnSearch">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </button>
-                </span>
-            </div><!-- /input-group -->
-        </div><!-- /.col-lg-6 -->
-    </div><!-- /.row -->
-    <p></p>
-}
-
-<div class="table-responsive">
-    <table class="table table-striped">
-        <tr>
-            <th>
-                Persona
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PUESTO)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DEPENDENCIA_ID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FECHA_INGRESO)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SUELDO)
-            </th>
-           
-            <th>
-                @Html.DisplayNameFor(model => model.SUPERVISOR)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ESTATUS_ID)
-            </th>
-           
-                    
-            <th colspan="3"></th>
-        </tr>
-
-        @foreach (var item in Model)
+        @using (Html.BeginForm())
         {
-            <tr>
-                <td>
-                    @{ var personaDisplay = item.PERSONA.getPersonaDisplay();}
-                    @Html.ActionLink(@personaDisplay, "Details", "Persona", new { id = item.PERSONA_ID }, new
-                {
-                   
-                    @title = "Ir a Persona Detalle"
-                })
-                  
-                 
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PUESTO)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DEPENDENCIA.DEPENDENCIA_NOMBRE)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FECHA_INGRESO)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SUELDO)
-                </td>
-               
-                <td>
-                    @Html.DisplayFor(modelItem => item.SUPERVISOR)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ESTATU.DESCRIPCION)
-                </td>
-               
-                <td align="right" colspan="3">
-                    @Html.ActionLink(" ", "Edit", new { id = item.EMPLEADO_ID }, new { @class = "btn btn-circle btn-outline btn-warning glyphicon glyphicon-pencil", @title = "Editar"})
-               
-                    @Html.ActionLink(" ", "Details", new { id = item.EMPLEADO_ID }, new { @class = " btn btn-circle btn-outline btn-info glyphicon glyphicon-eye-open", @title = "Detalle" })
-                
-                    @Html.ActionLink(" ", "Delete", new { id = item.EMPLEADO_ID }, new { @class = "btn btn-circle btn-outline btn-danger glyphicon glyphicon-trash", @title = "Eliminar" })
-                </td>
-
-            </tr>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="SearchString" id="search" maxlength="150" placeholder="Persona, Puesto, Dependencia, Supervisor ">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit" id="btnSearch">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+            </div><!-- /.row -->
+            <p></p>
         }
 
-    </table>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <tr>
+                    <th>
+                        Persona
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().PUESTO)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().DEPENDENCIA_ID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().FECHA_INGRESO)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().SUELDO)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().SUPERVISOR)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().ESTATUS_ID)
+                    </th>
+
+
+                    <th colspan="3"></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @{ var personaDisplay = item.PERSONA.getPersonaDisplay();}
+                            @Html.ActionLink(@personaDisplay, "Details", "Persona", new { id = item.PERSONA_ID }, new
+                       {
+
+                           @title = "Ir a Persona Detalle"
+                       })
+
+
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PUESTO)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DEPENDENCIA.DEPENDENCIA_NOMBRE)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FECHA_INGRESO)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SUELDO)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SUPERVISOR)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ESTATU.DESCRIPCION)
+                        </td>
+
+                        <td align="right" colspan="3">
+                            @Html.ActionLink(" ", "Edit", new { id = item.EMPLEADO_ID }, new { @class = "btn btn-circle btn-outline btn-warning glyphicon glyphicon-pencil", @title = "Editar" })
+
+                            @Html.ActionLink(" ", "Details", new { id = item.EMPLEADO_ID }, new { @class = " btn btn-circle btn-outline btn-info glyphicon glyphicon-eye-open", @title = "Detalle" })
+
+                            @Html.ActionLink(" ", "Delete", new { id = item.EMPLEADO_ID }, new { @class = "btn btn-circle btn-outline btn-danger glyphicon glyphicon-trash", @title = "Eliminar" })
+                        </td>
+
+                    </tr>
+                                }
+
+            </table>
+        </div>
+    </div>
+    <div class="panel-footer">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    </div>
 </div>

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
+using GDocumentAPP.Models;
 
 namespace GDocumentAPP.Controllers
 {
@@ -14,12 +15,12 @@ namespace GDocumentAPP.Controllers
     {
         private ModelDocumentoApp db = new ModelDocumentoApp();
 
+        ListaValoresEmpleado listaEmpleado = new ListaValoresEmpleado();
+
         // GET: RastreoExpediente
         public ActionResult Index(int? page, string searchString)
         {
-            /*var rASTREO_EXPEDIENTE = db.RASTREO_EXPEDIENTE.Include(r => r.DEPENDENCIA).Include(r => r.USUARIO).Include(r => r.EMPLEADO).Include(r => r.ESTATU).Include(r => r.PERSONA);
-            return View(rASTREO_EXPEDIENTE.ToList());*/
-
+        
             int pageSize = 10;
             int pageNumber = (page ?? 1);
 
@@ -31,7 +32,6 @@ namespace GDocumentAPP.Controllers
                 expedientesFisico = expedientesFisico.Where(s => s.COMENTARIO.Contains(searchString));
             }
 
-            // return View(db.PERSONAs.ToList().ToPagedList(pageNumber, pageSize));
             return View(expedientesFisico.ToList().ToPagedList(pageNumber, pageSize));
         }
 
@@ -53,9 +53,11 @@ namespace GDocumentAPP.Controllers
         // GET: RastreoExpediente/Create
         public ActionResult Create()
         {
+            var listaValoresEmpleado = listaEmpleado.getListaEmpleado();
+
             ViewBag.DEPENDENCIA_ID = new SelectList(db.DEPENDENCIAs, "DEPENDENCIA_ID", "DEPENDENCIA_NOMBRE");
             ViewBag.USUARIO_ID = new SelectList(db.USUARIOs, "USUARIO_ID", "LOGIN");
-            ViewBag.EMPLEADO_ID = new SelectList(db.EMPLEADOes, "EMPLEADO_ID", "SUPERVISOR");
+            ViewBag.EMPLEADO_ID = new SelectList(listaValoresEmpleado, "EmpleadoId", "EmpleadoDescripcion");
             ViewBag.ESTATUS_ID = new SelectList(db.ESTATUS, "ESTATUS_ID", "DESCRIPCION");
             ViewBag.PERSONA_ID = new SelectList(db.PERSONAs, "PERSONA_ID", "NOMBRE");
             return View();
@@ -75,9 +77,13 @@ namespace GDocumentAPP.Controllers
                 return RedirectToAction("Index");
             }
 
+            var listaValoresEmpleado = listaEmpleado.getListaEmpleado();
+
             ViewBag.DEPENDENCIA_ID = new SelectList(db.DEPENDENCIAs, "DEPENDENCIA_ID", "DEPENDENCIA_NOMBRE", rASTREO_EXPEDIENTE.DEPENDENCIA_ID);
             ViewBag.USUARIO_ID = new SelectList(db.USUARIOs, "USUARIO_ID", "LOGIN", rASTREO_EXPEDIENTE.USUARIO_ID);
-            ViewBag.EMPLEADO_ID = new SelectList(db.EMPLEADOes, "EMPLEADO_ID", "SUPERVISOR", rASTREO_EXPEDIENTE.EMPLEADO_ID);
+
+            ViewBag.EMPLEADO_ID = new SelectList(listaValoresEmpleado, "EmpleadoId", "EmpleadoDescripcion", rASTREO_EXPEDIENTE.EMPLEADO_ID);
+
             ViewBag.ESTATUS_ID = new SelectList(db.ESTATUS, "ESTATUS_ID", "DESCRIPCION", rASTREO_EXPEDIENTE.ESTATUS_ID);
             ViewBag.PERSONA_ID = new SelectList(db.PERSONAs, "PERSONA_ID", "NOMBRE", rASTREO_EXPEDIENTE.PERSONA_ID);
             return View(rASTREO_EXPEDIENTE);

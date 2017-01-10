@@ -9,104 +9,131 @@
 }
 
 
- <!-- Custom CSS -->
+<!-- Custom CSS -->
 <link href="~/Scripts/admin2Template/dist/css/sb-admin-2.css" rel="stylesheet" />
 
-<h3>Listado de Expedientes Fisico</h3>
+<h2>Listado de Expedientes Fisico</h2>
 
-<p>
-    @Html.ActionLink(" ", "Create", null, new { @class = "btn btn-circle btn-md btn-success btn-md glyphicon glyphicon-plus-sign", @title = "Crear" })
-</p>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <p class="panel-title">@Html.ActionLink(" ", "Create", null, new { @class = "btn btn-circle btn-md btn-success active glyphicon glyphicon-plus-sign", @title = "Crear" }) </p>
+    </div>
+    <div class="panel-body">
 
-<div class="table-responsive">
-    <table class="table table-striped">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.First().EMPLEADO_ID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.First().FECHA_SALIDA)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.First().FECHA_DEVOLUCION)
-            </th>
-           
-            <th>
-                @Html.DisplayNameFor(model => model.First().ESTATUS_ID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.First().PERSONA_ID)
-            </th>
-           
-            <th>
-                @Html.DisplayNameFor(model => model.First().DEPENDENCIA.DEPENDENCIA_NOMBRE)
-            </th>
-            
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
+        @using (Html.BeginForm())
         {
-            <tr>
-                <td>
-                    @{ var personaFromEmpleadoDisplay = item.EMPLEADO.PERSONA.getPersonaDisplay();}
-                    @Html.ActionLink(@personaFromEmpleadoDisplay, "Details", "Empleado", new { id = item.EMPLEADO_ID }, new
-               {
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="SearchString" id="search" maxlength="150" placeholder="Empleado, Asignado a, En Dependencia ">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit" id="btnSearch">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+            </div><!-- /.row -->
+            <p></p>
+        }
 
-                   @title = "Ir a Empleado Detalle"
-               })
-                   
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FECHA_SALIDA)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FECHA_DEVOLUCION)
-                </td>
-               
-                <td>
-                    @Html.DisplayFor(modelItem => item.ESTATU.DESCRIPCION)
-                </td>
-              
-                <td>
-                    @{ var personaDisplay = item.PERSONA.getPersonaDisplay();}
-                    @Html.ActionLink(@personaDisplay, "Details", "Persona", new { id = item.PERSONA_ID }, new
-                   {
 
-                       @title = "Ir a Persona Detalle"
-                   })
-                </td>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().EMPLEADO_ID)
+                    </th>
+                    <th>
+                        Fecha Recepción
+                    </th>
+                    <!-- <th>
+                         @Html.DisplayNameFor(model => model.First().FECHA_DEVOLUCION)
+                     </th>-->
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.DEPENDENCIA.DEPENDENCIA_NOMBRE)
-                </td>
-               
-                <td align="right">
-                    @Html.ActionLink(" ", "Edit", new { id = item.RATRAEO_EXPEDIENTE_ID }, new
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().PERSONA_ID)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().DEPENDENCIA.DEPENDENCIA_NOMBRE)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().ESTATUS_ID)
+                    </th>
+
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @{ var empleadoDisplay = item.EMPLEADO.getEmpleadoDisplay();}
+                            @Html.ActionLink(@empleadoDisplay, "Details", "Empleado", new { id = item.EMPLEADO_ID }, new
+                       {
+
+                           @title = "Ir a Empleado Detalle"
+                       })
+
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FECHA_SALIDA)
+                        </td>
+                        <!--
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FECHA_DEVOLUCION)
+                        </td>-->
+
+
+
+                        <td>
+                            @{ var personaDisplay = item.PERSONA.getPersonaDisplay();}
+                            @Html.ActionLink(@personaDisplay, "Details", "Persona", new { id = item.PERSONA_ID }, new
+                       {
+
+                           @title = "Ir a Persona Detalle"
+                       })
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DEPENDENCIA.DEPENDENCIA_NOMBRE)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ESTATU.DESCRIPCION)
+                        </td>
+
+                        <td align="right">
+                            @Html.ActionLink(" ", "Edit", new { id = item.RATRAEO_EXPEDIENTE_ID }, new
                        {
                            @class = " btn btn btn-circle btn-outline btn-warning btn-md glyphicon glyphicon-pencil ",
                            @title = "Editar"
                        })
 
 
-                    @Html.ActionLink(" ", "Details", new { id = item.RATRAEO_EXPEDIENTE_ID }, new
+                            @Html.ActionLink(" ", "Details", new { id = item.RATRAEO_EXPEDIENTE_ID }, new
                        {
                            @class = " btn btn btn-circle btn-outline btn-info btn-md  glyphicon glyphicon-eye-open",
                            @title = "Detalle"
                        })
 
 
-                     @Html.ActionLink(" ", "Delete", new { id = item.RATRAEO_EXPEDIENTE_ID }, new
+                            @Html.ActionLink(" ", "Delete", new { id = item.RATRAEO_EXPEDIENTE_ID }, new
                        {
                            @class = " btn btn btn-circle btn-outline btn-danger btn-md  glyphicon glyphicon-trash",
                            @title = "Eliminar"
                        })
-                  </td>
+                        </td>
 
-            </tr>
-        }
+                    </tr>
+                                }
 
-    </table>
+            </table>
+        </div>
+    </div>
+    <div class="panel-footer">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    </div>
 </div>
-
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

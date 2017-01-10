@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace GDocumentAPP.Controllers
 {
@@ -17,18 +18,17 @@ namespace GDocumentAPP.Controllers
         PERSONA persona = new PERSONA();
 
         // GET: Empleado
-        public ActionResult Index(string searchString)
+        public ActionResult Index(int? page, string searchString)
         {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
 
             var eMPLEADOes = db.EMPLEADOes.Include(e => e.DEPENDENCIA).Include(e => e.ESTATU).Include(e => e.PERSONA);
-            //return View(eMPLEADOes.ToList());
 
             bool hayDatoEnSearch = String.IsNullOrEmpty(searchString) ? false : true;
 
             var empleados = from d in db.EMPLEADOes.Include(e => e.DEPENDENCIA).Include(e => e.ESTATU).Include(e => e.PERSONA)
                             select d;
-
-
 
             if (hayDatoEnSearch)
             {
@@ -41,7 +41,7 @@ namespace GDocumentAPP.Controllers
                                             );
             }
 
-            return View(empleados.ToList());
+            return View(empleados.ToList().ToPagedList(pageNumber, pageSize));
 
 
 

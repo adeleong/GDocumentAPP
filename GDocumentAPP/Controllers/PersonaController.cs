@@ -31,7 +31,6 @@ namespace GDocumentAPP.Controllers
                                             || s.IDENTIFICACION.Equals(searchString) );
             }
 
-           // return View(db.PERSONAs.ToList().ToPagedList(pageNumber, pageSize));
             return View(personas.ToList().ToPagedList(pageNumber, pageSize));
 
         }
