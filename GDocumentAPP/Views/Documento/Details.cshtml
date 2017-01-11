@@ -6,84 +6,45 @@
 
 <!-- Custom CSS -->
 <link href="~/Scripts/admin2Template/dist/css/sb-admin-2.css" rel="stylesheet" />
-
-<h2> Documento Detalle </h2>
-
+<br />
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">Documento</h3>
+        <h3 class="panel-title">Documento Detalle</h3>
     </div>
     <div class="panel-body">
 
         <div>
-           
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.CANAL_GENERACION)
-                </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.CANAL_GENERACION)
-                </dd>
+            <div class="table-responsive">
+                <table>
+                    <tr>
+                        <td style="width:70%;" align="center">
+                            <div class='embed-responsive' style='padding-bottom:0%'>
+                                @{ var urlDocumento =  "/images/WallImages/"+ Model.NOMBRE_DOCUMENTO;}
+                                <object style="width:95%;" data=@urlDocumento height="500" type='application/pdf'></object>
+                            </div>
+                        </td>
+                        <td style="width:50%;" >
+                            <div class="list-group"  style='padding-top:20%'>
+                                <a href="#" class="list-group-item active">
+                                   @Html.DisplayFor(model => model.NOMBRE_DOCUMENTO)
+                                </a>
+                                @{ var EmpleadoDisplay = Model.EMPLEADO.getEmpleadoDisplay();}
+                                @{ var EmpleadoId = Model.EMPLEADO_ID;}
+                                <a  class="list-group-item">@Html.DisplayFor(model => model.SIZE) Byte</a>
+                                <a  class="list-group-item">@Html.DisplayFor(model => model.FECHA_CREACION) </a>
+                                <a  class="list-group-item">@Html.DisplayFor(model => model.ESTATU.DESCRIPCION)</a>
+                                <a  class="list-group-item">@Html.DisplayFor(model => model.EXTENSION)</a>
+                                <a  class="list-group-item">Generado via @Html.DisplayFor(model => model.CANAL_GENERACION)</a>
+                                <a  class="list-group-item"> Creado Por -> @Html.DisplayFor(model => model.USUARIO.LOGIN)</a>
+                                <a href="/Empleado/Details/@EmpleadoId" class="list-group-item">@EmpleadoDisplay</a>
+                            </div>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.FECHA_CREACION)
-                </dt>
+                        </td>
+                    </tr>
 
-                <dd>
-                    @Html.DisplayFor(model => model.FECHA_CREACION)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.EXTENSION)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.EXTENSION)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.SIZE)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.SIZE)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.NOMBRE_DOCUMENTO)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.NOMBRE_DOCUMENTO)
-                </dd>
-
-                <dt>
-                    Empleado
-                </dt>
-
-                <dd>
-                    @{ var EmpleadoDisplay = Model.EMPLEADO.getEmpleadoDisplay();}
-                    @EmpleadoDisplay
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.ESTATU.DESCRIPCION)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.ESTATU.DESCRIPCION)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.USUARIO.LOGIN)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.USUARIO.LOGIN)
-                </dd>
-
-            </dl>
+                </table>
+            </div>
         </div>
 
     </div>
