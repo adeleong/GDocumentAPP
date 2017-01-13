@@ -46,11 +46,7 @@
                     </th>
                     <th>
                         Fecha Recepción
-                    </th>
-                    <!-- <th>
-                         @Html.DisplayNameFor(model => model.First().FECHA_DEVOLUCION)
-                     </th>-->
-
+                    </th>                   
                     <th>
                         @Html.DisplayNameFor(model => model.First().PERSONA_ID)
                     </th>
@@ -81,12 +77,6 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.FECHA_SALIDA)
                         </td>
-                        <!--
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FECHA_DEVOLUCION)
-                        </td>-->
-
-
 
                         <td>
                             @{ var personaDisplay = item.PERSONA.getPersonaDisplay();}
@@ -128,7 +118,7 @@
                         </td>
 
                     </tr>
-                                }
+               }
 
             </table>
         </div>

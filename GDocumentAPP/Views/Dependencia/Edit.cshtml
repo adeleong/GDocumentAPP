@@ -9,11 +9,12 @@
     <div class="panel-heading">
         <h3 class="panel-title"> Dependencia a Editar</h3>
     </div>
-    <div class="panel-body">
 
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="panel-body">
 
             <div class="form-horizontal">
 
@@ -27,18 +28,20 @@
                         @Html.ValidationMessageFor(model => model.DEPENDENCIA_NOMBRE, "", new { @class = "text-danger" })
                     </div>
                 </div>
-               
+
             </div>
-        }
+
         </div>
-        <div class="panel-footer">
-            <div class="input-group col-md-push-1">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-                <span> </span>
-                @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn btn-info" })
+            <div class="panel-footer">
+                <div class="input-group col-md-push-1">
+                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                    <span> </span>
+                    @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn btn-info" })
+                </div>
             </div>
-        </div>
+    }
 </div>
+
    
 
         @section Scripts {

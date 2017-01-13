@@ -11,6 +11,8 @@
 
 }
 
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
 <!-- Custom CSS -->
 <link href="~/Scripts/admin2Template/dist/css/sb-admin-2.css" rel="stylesheet" />
 <br />
@@ -34,8 +36,14 @@
                                 </div>
                             }
                             else
-                            {                         
-                                 <img style="width:100%; height:70% "  src='@urlDocumento' class=" img-responsive img-rounded " alt="Responsive image" />                             
+                            {
+
+                                <div class="panel panel-success">
+                                    
+                                    <div class="panel-body">
+                                        <img style="width:100%; height:70% " src='@urlDocumento' class=" img-responsive img-rounded " alt="Responsive image" />
+                                    </div>
+                                </div>
                             }
                         </td>
                     </tr>
@@ -44,9 +52,6 @@
                             <div class="panel panel-primary">
                                 <!-- Default panel contents -->
                                 <div class="panel-heading">Propiedades del Documento</div>
-
-
-
 
                                 <!-- Table -->
                                 <table class="table table-striped">
