@@ -1,0 +1,45 @@
+﻿@model IEnumerable<GDocumentAPP.ESTATU>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DESCRIPCION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TIPO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VALOR_LOGICO)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DESCRIPCION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TIPO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VALOR_LOGICO)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ESTATUS_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ESTATUS_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ESTATUS_ID })
+        </td>
+    </tr>
+}
+
+</table>

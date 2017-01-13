@@ -1,0 +1,50 @@
+﻿@model GDocumentAPP.USUARIO
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>USUARIO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ESTATU.DESCRIPCION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ESTATU.DESCRIPCION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PERSONA_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PERSONA_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LOGIN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LOGIN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CONTRASENIA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CONTRASENIA)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.USUARIO_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

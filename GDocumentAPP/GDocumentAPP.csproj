@@ -210,10 +210,14 @@
     <Compile Include="Controllers\DocumentoController.cs" />
     <Compile Include="Controllers\DocumentoIndexacionController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
+    <Compile Include="Controllers\EstatusController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PersonaController.cs" />
     <Compile Include="Controllers\RastreoExpedienteController.cs" />
+    <Compile Include="Controllers\RolController.cs" />
+    <Compile Include="Controllers\TipoDocumentoController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Models\DEPENDENCIA.cs" />
     <Compile Include="Models\DOCUMENTO.cs" />
     <Compile Include="Models\DOCUMENTO_INDEXACION.cs" />
@@ -224,7 +228,6 @@
     </Compile>
     <Compile Include="Context\ModelDocumentoApp.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AttachmentsModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\TarifarioXML.cs" />
@@ -474,6 +477,7 @@
     <Content Include="Scripts\admin2Template\vendor\font-awesome\scss\_spinning.scss" />
     <Content Include="Scripts\admin2Template\vendor\font-awesome\scss\_stacked.scss" />
     <Content Include="Scripts\admin2Template\vendor\font-awesome\scss\_variables.scss" />
+    <Content Include="Scripts\customDropzone.js" />
     <Content Include="Scripts\dropzone\css\stylus\basic.styl" />
     <Content Include="Scripts\dropzone\css\stylus\dropzone.styl" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -564,6 +568,26 @@
     <Content Include="Views\DocumentoIndexacion\Details.cshtml" />
     <Content Include="Views\DocumentoIndexacion\Edit.cshtml" />
     <Content Include="Views\DocumentoIndexacion\Index.cshtml" />
+    <Content Include="Views\Usuario\Create.cshtml" />
+    <Content Include="Views\Usuario\Delete.cshtml" />
+    <Content Include="Views\Usuario\Details.cshtml" />
+    <Content Include="Views\Usuario\Edit.cshtml" />
+    <Content Include="Views\Usuario\Index.cshtml" />
+    <Content Include="Views\Estatus\Create.cshtml" />
+    <Content Include="Views\Estatus\Delete.cshtml" />
+    <Content Include="Views\Estatus\Details.cshtml" />
+    <Content Include="Views\Estatus\Edit.cshtml" />
+    <Content Include="Views\Estatus\Index.cshtml" />
+    <Content Include="Views\Rol\Create.cshtml" />
+    <Content Include="Views\Rol\Delete.cshtml" />
+    <Content Include="Views\Rol\Details.cshtml" />
+    <Content Include="Views\Rol\Edit.cshtml" />
+    <Content Include="Views\Rol\Index.cshtml" />
+    <Content Include="Views\TipoDocumento\Create.cshtml" />
+    <Content Include="Views\TipoDocumento\Delete.cshtml" />
+    <Content Include="Views\TipoDocumento\Details.cshtml" />
+    <Content Include="Views\TipoDocumento\Edit.cshtml" />
+    <Content Include="Views\TipoDocumento\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

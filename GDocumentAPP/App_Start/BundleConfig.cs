@@ -33,6 +33,9 @@ namespace GDocumentAPP
             bundles.Add(new ScriptBundle("~/bundles/bootboxscripts").Include(
                     "~/Scripts/bootbox.min.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/customdropzonescripts").Include(
+                    "~/Scripts/customDropzone.js"));
+
             bundles.Add(new StyleBundle("~/Content/dropzonescss").Include(
                      "~/Scripts/dropzone/css/dropzone.css"));
         }
