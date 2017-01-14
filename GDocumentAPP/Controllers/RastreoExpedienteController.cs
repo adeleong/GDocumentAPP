@@ -11,6 +11,7 @@ using GDocumentAPP.Models;
 
 namespace GDocumentAPP.Controllers
 {
+    [Authorize]
     public class RastreoExpedienteController : Controller
     {
         private ModelDocumentoApp db = new ModelDocumentoApp();

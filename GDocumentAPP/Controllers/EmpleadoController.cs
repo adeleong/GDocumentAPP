@@ -11,6 +11,7 @@ using PagedList;
 
 namespace GDocumentAPP.Controllers
 {
+    [Authorize]
     public class EmpleadoController : Controller
     {
         private ModelDocumentoApp db = new ModelDocumentoApp();

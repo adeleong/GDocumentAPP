@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Globalization;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -17,6 +19,7 @@ namespace GDocumentAPP.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ModelDocumentoApp db = new ModelDocumentoApp();
 
         public AccountController()
         {
@@ -57,6 +60,7 @@ namespace GDocumentAPP.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            LogOff();
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -66,29 +70,38 @@ namespace GDocumentAPP.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+       // public async Task<ActionResult> Login(LoginViewModel login, string returnUrl)
+        public async Task<ActionResult> Login(LoginViewModel login, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return View(login);
             }
 
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
+
+            var usuario = from u in db.USUARIOs
+                           select u;
+
+            usuario = usuario.Where(s => s.CONTRASENIA.Equals(login.Password)
+                                    && s.LOGIN.Equals(login.Usuario));
+
+            bool usuarioValido = usuario.Count() == 0 ? false : true;
+
+
+            if (!usuarioValido)
             {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                ModelState.AddModelError("", "Usuario o Contraseña Invalido");
+                return View();
             }
+
+            Session["Usuario_id"] = usuario.First().USUARIO_ID.ToString();
+            Session["Login"] = usuario.First().LOGIN.ToString();
+          
+            ApplicationUser appUser = new ApplicationUser { UserName = login.Usuario};
+
+            await SignInAsync(appUser, false);
+            return RedirectToLocal(returnUrl);
+
         }
 
         //
@@ -433,6 +446,15 @@ namespace GDocumentAPP.Controllers
             {
                 return HttpContext.GetOwinContext().Authentication;
             }
+        }
+
+        private async Task SignInAsync(ApplicationUser user, bool isPersistent)
+        {
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+            // var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+            var iden = new ClaimsIdentity(DefaultAuthenticationTypes.ApplicationCookie);
+            AuthenticationManager.SignIn(iden);
+            AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, iden);
         }
 
         private void AddErrors(IdentityResult result)

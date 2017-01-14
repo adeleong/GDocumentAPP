@@ -11,6 +11,7 @@ using PagedList;
 
 namespace GDocumentAPP.Controllers
 {
+    [Authorize]
     public class DependenciaController : Controller
     {
         private ModelDocumentoApp db = new ModelDocumentoApp();
@@ -32,7 +33,6 @@ namespace GDocumentAPP.Controllers
                 dependencia = dependencia.Where(s => s.DEPENDENCIA_NOMBRE.Contains(searchString));
             }
 
-            // return View(db.PERSONAs.ToList().ToPagedList(pageNumber, pageSize));
             return View(dependencia.ToList().ToPagedList(pageNumber, pageSize));
 
         }

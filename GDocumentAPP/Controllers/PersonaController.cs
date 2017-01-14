@@ -10,6 +10,7 @@ using PagedList;
 
 namespace GDocumentAPP.Controllers
 {
+    [Authorize]
     public class PersonaController : Controller
     {
         private ModelDocumentoApp db = new ModelDocumentoApp();

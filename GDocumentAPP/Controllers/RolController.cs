@@ -10,6 +10,7 @@ using GDocumentAPP;
 
 namespace GDocumentAPP.Controllers
 {
+    [Authorize]
     public class RolController : Controller
     {
         private ModelDocumentoApp db = new ModelDocumentoApp();

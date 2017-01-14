@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace GDocumentAPP.Controllers
 {
+    [Authorize]
     public class DocumentoIndexacionController : Controller
     {
         private ModelDocumentoApp db = new ModelDocumentoApp();

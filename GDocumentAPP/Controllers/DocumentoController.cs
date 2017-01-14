@@ -13,6 +13,7 @@ using GDocumentAPP.Models;
 
 namespace GDocumentAPP.Controllers
 {
+    [Authorize]
     public class DocumentoController : Controller
     {
         private ModelDocumentoApp db = new ModelDocumentoApp();

@@ -7,17 +7,32 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using GDocumentAPP;
+using PagedList;
 
 namespace GDocumentAPP.Controllers
 {
+    [Authorize]
     public class TipoDocumentoController : Controller
     {
         private ModelDocumentoApp db = new ModelDocumentoApp();
 
         // GET: TipoDocumento
-        public ActionResult Index()
+        public ActionResult Index(int? page, string searchString)
         {
-            return View(db.TIPO_DOCUMENTO.ToList());
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+
+            var tipoDocumento = from s in db.TIPO_DOCUMENTO
+                              select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                tipoDocumento = tipoDocumento.Where(s => s.DESCRIPCION.Contains(searchString));
+            }
+
+            return View(tipoDocumento.ToList().ToPagedList(pageNumber, pageSize));
+
         }
 
         // GET: TipoDocumento/Details/5

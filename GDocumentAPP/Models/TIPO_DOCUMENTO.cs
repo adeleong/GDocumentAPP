@@ -17,11 +17,12 @@ namespace GDocumentAPP
         [Key]
         public int TIPO_DOCUMENTO_ID { get; set; }
 
-        [Required]
         [StringLength(50)]
+        [Required(ErrorMessage = "El Tipo Documento es requerido")]
+        [Display(Name = "Tipo Documento", Description = "Tipo Documento")]
         public string DESCRIPCION { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Indique Si o No")]
         [StringLength(1)]
         public string REQUERIDO { get; set; }
 
