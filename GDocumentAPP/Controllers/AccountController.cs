@@ -97,7 +97,7 @@ namespace GDocumentAPP.Controllers
             Session["Usuario_id"] = usuario.First().USUARIO_ID.ToString();
             Session["Login"] = usuario.First().LOGIN.ToString();
           
-            ApplicationUser appUser = new ApplicationUser { UserName = login.Usuario};
+            ApplicationUser appUser = new ApplicationUser { UserName = login.Usuario, Id = usuario.First().USUARIO_ID.ToString() };
 
             await SignInAsync(appUser, false);
             return RedirectToLocal(returnUrl);
@@ -450,12 +450,24 @@ namespace GDocumentAPP.Controllers
 
         private async Task SignInAsync(ApplicationUser user, bool isPersistent)
         {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-            // var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
-            var iden = new ClaimsIdentity(DefaultAuthenticationTypes.ApplicationCookie);
-            AuthenticationManager.SignIn(iden);
-            AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, iden);
-        }
+            
+
+             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+             ClaimsIdentity claimsIdentity = new ClaimsIdentity(DefaultAuthenticationTypes.ApplicationCookie, ClaimTypes.NameIdentifier, ClaimTypes.Role);
+             claimsIdentity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id, "http://www.w3.org/2001/XMLSchema#string"));
+             claimsIdentity.AddClaim(new Claim(ClaimTypes.Name, user.UserName, "http://www.w3.org/2001/XMLSchema#string"));
+             claimsIdentity.AddClaim(new Claim("http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider", "Custom Identity", "http://www.w3.org/2001/XMLSchema#string"));
+             AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, claimsIdentity);
+       
+
+        //2var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+
+       /* var iden = new ClaimsIdentity(DefaultAuthenticationTypes.ApplicationCookie);
+         AuthenticationManager.SignIn(iden);
+        AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, iden);*/
+
+        //2  AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
+    }
 
         private void AddErrors(IdentityResult result)
         {

@@ -21,7 +21,7 @@ namespace GDocumentAPP.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("ModelDocumentoApp"/*"DefaultConnection"*/, throwIfV1Schema: false)
         {
         }
 
