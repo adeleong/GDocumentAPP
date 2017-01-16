@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using GDocumentAPP;
+using PagedList;
 
 namespace GDocumentAPP.Controllers
 {
@@ -16,9 +17,21 @@ namespace GDocumentAPP.Controllers
         private ModelDocumentoApp db = new ModelDocumentoApp();
 
         // GET: Rol
-        public ActionResult Index()
+        public ActionResult Index(int? page, string searchString)
         {
-            return View(db.ROLs.ToList());
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+
+            var rol = from s in db.ROLs
+                              select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                rol = rol.Where(s => s.DESCRIPCION.Contains(searchString));
+            }
+
+            return View(rol.ToList().ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Rol/Details/5

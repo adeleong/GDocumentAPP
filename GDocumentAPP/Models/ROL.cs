@@ -18,8 +18,9 @@ namespace GDocumentAPP
         [Key]
         public int ROL_ID { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "El Rol es requerido")]
         [StringLength(100)]
+        [Display(Name = "Rol")]
         public string DESCRIPCION { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
