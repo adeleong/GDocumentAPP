@@ -161,6 +161,11 @@ namespace GDocumentAPP
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<PERSONA>()
+                .HasMany(e => e.USUARIOS )
+                .WithRequired(e => e.PERSONA)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<PERSONA>()
                 .HasMany(e => e.RASTREO_EXPEDIENTE)
                 .WithRequired(e => e.PERSONA)
                 .WillCascadeOnDelete(false);

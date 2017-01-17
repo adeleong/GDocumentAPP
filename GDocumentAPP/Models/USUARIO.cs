@@ -23,14 +23,18 @@ namespace GDocumentAPP
 
         public int? ESTATUS_ID { get; set; }
 
+        [Required(ErrorMessage = "La Persona es requerida")]
+        [Display(Name = "Persona")]
         public int PERSONA_ID { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "El Usuario es requerido")]
         [StringLength(20)]
+        [Display(Name = "Usuario")]
         public string LOGIN { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "La Contraseña es requerida")]
         [StringLength(20)]
+        [Display(Name = "Contraseña")]
         public string CONTRASENIA { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -40,6 +44,8 @@ namespace GDocumentAPP
         public virtual ICollection<DOCUMENTO_INDEXACION> DOCUMENTO_INDEXACION { get; set; }
 
         public virtual ESTATU ESTATU { get; set; }
+
+        public virtual PERSONA PERSONA { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RASTREO_EXPEDIENTE> RASTREO_EXPEDIENTE { get; set; }

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using GDocumentAPP;
+using PagedList;
 
 namespace GDocumentAPP.Controllers
 {
@@ -16,10 +17,25 @@ namespace GDocumentAPP.Controllers
         private ModelDocumentoApp db = new ModelDocumentoApp();
 
         // GET: Usuario
-        public ActionResult Index()
+        public ActionResult Index(int? page, string searchString)
         {
-            var uSUARIOs = db.USUARIOs.Include(u => u.ESTATU);
-            return View(uSUARIOs.ToList());
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+
+            var usuario = from u in db.USUARIOs.Include(u => u.ESTATU)
+                          select u;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                usuario = usuario.Where(u => u.LOGIN.Contains(searchString)
+                                          || u.PERSONA.NOMBRE.Contains(searchString)
+                                          || u.PERSONA.PRIMER_APELLIDO.Contains(searchString)
+                                          || u.PERSONA.IDENTIFICACION.Equals(searchString));
+            }
+
+            return View(usuario.ToList().ToPagedList(pageNumber, pageSize));
+
         }
 
         // GET: Usuario/Details/5
