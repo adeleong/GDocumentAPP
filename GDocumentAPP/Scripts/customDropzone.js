@@ -68,7 +68,7 @@
                  var indexarButton = Dropzone.createElement("<button type=\"button\" class=\"btn btn-outline btn-primary btn-sm glyphicon glyphicon-pushpin\" title=\"indexar\"> </button>");
                  var editButton = Dropzone.createElement("<button type=\"button\" class=\"btn btn-outline btn-warning btn-sm glyphicon glyphicon-pencil\" title=\"Editar\"> </button>");
                  var removeButton = Dropzone.createElement("<button type=\"button\" class=\"btn btn-outline btn-danger btn-sm glyphicon glyphicon-trash\" title=\"Eliminar\"> </button>");
-                 var downloadButton = Dropzone.createElement("<button type=\"button\" class=\"btn btn-outline btn-info btn-sm glyphicon glyphicon-eye-open\" title=\"Detalle\"></button>");
+                 var detalleButton = Dropzone.createElement("<button type=\"button\" class=\"btn btn-outline btn-info btn-sm glyphicon glyphicon-eye-open\" title=\"Detalle\"></button>");
                  var separator = Dropzone.createElement("<a> <a/>");
                  var separator2 = Dropzone.createElement("<a> <a/>");
                  var separator3 = Dropzone.createElement("<a> <a/>");
@@ -100,7 +100,7 @@
 
                  });
 
-                 downloadButton.addEventListener("click", function (e) {                                    
+                 detalleButton.addEventListener("click", function (e) {
                      window.location.href = "/Documento/Details/" + file.id;
                  });
 
@@ -108,9 +108,13 @@
                      window.location.href = "/Documento/Edit/" + file.id;
                  });
 
+                 indexarButton.addEventListener("click", function (e) {
+                     window.location.href = "/DocumentoIndexacion/Create";
+                 });
+
                  file.previewElement.appendChild(indexarButton);
                  file.previewElement.appendChild(separator3);
-                 file.previewElement.appendChild(downloadButton);
+                 file.previewElement.appendChild(detalleButton);
                  file.previewElement.appendChild(separator2);
                  file.previewElement.appendChild(editButton);
                  file.previewElement.appendChild(separator);
