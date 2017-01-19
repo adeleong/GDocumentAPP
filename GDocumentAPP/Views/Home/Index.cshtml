@@ -1,5 +1,14 @@
-﻿@{
+﻿@using GDocumentAPP.Models
+@model DashboardViewModels
+
+@{
     ViewBag.Title = "Home Page";
+    DashboardViewModels dashboard = new DashboardViewModels();
+    int CountPersona = dashboard.CountPersona();
+    int CountEmpleadoActivos = dashboard.CountEmpleadoActivos();
+    int CountExpedientesDigitales = dashboard.CountExpedienteDigitales();
+    int CountExpedientesFisico = dashboard.CountExpedienteFisico();
+
 }
 
 <!DOCTYPE html>
@@ -61,7 +70,7 @@
                                     <i class="fa  fa-user fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
+                                    <div class="huge"> @CountPersona </div>
                                     <div>Personas</div>
                                 </div>
                             </div>
@@ -83,7 +92,7 @@
                                     <i class="fa fa-user-secret fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
+                                    <div class="huge">@CountEmpleadoActivos</div>
                                     <div>Empleados Activos</div>
                                 </div>
                             </div>
@@ -105,7 +114,7 @@
                                     <i class="fa fa-file-pdf-o fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">124</div>
+                                    <div class="huge">@CountExpedientesDigitales</div>
                                     <div>Expedientes Digitales</div>
                                 </div>
                             </div>
@@ -127,7 +136,7 @@
                                     <i class="fa fa-archive fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">13</div>
+                                    <div class="huge">@CountExpedientesFisico</div>
                                     <div>Expedientes Fisicos</div>
                                 </div>
                             </div>

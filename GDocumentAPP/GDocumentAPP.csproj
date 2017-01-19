@@ -218,6 +218,7 @@
     <Compile Include="Controllers\RolController.cs" />
     <Compile Include="Controllers\TipoDocumentoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Models\DashboardViewModels.cs" />
     <Compile Include="Models\DEPENDENCIA.cs" />
     <Compile Include="Models\DOCUMENTO.cs" />
     <Compile Include="Models\DOCUMENTO_INDEXACION.cs" />
