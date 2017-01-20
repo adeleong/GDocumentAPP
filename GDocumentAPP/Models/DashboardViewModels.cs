@@ -23,12 +23,30 @@ namespace GDocumentAPP.Models
 
         public int CountExpedienteDigitales()
         {
-            return 0;
+
+         int CountExpedienteDigitales =  ( from e in db.EMPLEADOes
+                                           where db.DOCUMENTOes.Any(d => (d.EMPLEADO_ID == e.EMPLEADO_ID))
+                                          select e ).Count();
+
+            return CountExpedienteDigitales;
         }
 
         public int CountExpedienteFisico()
         {
-            return 0;
+            int CountExpedienteFisico = (from e in db.EMPLEADOes
+                                        where db.RASTREO_EXPEDIENTE.Any(r => (r.EMPLEADO_ID == e.EMPLEADO_ID))
+                                       select e).Count();
+
+            return CountExpedienteFisico;
+        }
+
+        public Dictionary<string, int> getDataDonut()
+        {
+            /* var DocumentosEstatus =  from d in db.DOCUMENTOes.GroupBy(d => d.ESTATUS_ID)
+                                      select d.;*/
+
+            return new Dictionary<string, int>();
+
         }
 
     }

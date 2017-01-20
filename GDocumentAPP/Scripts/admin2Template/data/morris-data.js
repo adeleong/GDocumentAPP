@@ -61,6 +61,18 @@ $(function () {
         resize: true
     });
 
+
+    $.getJSON("/Home/ObtenerDocumentos?empleadoId=" + empleadoId + "&search=" + search).done(function (data) {
+        if (data.Data != '') {
+
+            $.each(data.Data, function (index, item) {
+                //// Create Grafico
+
+             
+            });
+        } 
+    });
+
     Morris.Donut({
         element: 'morris-donut-chart',
         data: [{
