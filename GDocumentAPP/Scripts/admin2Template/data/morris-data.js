@@ -55,38 +55,25 @@ $(function () {
         }],
         xkey: 'period',
         ykeys: ['iphone', 'ipad', 'itouch'],
-        labels: ['iPhone', 'iPad', 'iPod Touch'],
+        labels: ['Expedientes incompletos', 'Expedientes Fisico', 'Expedientes Digital'],
         pointSize: 2,
         hideHover: 'auto',
         resize: true
     });
 
 
-    $.getJSON("/Home/ObtenerDocumentos?empleadoId=" + empleadoId + "&search=" + search).done(function (data) {
+      $.getJSON("/Home/ObtenerDocumentoEstatus").done(function (data) {
         if (data.Data != '') {
 
-            $.each(data.Data, function (index, item) {
-                //// Create Grafico
-
-             
-            });
+             Morris.Donut({
+                element: 'morris-donut-chart',
+                data: data.Data,
+                    resize: true
+                });
         } 
     });
 
-    Morris.Donut({
-        element: 'morris-donut-chart',
-        data: [{
-            label: "Completados",
-            value: 12
-        }, {
-            label: "Escaneados",
-            value: 30
-        }, {
-            label: "Indexados",
-            value: 20
-        }],
-        resize: true
-    });
+   
 
     Morris.Bar({
         element: 'morris-bar-chart',

@@ -40,12 +40,16 @@ namespace GDocumentAPP.Models
             return CountExpedienteFisico;
         }
 
-        public Dictionary<string, int> getDataDonut()
+        public IQueryable getDataDonut()
         {
-            /* var DocumentosEstatus =  from d in db.DOCUMENTOes.GroupBy(d => d.ESTATUS_ID)
-                                      select d.;*/
+         
+            IQueryable DocumentosEstatus = from documento in db.DOCUMENTOes
+                                    join estatu in db.ESTATUS on documento.ESTATUS_ID equals estatu.ESTATUS_ID
+                                    group estatu by new { estatu.DESCRIPCION } into groupNew
+                                    select new { label = groupNew.Key.DESCRIPCION , value = groupNew.Count() };
+                 
 
-            return new Dictionary<string, int>();
+            return DocumentosEstatus;
 
         }
 

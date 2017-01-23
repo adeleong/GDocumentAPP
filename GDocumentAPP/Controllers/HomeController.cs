@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GDocumentAPP.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -27,5 +28,16 @@ namespace GDocumentAPP.Controllers
 
             return View();
         }
+
+        public ActionResult ObtenerDocumentoEstatus()
+        {
+
+            DashboardViewModels DataDonut = new DashboardViewModels();
+
+            IQueryable DataDonutHome = DataDonut.getDataDonut();
+
+            return Json(new { Data = DataDonutHome }, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

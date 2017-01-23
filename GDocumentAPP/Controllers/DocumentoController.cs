@@ -315,11 +315,11 @@ namespace GDocumentAPP.Controllers
                       
             documentoList = documentos.ToList();
 
-            var ListaDocumento = documentoList.Select(D => new
+            var ListaDocumento = documentoList.Select(Documento => new
             {
-                DocumentoId = D.DOCUMENTO_ID,
-                DocumentoNombre = D.NOMBRE_DOCUMENTO,
-                DocumentoSize = D.SIZE,
+                DocumentoId = Documento.DOCUMENTO_ID,
+                DocumentoNombre = Documento.NOMBRE_DOCUMENTO,
+                DocumentoSize = Documento.SIZE,
                 DocumentoRuta = imagePath
             });
 
