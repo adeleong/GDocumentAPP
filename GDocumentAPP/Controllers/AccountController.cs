@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using GDocumentAPP.Models;
+using GDocumentAPP.Services;
 
 namespace GDocumentAPP.Controllers
 {
@@ -94,8 +95,8 @@ namespace GDocumentAPP.Controllers
                 return View();
             }
 
-            Session["Usuario_id"] = usuario.First().USUARIO_ID.ToString();
-            Session["Login"] = usuario.First().LOGIN.ToString();
+            Session[Bundle.usuarioId] = usuario.First().USUARIO_ID.ToString();
+            Session[Bundle.login] = usuario.First().LOGIN.ToString();
           
             ApplicationUser appUser = new ApplicationUser { UserName = login.Usuario, Id = usuario.First().USUARIO_ID.ToString() };
 

@@ -1,7 +1,9 @@
-﻿using System;
+﻿using GDocumentAPP.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+
 
 namespace GDocumentAPP.Models
 {
@@ -18,7 +20,7 @@ namespace GDocumentAPP.Models
         public int CountEmpleadoActivos()
         {
 
-            return db.EMPLEADOes.Where( e => e.ESTATU.DESCRIPCION.ToLower().Equals("activo") ).Count(); ;
+            return db.EMPLEADOes.Where( e => e.ESTATU.DESCRIPCION.ToLower().Equals(Bundle.Estatus.Activo.ToString().ToLower()) ).Count(); ;
         }
 
         public int CountExpedienteDigitales()
@@ -44,9 +46,9 @@ namespace GDocumentAPP.Models
         {
          
             IQueryable DocumentosEstatus = from documento in db.DOCUMENTOes
-                                    join estatu in db.ESTATUS on documento.ESTATUS_ID equals estatu.ESTATUS_ID
-                                    group estatu by new { estatu.DESCRIPCION } into groupNew
-                                    select new { label = groupNew.Key.DESCRIPCION , value = groupNew.Count() };
+                                           join estatu in db.ESTATUS on documento.ESTATUS_ID equals estatu.ESTATUS_ID
+                                           group estatu by new { estatu.DESCRIPCION } into groupNew
+                                          select new { label = groupNew.Key.DESCRIPCION , value = groupNew.Count() };
                  
 
             return DocumentosEstatus;

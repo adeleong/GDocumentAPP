@@ -241,6 +241,7 @@
     <Compile Include="Services\DocumentoService.cs" />
     <Compile Include="Services\HandlePathFile.cs" />
     <Compile Include="Services\HandleXMLService.cs" />
+    <Compile Include="Services\Util.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Models\TELEFONO.cs" />
     <Compile Include="Models\TIPO_DOCUMENTO.cs" />

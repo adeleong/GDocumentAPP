@@ -15,5 +15,30 @@ namespace GDocumentAPP.Services
         public const string mensajePasaporteLetraNumero= "El Pasaporte debe ser letra, número y longitud entre [9-14] Ej:RD012345678";
         public const string mensajeCedulaLongitud = "La longitud de la Cédula debe ser de 11";
         public const string mensajePasaporteLongitud = "La longitud del Pasaporte debe ser entre [9-14]";
+        public const string usuarioId = "UsuarioId";
+        public const string login = "Login";
+        public const string EmpleadoId = "EmpleadoId";
+        public const string mensajeEmpleadoRequeridoDocumento = "Debe Seleccionar un Empleado para Crear Documento --> ";
+
+
+        public enum CanalGeneracion
+        {
+            AppWeb,
+            AppMobile,
+            ServicioWeb,
+            Escaner  
+        }
+
+        public enum Estatus
+        {
+            Eliminado,
+            Activo,
+            Inactivo,
+            PendienteRevision,
+            PendienteIndexar,
+            Completado,
+            Rechazado
+        }
+
     }
 }

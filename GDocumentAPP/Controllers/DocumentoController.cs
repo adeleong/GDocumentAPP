@@ -169,17 +169,16 @@ namespace GDocumentAPP.Controllers
         public ActionResult GuardarArchivoCargado()
         {
 
-
             List<int> listValuesEmpleado = new List<int>();
             try
             {
                 Request.Params.AllKeys
-                    .Where(n => n.StartsWith("EmpleadoId"))
+                    .Where(n => n.StartsWith(Bundle.EmpleadoId))
                     .ToList()
                     .ForEach(x => listValuesEmpleado.Add(int.Parse(Request.Params[x])));
             }
             catch(FormatException exceptionEmptyEmployee ) {
-                ViewBag.ExceptionEmpleadoEnBlanco = "Debe Seleccionar un Empleado para Crear Documento --> "+ exceptionEmptyEmployee.StackTrace;
+                ViewBag.ExceptionEmpleadoEnBlanco = Bundle.mensajeEmpleadoRequeridoDocumento + exceptionEmptyEmployee.StackTrace;
                 return View(ViewBag.ExceptionEmpleadoEnBlanco);
             }
 
@@ -200,19 +199,19 @@ namespace GDocumentAPP.Controllers
                 {
                     HandlerBackupFile(@pathDocumentoRepositorio, fName);
 
-                    bool isExists = System.IO.Directory.Exists(@pathDocumentoRepositorio);
+                    bool isExistsDirectory = System.IO.Directory.Exists(@pathDocumentoRepositorio);
 
-                    if (!isExists)
+                    if (!isExistsDirectory)
                         System.IO.Directory.CreateDirectory(@pathDocumentoRepositorio);               
 
                     DOCUMENTO documento = new DOCUMENTO();
                     documento.EMPLEADO_ID = listValuesEmpleado.First();
                     documento.NOMBRE_DOCUMENTO = file.FileName;
                     documento.EXTENSION = @pathDocumentoRepositorio;
-                    documento.ESTATUS_ID = 1;
+                    documento.ESTATUS_ID = (int) Bundle.Estatus.PendienteRevision;
                     documento.FECHA_CREACION = DateTime.Now;
-                    documento.CANAL_GENERACION = "DropZoneFileUpload";
-                    documento.USUARIO_ID = 2;
+                    documento.CANAL_GENERACION = Bundle.CanalGeneracion.AppWeb.ToString();
+                    documento.USUARIO_ID = int.Parse( Session[Bundle.usuarioId].ToString() );
                     documento.SIZE = file.ContentLength;
 
                     if (ModelState.IsValid)
