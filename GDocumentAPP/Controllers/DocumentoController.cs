@@ -168,87 +168,110 @@ namespace GDocumentAPP.Controllers
        // [HttpPost]
         public ActionResult GuardarArchivoCargado()
         {
-
-            List<int> listValuesEmpleado = new List<int>();
-            try
-            {
-                Request.Params.AllKeys
-                    .Where(n => n.StartsWith(Bundle.EmpleadoId))
-                    .ToList()
-                    .ForEach(x => listValuesEmpleado.Add(int.Parse(Request.Params[x])));
-            }
-            catch(FormatException exceptionEmptyEmployee ) {
-                ViewBag.ExceptionEmpleadoEnBlanco = Bundle.mensajeEmpleadoRequeridoDocumento + exceptionEmptyEmployee.StackTrace;
-                return View(ViewBag.ExceptionEmpleadoEnBlanco);
-            }
-
+                        
+            int EmpleadoId = GetEmpleadoIdByRequest();           
             bool isSavedSuccessfully = true;
-            string fName = "";
-
-            HandlePathFile handlePathDirectory = new HandlePathFile();
-          
-            foreach (string fileName in Request.Files)
+            string nombreDocumento = "";
+                               
+            foreach (string nombreArchivo in Request.Files)
             {
-                HttpPostedFileBase file = Request.Files[fileName];
-
-                fName = file.FileName;
-
-                var contentType = file.ContentType;
-
-                if (file != null && file.ContentLength > 0)
+                HttpPostedFileBase archivo = Request.Files[nombreArchivo];
+                nombreDocumento = archivo.FileName;
+                              
+                if (archivo != null && archivo.ContentLength > 0)
                 {
-                    HandlerBackupFile(@pathDocumentoRepositorio, fName);
-
-                    bool isExistsDirectory = System.IO.Directory.Exists(@pathDocumentoRepositorio);
-
-                    if (!isExistsDirectory)
-                        System.IO.Directory.CreateDirectory(@pathDocumentoRepositorio);               
-
-                    DOCUMENTO documento = new DOCUMENTO();
-                    documento.EMPLEADO_ID = listValuesEmpleado.First();
-                    documento.NOMBRE_DOCUMENTO = file.FileName;
-                    documento.EXTENSION = @pathDocumentoRepositorio;
-                    documento.ESTATUS_ID = (int) Bundle.Estatus.PendienteRevision;
-                    documento.FECHA_CREACION = DateTime.Now;
-                    documento.CANAL_GENERACION = Bundle.CanalGeneracion.AppWeb.ToString();
-                    documento.USUARIO_ID = int.Parse( Session[Bundle.usuarioId].ToString() );
-                    documento.SIZE = file.ContentLength;
-
-                    if (ModelState.IsValid)
-                    {
-                        db.DOCUMENTOes.Add(documento);
-                        db.SaveChanges();
-                        SaveFileInRepositorio(file, pathDocumentoRepositorio);
-                        return RedirectToAction("Index");
-                    }
+                    GuardarDocumentoEnBaseDato(EmpleadoId, archivo);
+                    GuardarDocumentoEnFileSystem(EmpleadoId, archivo);
+                    return RedirectToAction("Index");
                 }
             }
 
-            ActionResult JsonResult = getJsonResult(isSavedSuccessfully, fName);
+            ActionResult JsonResult = getJsonResult(isSavedSuccessfully, nombreDocumento);
            
             return JsonResult;
 
         }
 
-        private void SaveFileInRepositorio(HttpPostedFileBase file, string pathDocumento)
+        private void GuardarDocumentoEnBaseDato(int EmpleadoId, HttpPostedFileBase archivo)
+        {
+            DOCUMENTO documento = new DOCUMENTO();
+            documento.EMPLEADO_ID = EmpleadoId;
+            documento.NOMBRE_DOCUMENTO = archivo.FileName;
+            documento.EXTENSION = @pathDocumentoRepositorio;
+            documento.ESTATUS_ID = (int)Bundle.Estatus.PendienteRevision;
+            documento.FECHA_CREACION = DateTime.Now;
+            documento.CANAL_GENERACION = Bundle.CanalGeneracion.AppWeb.ToString();
+            documento.USUARIO_ID = int.Parse(Session[Bundle.usuarioId].ToString());
+            documento.SIZE = archivo.ContentLength;
+
+            if (ModelState.IsValid)
+            {
+                db.DOCUMENTOes.Add(documento);
+                db.SaveChanges();
+
+            }
+        }
+
+        private void GuardarDocumentoEnFileSystem(int EmpleadoId, HttpPostedFileBase archivo)
+        {
+
+            string pathDocumentoEmpleado = string.Format("{0}\\{1}", @pathDocumentoRepositorio, EmpleadoId);
+                        
+            HandlerBackupFile(pathDocumentoEmpleado, archivo.FileName);
+                     
+            bool isExistsDirectory = System.IO.Directory.Exists(pathDocumentoEmpleado);
+
+            if (!isExistsDirectory)
+               System.IO.Directory.CreateDirectory(pathDocumentoEmpleado);
+
+            SaveFileInRepositorio(archivo, pathDocumentoEmpleado, EmpleadoId);
+        }
+
+        private int GetEmpleadoIdByRequest()
+        {
+            List<int> listValuesEmpleado = new List<int>();
+            try
+            {
+                Request.Params.AllKeys
+                                .Where(n => n.StartsWith(Bundle.EmpleadoId))
+                                .ToList()
+                                .ForEach(x => listValuesEmpleado.Add(int.Parse(Request.Params[x])));
+
+                return listValuesEmpleado.First();
+            }
+            catch (FormatException exceptionEmptyEmployee)
+            {
+                ViewBag.ExceptionEmpleadoEnBlanco = Bundle.mensajeEmpleadoRequeridoDocumento + exceptionEmptyEmployee.StackTrace;
+                return View(ViewBag.ExceptionEmpleadoEnBlanco);
+            }
+        }
+
+        private void SaveFileInRepositorio(HttpPostedFileBase file, string pathDocumento, int EmpleadoId)
         {
             var pathDocumentoRepositorio = string.Format("{0}\\{1}", @pathDocumento, file.FileName);
             file.SaveAs(pathDocumentoRepositorio);
-            CopiarFileEnCarpetaProyecto(file.FileName, pathDocumento);
+            CopiarFileEnCarpetaProyecto(file.FileName, pathDocumento, EmpleadoId);
 
         }
 
-        private static void CopiarFileEnCarpetaProyecto(string fileName, string pathDocumento)
+        private static void CopiarFileEnCarpetaProyecto(string fileName, string pathDocumento, int EmpleadoId)
         {
-            string directoryImageConfig = ConfigurationManager.AppSettings["directoryImage"].ToString();
+            string directoryDocumentoConfig = ConfigurationManager.AppSettings["directoryImage"].ToString();
 
-            var pathDocumentoSource = System.IO.Path.Combine(pathDocumento, fileName);
+            string pathDocumentoEmpleado = string.Format("{0}\\{1}", directoryDocumentoConfig, EmpleadoId);
 
-            var currentDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
+            string currentDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
 
-            var directoryImage = new DirectoryInfo(string.Format("{0}" + directoryImageConfig, currentDirectory.ToString()));
+            DirectoryInfo directoryDocumentoEmpleado = new DirectoryInfo(string.Format("{0}" + pathDocumentoEmpleado, currentDirectory.ToString()));
 
-            string pathDocumentoTarget = System.IO.Path.Combine(directoryImage.ToString(), fileName);
+            bool isExistsDirectory = System.IO.Directory.Exists(directoryDocumentoEmpleado.ToString());
+
+            if (!isExistsDirectory)
+                System.IO.Directory.CreateDirectory(directoryDocumentoEmpleado.ToString());
+                      
+            string pathDocumentoSource = System.IO.Path.Combine(pathDocumento, fileName);
+        
+            string pathDocumentoTarget = System.IO.Path.Combine(directoryDocumentoEmpleado.ToString(), fileName);
 
             System.IO.File.Copy(pathDocumentoSource, pathDocumentoTarget, true);
         }

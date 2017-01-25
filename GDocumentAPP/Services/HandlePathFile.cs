@@ -10,7 +10,7 @@ namespace GDocumentAPP.Services
         public string GenerateFolderBackup(string parentPath)
         {
 
-            string backupPath = System.IO.Path.Combine(parentPath, "imagesBackup" + String.Format("{0:yyyyMMdd}", DateTime.Today));
+            string backupPath = System.IO.Path.Combine(parentPath, "documentoBackup" + String.Format("{0:yyyyMMdd}", DateTime.Today));
 
             bool isExists = System.IO.Directory.Exists(backupPath);
 
