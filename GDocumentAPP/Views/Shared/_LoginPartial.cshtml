@@ -7,16 +7,9 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Usuario", routeValues: null, htmlAttributes: new { title = "Manage" })
+            @Html.ActionLink("Hola " + User.Identity.GetUserName(), "Edit", "Usuario", routeValues: null, htmlAttributes: new { title = "Cuenta Usuario" })
         </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        <li title="Log Off"><a href="javascript:document.getElementById('logoutForm').submit()"><span class="glyphicon glyphicon-off"> </span></a></li>
     </ul>
     }
-}
-else
-{
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Registrar", "Create", "Usuario", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Ingresar", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
 }
