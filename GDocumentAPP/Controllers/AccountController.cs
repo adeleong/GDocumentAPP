@@ -61,7 +61,7 @@ namespace GDocumentAPP.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            LogOff();
+           // LogOff();
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -406,6 +406,7 @@ namespace GDocumentAPP.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            Session.Abandon();
             return RedirectToAction("Index", "Home");
         }
 
