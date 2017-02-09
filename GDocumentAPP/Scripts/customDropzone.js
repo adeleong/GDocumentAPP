@@ -17,50 +17,13 @@
 
              var thisDropzone = this;
                
-             /*---------Obterner Documentos desde El Controller Documento action ObternerDocumentos---------*/
-             $(function () {
-                 $("#btnSearch").click(function () {
-                       
-                     var empleadoId = $("#EMPLEADO_ID").val();
-                       
-                     var search = $("#search").val();
-                       
-                     thisDropzone.removeAllFiles(true);
-                       
-                     $.getJSON("/Documento/ObtenerDocumentos?empleadoId=" + empleadoId + "&search=" + search).done(function (data) {
-                         if (data.Data != '') {
-
-                             $.each(data.Data, function (index, item) {
-                                 //// Create the mock file:
-
-                                 var mockFile = {
-                                     name: item.DocumentoNombre,
-                                     size: item.DocumentoSize,
-                                     id: item.DocumentoId
-                                 };
-
-                                 var thumbnail = $('.dropzone .dz-preview.dz-file-preview .dz-image:last');
-
-                                 // Call the default addedfile event handler
-                                 thisDropzone.emit("addedfile", mockFile);
-
-                                 // pathImage = item.attributeRuta;
-                                 // And optionally show the thumbnail of the file:
-                                 var rutaDocumento = item.DocumentoRuta + "/" + empleadoId + "/" + item.DocumentoNombre;
-                                 thisDropzone.emit("thumbnail", mockFile, rutaDocumento);
-
-                                 if (item.DocumentoNombre.substr(item.DocumentoNombre.lastIndexOf("."), item.DocumentoNombre.lenght) == ".pdf")
-                                     thisDropzone.emit("thumbnail", mockFile, '/images/wallimages/pdf.png');
-
-                                 thisDropzone.files.push(mockFile);
-                             });
-                         } else {
-                             thisDropzone.dictDefaultMessage = "No Hay Datos Para Mostrar.";
-                         }
-
-                     });
-                     return false;
-                 });
+             /*---------Obterner Documentos desde la busquedad Documento action ObternerDocumentos---------*/
+             $("#btnSearch").click(function () {
+                  getDocuments();            
+              });
+          
+             $("#EMPLEADO_ID").change(function () {
+                 getDocuments();
              });
              /* ----------------------------------------------Fin Obtener Documento-------------------------------------------------------*/
 
@@ -123,6 +86,53 @@
                                             
              });
 
+
+             function getDocuments() {
+
+                 var empleadoId = $("#EMPLEADO_ID").val();
+
+                 var search = $("#search").val();
+
+                 thisDropzone.removeAllFiles(true);
+
+                 $.getJSON("/Documento/ObtenerDocumentos?empleadoId=" + empleadoId + "&search=" + search).done(function (data) {
+                     if (data.Data != '') {
+
+                         $.each(data.Data, function (index, item) {
+                             //// Create the mock file:
+
+                             var mockFile = {
+                                 name: item.DocumentoNombre,
+                                 size: item.DocumentoSize,
+                                 id: item.DocumentoId
+                             };
+
+                             var thumbnail = $('.dropzone .dz-preview.dz-file-preview .dz-image:last');
+
+                             // Call the default addedfile event handler
+                             thisDropzone.emit("addedfile", mockFile);
+
+                             // pathImage = item.attributeRuta;
+                             // And optionally show the thumbnail of the file:
+                             var rutaDocumento = item.DocumentoRuta + "/" + empleadoId + "/" + item.DocumentoNombre;
+                             thisDropzone.emit("thumbnail", mockFile, rutaDocumento);
+
+                             if (item.DocumentoNombre.substr(item.DocumentoNombre.lastIndexOf("."), item.DocumentoNombre.lenght) == ".pdf")
+                                 thisDropzone.emit("thumbnail", mockFile, '/images/wallimages/pdf.png');
+
+                             thisDropzone.files.push(mockFile);
+                         });
+                     } else {
+                         thisDropzone.dictDefaultMessage = "No Hay Datos Para Mostrar.";
+                     }
+
+                 });
+                 return false;
+
+             }
+
+
          }
+
 
      };
