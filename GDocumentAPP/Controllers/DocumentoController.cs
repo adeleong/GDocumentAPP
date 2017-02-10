@@ -19,8 +19,6 @@ namespace GDocumentAPP.Controllers
         private ModelDocumentoApp db = new ModelDocumentoApp();
         ListaValoresEmpleado listaEmpleado = new ListaValoresEmpleado();
 
-        public string pathTarifarioImage = ConfigurationManager.AppSettings["pathTarifarioImage"].ToString();
-        public string pathTarifarioXml = ConfigurationManager.AppSettings["pathTarifarioXML"].ToString();
         public string pathDocumentoRepositorio = ConfigurationManager.AppSettings["pathDocumentoRepositorio"].ToString();
                
         // GET: Documento

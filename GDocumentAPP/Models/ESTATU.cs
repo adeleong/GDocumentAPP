@@ -21,14 +21,19 @@ namespace GDocumentAPP
         [Key]
         public int ESTATUS_ID { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "El Estatus es requerido")]
         [StringLength(50)]
+        [Display(Name = "Estatus")]
         public string DESCRIPCION { get; set; }
 
         [StringLength(50)]
+        [Required(ErrorMessage = "El Tipo es requerido")]
+        [Display(Name = "Entidad")]
         public string TIPO { get; set; }
 
         [StringLength(1)]
+        [Required(ErrorMessage = "El Valor Logico es requerido")]
+        [Display(Name = "Valor Logico")]
         public string VALOR_LOGICO { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

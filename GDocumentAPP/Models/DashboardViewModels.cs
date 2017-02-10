@@ -19,8 +19,7 @@ namespace GDocumentAPP.Models
 
         public int CountEmpleadoActivos()
         {
-
-            return db.EMPLEADOes.Where( e => e.ESTATU.DESCRIPCION.ToLower().Equals(Bundle.Estatus.Activo.ToString().ToLower()) ).Count(); ;
+            return db.EMPLEADOes.Count();
         }
 
         public int CountExpedienteDigitales()
