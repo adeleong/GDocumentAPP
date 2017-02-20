@@ -1,4 +1,11 @@
-﻿@using Microsoft.AspNet.Identity
+﻿<link href="~/Scripts/admin2Template/dist/css/sb-admin-2.css" rel="stylesheet" />
+
+@using Microsoft.AspNet.Identity
+
+@{ var usuario = User.Identity.GetUserName();
+    var usuarioId = User.Identity.GetUserId();
+}
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -6,10 +13,11 @@
     @Html.AntiForgeryToken()
 
     <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hola " + User.Identity.GetUserName(), "Edit", "Usuario", routeValues: null, htmlAttributes: new { title = "Cuenta Usuario" })
-        </li>
-        <li title="Log Off"><a href="javascript:document.getElementById('logoutForm').submit()"><span class="glyphicon glyphicon-off"> </span></a></li>
+        
+
+        <li title="Hola @usuario" >   <a href="/Usuario/Details/@usuarioId"> <span class="btn btn-circle  btn-outline  btn-primary  glyphicon glyphicon-user"> </span></a></li>
+               
+        <li title="Log Off"><a href="javascript:document.getElementById('logoutForm').submit()"><span class="btn btn-circle  btn-outline  btn-danger  glyphicon glyphicon-off"> </span></a></li>
     </ul>
     }
 }
