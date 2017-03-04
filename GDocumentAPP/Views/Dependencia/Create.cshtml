@@ -6,10 +6,13 @@
 
 <h2>Creación Dependencia</h2>
 
+<!-- Inicio de panel -->
 <div class="panel panel-default">
+    <!--Cabecera del panel-->
     <div class="panel-heading">
         <h3 class="panel-title"> Crear Dependencia</h3>
     </div>
+    <!--Inicio de formulario-->
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -19,6 +22,7 @@
      
             <div class="form-horizontal">
 
+                <!--Para el despliegue de errores o advertencias-->
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
                     @Html.LabelFor(model => model.DEPENDENCIA_NOMBRE, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -31,6 +35,7 @@
         
     </div>
 
+    <!--Inicio de Acciones o botones-->
     <div class="panel-footer">
         <div class="input-group col-md-push-1">
             <input type="submit" value="Guardar" class="btn btn-primary" />

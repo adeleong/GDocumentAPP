@@ -24,6 +24,7 @@ namespace GDocumentAPP
 
         [Required(ErrorMessage = "Indique Si o No")]
         [StringLength(1)]
+        [Display(Name = "Requerido")]
         public string REQUERIDO { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

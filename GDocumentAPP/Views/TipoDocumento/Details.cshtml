@@ -1,34 +1,44 @@
-﻿@model GDocumentAPP.TIPO_DOCUMENTO
+﻿@model TIPO_DOCUMENTO
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Detalle</h2>
 
-<div>
-    <h4>TIPO_DOCUMENTO</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.DESCRIPCION)
-        </dt>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Detalle</h3>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.DESCRIPCION)
-        </dd>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.DESCRIPCION)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.REQUERIDO)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DESCRIPCION)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.REQUERIDO)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.REQUERIDO)
+            </dt>
 
-    </dl>
+            <dd>
+                @Html.DisplayFor(model => model.REQUERIDO)
+            </dd>
+
+        </dl>
+    </div>
+    
+    <div class="panel-footer">
+        <div class="input-group col-md-push-1">
+            
+                @Html.ActionLink("Editar", "Edit", new { id = Model.TIPO_DOCUMENTO_ID }, new { @class="btn btn-warning"})
+                <span> </span>
+                @Html.ActionLink("Volver al Listado", "Index",null , new { @class="btn btn-info"})
+            
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.TIPO_DOCUMENTO_ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
