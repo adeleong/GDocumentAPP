@@ -1,42 +1,53 @@
-﻿@model GDocumentAPP.ESTATU
+﻿@model ESTATU
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Estatus Detalle</h2>
 
-<div>
-    <h4>ESTATU</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.DESCRIPCION)
-        </dt>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Estatus</h3>
+    </div>
+    <div class="panel-body">
 
-        <dd>
-            @Html.DisplayFor(model => model.DESCRIPCION)
-        </dd>
+        <div>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.DESCRIPCION)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TIPO)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.DESCRIPCION)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.TIPO)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.TIPO)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.VALOR_LOGICO)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.TIPO)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.VALOR_LOGICO)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.VALOR_LOGICO)
+                </dt>
 
-    </dl>
+                <dd>
+                    @Html.DisplayFor(model => model.VALOR_LOGICO)
+                </dd>
+
+            </dl>
+        </div>
+    </div>
+
+    <div class="panel-footer">
+
+        <div class="input-group col-md-push-1">
+            @Html.ActionLink("Editar", "Edit", new { id = Model.ESTATUS_ID }, new { @class = "btn btn-warning" })
+            <span> </span>
+            @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn btn-info" })
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ESTATUS_ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
