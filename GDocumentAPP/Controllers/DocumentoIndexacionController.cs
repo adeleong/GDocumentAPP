@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace GDocumentAPP.Controllers
 {
@@ -13,13 +14,25 @@ namespace GDocumentAPP.Controllers
     public class DocumentoIndexacionController : Controller
     {
         private ModelDocumentoApp db = new ModelDocumentoApp();
-
         // GET: DocumentoIndexacion
-        public ActionResult Index()
+        public ActionResult Index(int? page, string searchString)
         {
-            var dOCUMENTO_INDEXACION = db.DOCUMENTO_INDEXACION.Include(d => d.DOCUMENTO).Include(d => d.TIPO_DOCUMENTO).Include(d => d.USUARIO);
-            return View(dOCUMENTO_INDEXACION.ToList());
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+
+            var documentoIndexacion = from s in db.DOCUMENTO_INDEXACION.Include(d => d.DOCUMENTO).Include(d => d.TIPO_DOCUMENTO).Include(d => d.USUARIO)
+                              select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                documentoIndexacion = documentoIndexacion.Where(s => s.DESCRIPCION.Contains(searchString));
+            }
+
+            return View(documentoIndexacion.ToList().ToPagedList(pageNumber, pageSize));
+
         }
+        
 
         // GET: DocumentoIndexacion/Details/5
         public ActionResult Details(int? id)
@@ -39,7 +52,7 @@ namespace GDocumentAPP.Controllers
         // GET: DocumentoIndexacion/Create
         public ActionResult Create()
         {
-            ViewBag.DOCUMENTO_ID = new SelectList(db.DOCUMENTOes, "DOCUMENTO_ID", "CANAL_GENERACION");
+            ViewBag.DOCUMENTO_ID = new SelectList(db.DOCUMENTOes, "DOCUMENTO_ID", "NOMBRE_DOCUMENTO");
             ViewBag.TIPO_DOCUMENTO_ID = new SelectList(db.TIPO_DOCUMENTO, "TIPO_DOCUMENTO_ID", "DESCRIPCION");
             ViewBag.USUARIO_ID = new SelectList(db.USUARIOs, "USUARIO_ID", "LOGIN");
             return View();
@@ -59,7 +72,7 @@ namespace GDocumentAPP.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.DOCUMENTO_ID = new SelectList(db.DOCUMENTOes, "DOCUMENTO_ID", "CANAL_GENERACION", dOCUMENTO_INDEXACION.DOCUMENTO_ID);
+            ViewBag.DOCUMENTO_ID = new SelectList(db.DOCUMENTOes, "DOCUMENTO_ID", "NOMBRE_DOCUMENTO", dOCUMENTO_INDEXACION.DOCUMENTO_ID);
             ViewBag.TIPO_DOCUMENTO_ID = new SelectList(db.TIPO_DOCUMENTO, "TIPO_DOCUMENTO_ID", "DESCRIPCION", dOCUMENTO_INDEXACION.TIPO_DOCUMENTO_ID);
             ViewBag.USUARIO_ID = new SelectList(db.USUARIOs, "USUARIO_ID", "LOGIN", dOCUMENTO_INDEXACION.USUARIO_ID);
             return View(dOCUMENTO_INDEXACION);
@@ -77,7 +90,7 @@ namespace GDocumentAPP.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.DOCUMENTO_ID = new SelectList(db.DOCUMENTOes, "DOCUMENTO_ID", "CANAL_GENERACION", dOCUMENTO_INDEXACION.DOCUMENTO_ID);
+            ViewBag.DOCUMENTO_ID = new SelectList(db.DOCUMENTOes, "DOCUMENTO_ID", "NOMBRE_DOCUMENTO", dOCUMENTO_INDEXACION.DOCUMENTO_ID);
             ViewBag.TIPO_DOCUMENTO_ID = new SelectList(db.TIPO_DOCUMENTO, "TIPO_DOCUMENTO_ID", "DESCRIPCION", dOCUMENTO_INDEXACION.TIPO_DOCUMENTO_ID);
             ViewBag.USUARIO_ID = new SelectList(db.USUARIOs, "USUARIO_ID", "LOGIN", dOCUMENTO_INDEXACION.USUARIO_ID);
             return View(dOCUMENTO_INDEXACION);
@@ -96,7 +109,7 @@ namespace GDocumentAPP.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.DOCUMENTO_ID = new SelectList(db.DOCUMENTOes, "DOCUMENTO_ID", "CANAL_GENERACION", dOCUMENTO_INDEXACION.DOCUMENTO_ID);
+            ViewBag.DOCUMENTO_ID = new SelectList(db.DOCUMENTOes, "DOCUMENTO_ID", "NOMBRE_DOCUMENTO", dOCUMENTO_INDEXACION.DOCUMENTO_ID);
             ViewBag.TIPO_DOCUMENTO_ID = new SelectList(db.TIPO_DOCUMENTO, "TIPO_DOCUMENTO_ID", "DESCRIPCION", dOCUMENTO_INDEXACION.TIPO_DOCUMENTO_ID);
             ViewBag.USUARIO_ID = new SelectList(db.USUARIOs, "USUARIO_ID", "LOGIN", dOCUMENTO_INDEXACION.USUARIO_ID);
             return View(dOCUMENTO_INDEXACION);
