@@ -4,94 +4,152 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Indexación Documento</h2>
+@{  /*var EmpleadoDisplay = Model.DOCUMENTO.EMPLEADO.getEmpleadoDisplay()*/
+    
+    /*var EmpleadoId = Model.DOCUMENTO.EMPLEADO_ID;*/
+    var urlDocumento = "/images/WallImages/Aéropostale - Checkout.pdf";
+        //EmpleadoId + "/" + Model.DOCUMENTO.NOMBRE_DOCUMENTO;
+   /* var NombreDocumento = Model.DOCUMENTO.NOMBRE_DOCUMENTO;*/
 
-<!-- Inicio de panel -->
+}
+
+<br/> <br />
+
+
+
 <div class="panel panel-default">
-    <!--Cabecera del panel-->
     <div class="panel-heading">
-        <h3 class="panel-title"> Indexar Documento</h3>
+        <h1 class="panel-title"> <b>Indexación Documento</b></h1>
     </div>
-    <!--Inicio de formulario-->
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
+    <!--Cabecera del panel-->
 
-        <div class="panel-body">
+        <div class="table-responsive">
+            <table>
+                <tr>
+                    <td>
+
+                        <!--Inicio de formulario-->
+
+                        <div class="panel panel-green">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"> Formulario Indexación</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="panel-body">
 
 
-            <div class="form-horizontal">
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(model => model.DOCUMENTO_ID, "DOCUMENTO_ID", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("DOCUMENTO_ID", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.DOCUMENTO_ID, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+                                    <div class="form-horizontal">
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.DOCUMENTO_ID, "Documento", htmlAttributes: new { @class = "control-label col-md-4" })
+                                            <div class="col-md-8">
+                                                @Html.DropDownList("DOCUMENTO_ID", null, htmlAttributes: new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.DOCUMENTO_ID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.FECHA_INDEXACION, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.FECHA_INDEXACION, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.FECHA_INDEXACION, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.FECHA_INDEXACION, htmlAttributes: new { @class = "control-label col-md-4" })
+                                            <div class="col-md-8">
+                                                @Html.EditorFor(model => model.FECHA_INDEXACION, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.FECHA_INDEXACION, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.TIPO_DOCUMENTO_ID, "TIPO_DOCUMENTO_ID", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("TIPO_DOCUMENTO_ID", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.TIPO_DOCUMENTO_ID, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.TIPO_DOCUMENTO_ID, "Tipo Documento", htmlAttributes: new { @class = "control-label col-md-4" })
+                                            <div class="col-md-8">
+                                                @Html.DropDownList("TIPO_DOCUMENTO_ID", null, htmlAttributes: new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.TIPO_DOCUMENTO_ID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.NIVEL_CALIDAD, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.NIVEL_CALIDAD, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.NIVEL_CALIDAD, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.NIVEL_CALIDAD, htmlAttributes: new { @class = "control-label col-md-4" })
+                                            <div class="col-md-8">
+                                                @Html.EditorFor(model => model.NIVEL_CALIDAD, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.NIVEL_CALIDAD, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.CLAVE_DOCUMENTO, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.CLAVE_DOCUMENTO, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.CLAVE_DOCUMENTO, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.CLAVE_DOCUMENTO, htmlAttributes: new { @class = "control-label col-md-4" })
+                                            <div class="col-md-8">
+                                                @Html.EditorFor(model => model.CLAVE_DOCUMENTO, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.CLAVE_DOCUMENTO, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.DESCRIPCION, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.DESCRIPCION, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.DESCRIPCION, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.DESCRIPCION, htmlAttributes: new { @class = "control-label col-md-4" })
+                                            <div class="col-md-8">
+                                                @Html.EditorFor(model => model.DESCRIPCION, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.DESCRIPCION, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.USUARIO_ID, "USUARIO_ID", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("USUARIO_ID", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.USUARIO_ID, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.USUARIO_ID, "Usuario", htmlAttributes: new { @class = "control-label col-md-4" })
+                                            <div class="col-md-8">
+                                                @Html.DropDownList("USUARIO_ID", null, htmlAttributes: new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.USUARIO_ID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <br /><br /><br /><br /><br /><br />
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
 
+                        <!--Inicio de Acciones o botones-->
+
+
+                    </td>
+                    <td>
+                        @if (urlDocumento.ToLower().Contains(".pdf"))
+                        {
+                            
+                            <div class='embed-responsive' style='padding-bottom:0%'>
+                                <object data='@urlDocumento' width="650" height="600" type='application/pdf'></object>
+                            </div>
+                        }
+                        else
+                        {
+                         <br>
+                            <div class="panel panel-success">
+
+                                <div class="panel-heading">
+                                    <h3 class="panel-title"> Documento a Indexar</h3>
+                                </div>
+                                <div class="panel-body">
+
+                                    <img style="width:100%; height:70% " src='@urlDocumento' alt="Responsive image" />
+
+                                </div>
+
+                            </div>
+                        }
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="panel-footer">
+            <div class="input-group col-md-push-1">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <span> </span>
+                @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn btn-info" })
             </div>
         </div>
 
-            <!--Inicio de Acciones o botones-->
-            <div class="panel-footer">
-                <div class="input-group col-md-push-1">
-                    <input type="submit" value="Guardar" class="btn btn-primary" />
-                    <span> </span>
-                    @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn btn-info" })
-                </div>
-            </div>
+    }
+</div>
+<!-- Inicio de panel -->
 
-            }
-        </div>
 
         @section Scripts {
             @Scripts.Render("~/bundles/jqueryval")
