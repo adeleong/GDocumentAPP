@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
+using GDocumentAPP.Controllers;
 
 namespace GDocumentAPP.Services
 {
@@ -8,7 +9,7 @@ namespace GDocumentAPP.Services
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            var persona = (PERSONA)validationContext.ObjectInstance;
+            PERSONA persona = (PERSONA)validationContext.ObjectInstance;
 
             if (String.IsNullOrEmpty(persona.IDENTIFICACION))
             {
@@ -17,7 +18,7 @@ namespace GDocumentAPP.Services
 
             if (persona.TIPO_IDENTIFICACION == Bundle.tipoIdentificacionCedula)
             {
-                if (!(Regex.IsMatch(persona.IDENTIFICACION, @"([0-9]{11})$")))
+                if (!(Regex.IsMatch(persona.IDENTIFICACION, @"([0-9]{11})$")) || persona.IDENTIFICACION.Length != 11)
                 {
                     return new ValidationResult(Bundle.mensajeCedulaNumero);
                 }
@@ -29,6 +30,13 @@ namespace GDocumentAPP.Services
                 {
                     return new ValidationResult(Bundle.mensajePasaporteLetraNumero);
                 }
+            }
+
+            PersonaController personaController = new PersonaController();
+            bool existsIdentificacion = personaController.ExistsIdentificacion(persona.IDENTIFICACION);
+
+            if (existsIdentificacion) {
+                return new ValidationResult(Bundle.identicacionExistente);
             }
 
             return ValidationResult.Success;

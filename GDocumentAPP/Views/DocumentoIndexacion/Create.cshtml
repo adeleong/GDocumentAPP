@@ -5,15 +5,16 @@
 }
 
 @{  /*var EmpleadoDisplay = Model.DOCUMENTO.EMPLEADO.getEmpleadoDisplay()*/
-    
+
     /*var EmpleadoId = Model.DOCUMENTO.EMPLEADO_ID;*/
-    var urlDocumento = "/images/WallImages/Aéropostale - Checkout.pdf";
-        //EmpleadoId + "/" + Model.DOCUMENTO.NOMBRE_DOCUMENTO;
-   /* var NombreDocumento = Model.DOCUMENTO.NOMBRE_DOCUMENTO;*/
+    var urlDocumento = "/images/WallImages/"+Model.DOCUMENTO.EMPLEADO_ID+"/"+ Model.DOCUMENTO.NOMBRE_DOCUMENTO;
+
+    //EmpleadoId + "/" + Model.DOCUMENTO.NOMBRE_DOCUMENTO;
+    var NombreDocumento = Model.DOCUMENTO.NOMBRE_DOCUMENTO;
 
 }
 
-<br/> <br />
+<br/> <br /><br /><br />
 
 
 
@@ -32,7 +33,7 @@
                     <td>
 
                         <!--Inicio de formulario-->
-
+                        <br />
                         <div class="panel panel-green">
                             <div class="panel-heading">
                                 <h3 class="panel-title"> Formulario Indexación</h3>
@@ -67,12 +68,32 @@
                                             </div>
                                         </div>
 
+                                   
                                         <div class="form-group">
+
                                             @Html.LabelFor(model => model.NIVEL_CALIDAD, htmlAttributes: new { @class = "control-label col-md-4" })
                                             <div class="col-md-8">
-                                                @Html.EditorFor(model => model.NIVEL_CALIDAD, new { htmlAttributes = new { @class = "form-control" } })
+                                                @{
+                                                    List<SelectListItem> listaNivelCalidad = new List<SelectListItem>();
+
+                                                    SelectListItem Excelente = new SelectListItem() { Text = "Excelente", Value = "5" };
+                                                    SelectListItem Bueno = new SelectListItem() { Text = "Bueno", Value = "4" };
+                                                    SelectListItem Regular = new SelectListItem() { Text = "Regular", Value = "3" };
+                                                    SelectListItem Defectuoso = new SelectListItem() { Text = "Defectuoso", Value = "2" };
+                                                    SelectListItem NoLegible = new SelectListItem() { Text = "No Legible", Value = "1" };
+
+                                                    listaNivelCalidad.Add(Excelente);
+                                                    listaNivelCalidad.Add(Bueno);
+                                                    listaNivelCalidad.Add(Regular);
+                                                    listaNivelCalidad.Add(Defectuoso);
+                                                    listaNivelCalidad.Add(NoLegible);
+
+                                                }
+
+                                                @Html.DropDownListFor(model => model.NIVEL_CALIDAD, listaNivelCalidad, "<seleccione>", new { @class = "form-control" })
                                                 @Html.ValidationMessageFor(model => model.NIVEL_CALIDAD, "", new { @class = "text-danger" })
                                             </div>
+
                                         </div>
 
                                         <div class="form-group">

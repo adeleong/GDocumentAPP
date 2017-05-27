@@ -112,8 +112,10 @@ namespace GDocumentAPP.Controllers
             {
                 return HttpNotFound();
             }
+
+            int? estatusId = (int)Bundle.Estatus.RechazadoEscaneo;
             ViewBag.EMPLEADO_ID = new SelectList(listaValoresEmpleado, "EmpleadoId", "EmpleadoDescripcion", dOCUMENTO.EMPLEADO_ID);
-            ViewBag.ESTATUS_ID = new SelectList(db.ESTATUS, "ESTATUS_ID", "DESCRIPCION", dOCUMENTO.ESTATUS_ID);
+            ViewBag.ESTATUS_ID = new SelectList(db.ESTATUS.Where(e => e.ESTATUS_ID == estatusId), "ESTATUS_ID", "DESCRIPCION", dOCUMENTO.ESTATUS_ID);
             ViewBag.USUARIO_ID = new SelectList(db.USUARIOs, "USUARIO_ID", "LOGIN", dOCUMENTO.USUARIO_ID);
             return View(dOCUMENTO);
         }

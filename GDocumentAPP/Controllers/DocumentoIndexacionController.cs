@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
+using GDocumentAPP.Services;
 
 namespace GDocumentAPP.Controllers
 {
@@ -50,12 +51,30 @@ namespace GDocumentAPP.Controllers
         }
 
         // GET: DocumentoIndexacion/Create
-        public ActionResult Create()
+        public ActionResult Create(int? documentoId)
         {
-            ViewBag.DOCUMENTO_ID = new SelectList(db.DOCUMENTOes, "DOCUMENTO_ID", "NOMBRE_DOCUMENTO");
+
+            int? usuarioId = int.Parse(Session[Bundle.usuarioId].ToString());
+
+            ViewBag.DOCUMENTO_ID = new SelectList(db.DOCUMENTOes.Where(d => d.DOCUMENTO_ID ==  documentoId), "DOCUMENTO_ID", "NOMBRE_DOCUMENTO");
             ViewBag.TIPO_DOCUMENTO_ID = new SelectList(db.TIPO_DOCUMENTO, "TIPO_DOCUMENTO_ID", "DESCRIPCION");
-            ViewBag.USUARIO_ID = new SelectList(db.USUARIOs, "USUARIO_ID", "LOGIN");
-            return View();
+            ViewBag.USUARIO_ID = new SelectList(db.USUARIOs.Where(u => u.USUARIO_ID == usuarioId), "USUARIO_ID", "LOGIN");
+
+            DOCUMENTO documento = db.DOCUMENTOes.Find(documentoId);
+
+            documento.ESTATUS_ID = (int)Bundle.Estatus.PendienteIndexar;
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(documento).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+
+            DOCUMENTO_INDEXACION dOCUMENTO_INDEXACION = new DOCUMENTO_INDEXACION();
+            dOCUMENTO_INDEXACION.DOCUMENTO = documento;
+
+
+            return View(dOCUMENTO_INDEXACION);
         }
 
         // POST: DocumentoIndexacion/Create
@@ -67,10 +86,16 @@ namespace GDocumentAPP.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                DOCUMENTO documento = db.DOCUMENTOes.Find(dOCUMENTO_INDEXACION.DOCUMENTO_ID);
+
+                documento.ESTATUS_ID = (int)Bundle.Estatus.Completado;
+
+                db.Entry(documento).State = EntityState.Modified;
                 db.DOCUMENTO_INDEXACION.Add(dOCUMENTO_INDEXACION);
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
+            }   
 
             ViewBag.DOCUMENTO_ID = new SelectList(db.DOCUMENTOes, "DOCUMENTO_ID", "NOMBRE_DOCUMENTO", dOCUMENTO_INDEXACION.DOCUMENTO_ID);
             ViewBag.TIPO_DOCUMENTO_ID = new SelectList(db.TIPO_DOCUMENTO, "TIPO_DOCUMENTO_ID", "DESCRIPCION", dOCUMENTO_INDEXACION.TIPO_DOCUMENTO_ID);

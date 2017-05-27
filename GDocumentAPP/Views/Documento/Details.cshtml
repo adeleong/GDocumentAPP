@@ -15,7 +15,7 @@
 
 <!-- Custom CSS -->
 <link href="~/Scripts/admin2Template/dist/css/sb-admin-2.css" rel="stylesheet" />
-<br />
+<br /><br /><br />
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><b>Documento Detalle</b></h3>
@@ -104,8 +104,16 @@
     <div class="panel-footer">
 
         <div class="input-group col-md-push-1">
-            @Html.ActionLink("Editar", "Edit", new { id = Model.DOCUMENTO_ID }, new { @class = "btn btn-warning" })
-            <span> </span>
+           @if (Model.ESTATUS_ID == 3 || Model.ESTATUS_ID == 4)
+           {
+
+                @Html.ActionLink("Indexar", "Create", "DocumentoIndexacion", new { documentoId = Model.DOCUMENTO_ID }, new { @class = "btn btn-primary" })
+               <span> </span>
+           }
+           @if (Model.ESTATUS_ID == 3 ) { 
+                @Html.ActionLink("Rechazar", "Edit", new { id = Model.DOCUMENTO_ID }, new { @class = "btn btn-danger" })
+                <span> </span>
+           }
             @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn btn-info" })
         </div>
     </div>

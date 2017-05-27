@@ -38,7 +38,7 @@
                  var separator3 = Dropzone.createElement("<a> <a/>");
                  // Capture the Dropzone instance as closure.
                  var _this = this;
-
+                 var documentoId = file.id;
                  // Listen to the click event
                  removeButton.addEventListener("click", function (e) {
                      // Make sure the button click doesn't submit the form:
@@ -46,7 +46,7 @@
                      e.preventDefault();
                      e.stopPropagation();
                      var confirmAction = false;
-                     var documentoId = file.id;
+                    
                      // Remove the file preview.
 
                      bootbox.confirm({
@@ -65,19 +65,23 @@
                  });
 
                  detalleButton.addEventListener("click", function (e) {
-                     window.location.href = "/Documento/Details/" + file.id;
+                     window.location.href = "/Documento/Details/" + documentoId;
                  });
 
                  editButton.addEventListener("click", function (e) {
-                     window.location.href = "/Documento/Edit/" + file.id;
+                     window.location.href = "/Documento/Edit/" + documentoId;
                  });
 
-                 indexarButton.addEventListener("click", function (e) {
-                     window.location.href = "/DocumentoIndexacion/Create";
-                 });
+                /* indexarButton.addEventListener("click", function (e) {
 
-                 file.previewElement.appendChild(indexarButton);
-                 file.previewElement.appendChild(separator3);
+                     $.getJSON("/DocumentoIndexacion/Create?documentoId=" + documentoId).done(function (data) {
+                          window.location.href = "/DocumentoIndexacion/Create/" + documentoId;
+                       })
+                     
+                 });*/
+
+                 //file.previewElement.appendChild(indexarButton);
+                // file.previewElement.appendChild(separator3);
                  file.previewElement.appendChild(detalleButton);
                  file.previewElement.appendChild(separator2);
                  file.previewElement.appendChild(editButton);

@@ -19,7 +19,7 @@ namespace GDocumentAPP.Services
         public const string login = "Login";
         public const string EmpleadoId = "EmpleadoId";
         public const string mensajeEmpleadoRequeridoDocumento = "Debe Seleccionar un Empleado para Crear Documento --> ";
-
+        public const string identicacionExistente = "La Identificación Digitada ya Existe";
 
         public enum CanalGeneracion
         {
@@ -37,7 +37,9 @@ namespace GDocumentAPP.Services
             PendienteRevision,
             PendienteIndexar,
             Completado,
-            Rechazado
+            Rechazado,
+            RechazadoEscaneo = 1003,
+            RechazadoIndexacion = 1004
         }
 
     }

@@ -4,6 +4,7 @@
 
 @{ var usuario = User.Identity.GetUserName();
     var usuarioId = User.Identity.GetUserId();
+    Session["usuarioId"] = usuarioId;
 }
 
 @if (Request.IsAuthenticated)
