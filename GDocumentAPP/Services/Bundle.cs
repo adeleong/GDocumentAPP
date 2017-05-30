@@ -20,6 +20,7 @@ namespace GDocumentAPP.Services
         public const string EmpleadoId = "EmpleadoId";
         public const string mensajeEmpleadoRequeridoDocumento = "Debe Seleccionar un Empleado para Crear Documento --> ";
         public const string identicacionExistente = "La Identificación Digitada ya Existe";
+        public const string ENTIDAD_GENERICA = "Generico";
 
         public enum CanalGeneracion
         {

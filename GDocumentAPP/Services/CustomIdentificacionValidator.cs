@@ -33,7 +33,7 @@ namespace GDocumentAPP.Services
             }
 
             PersonaController personaController = new PersonaController();
-            bool existsIdentificacion = personaController.ExistsIdentificacion(persona.IDENTIFICACION);
+            bool existsIdentificacion = personaController.ExistsIdentificacion(persona);
 
             if (existsIdentificacion) {
                 return new ValidationResult(Bundle.identicacionExistente);

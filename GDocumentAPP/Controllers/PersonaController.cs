@@ -15,11 +15,12 @@ namespace GDocumentAPP.Controllers
     {
         private ModelDocumentoApp db = new ModelDocumentoApp();
 
-        public bool ExistsIdentificacion(string identificacion) {
+        public bool ExistsIdentificacion(PERSONA persona) {
 
                 var personas = from s in db.PERSONAs
                            select s;
-                personas = personas.Where(s =>  s.IDENTIFICACION.Equals(identificacion));
+                personas = personas.Where(s =>  s.IDENTIFICACION.Equals(persona.IDENTIFICACION)
+                                                && persona.PERSONA_ID == 0);
 
                return personas.Count() > 0;
         }

@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
+using GDocumentAPP.Services;
 
 namespace GDocumentAPP.Controllers
 {
@@ -72,7 +73,7 @@ namespace GDocumentAPP.Controllers
             var ListaValoresPersona = ListaPersona.getListaPersona();
            
             ViewBag.DEPENDENCIA_ID = new SelectList(db.DEPENDENCIAs, "DEPENDENCIA_ID", "DEPENDENCIA_NOMBRE");
-            ViewBag.ESTATUS_ID = new SelectList(db.ESTATUS, "ESTATUS_ID", "DESCRIPCION");
+            ViewBag.ESTATUS_ID = new SelectList(db.ESTATUS.Where(e => e.TIPO == Bundle.ENTIDAD_GENERICA), "ESTATUS_ID", "DESCRIPCION");
             ViewBag.PERSONA_ID = new SelectList(ListaValoresPersona, "PersonaId", "PersonaDescripcion");
             return View();
         }
@@ -92,7 +93,7 @@ namespace GDocumentAPP.Controllers
             }
 
             ViewBag.DEPENDENCIA_ID = new SelectList(db.DEPENDENCIAs, "DEPENDENCIA_ID", "DEPENDENCIA_NOMBRE", eMPLEADO.DEPENDENCIA_ID);
-            ViewBag.ESTATUS_ID = new SelectList(db.ESTATUS, "ESTATUS_ID", "DESCRIPCION", eMPLEADO.ESTATUS_ID);
+            ViewBag.ESTATUS_ID = new SelectList(db.ESTATUS.Where(e => e.TIPO == Bundle.ENTIDAD_GENERICA), "ESTATUS_ID", "DESCRIPCION", eMPLEADO.ESTATUS_ID);
             ViewBag.PERSONA_ID = new SelectList(db.PERSONAs, "PERSONA_ID", "NOMBRE", eMPLEADO.PERSONA_ID);
             return View(eMPLEADO);
         }
@@ -114,7 +115,7 @@ namespace GDocumentAPP.Controllers
                 return HttpNotFound();
             }
             ViewBag.DEPENDENCIA_ID = new SelectList(db.DEPENDENCIAs, "DEPENDENCIA_ID", "DEPENDENCIA_NOMBRE", eMPLEADO.DEPENDENCIA_ID);
-            ViewBag.ESTATUS_ID = new SelectList(db.ESTATUS, "ESTATUS_ID", "DESCRIPCION", eMPLEADO.ESTATUS_ID);
+            ViewBag.ESTATUS_ID = new SelectList(db.ESTATUS.Where(e => e.TIPO == Bundle.ENTIDAD_GENERICA), "ESTATUS_ID", "DESCRIPCION", eMPLEADO.ESTATUS_ID);
             ViewBag.PERSONA_ID = new SelectList(ListaValoresPersona, "PersonaId", "PersonaDescripcion", eMPLEADO.PERSONA_ID);
             return View(eMPLEADO);
         }
@@ -133,7 +134,7 @@ namespace GDocumentAPP.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.DEPENDENCIA_ID = new SelectList(db.DEPENDENCIAs, "DEPENDENCIA_ID", "DEPENDENCIA_NOMBRE", eMPLEADO.DEPENDENCIA_ID);
-            ViewBag.ESTATUS_ID = new SelectList(db.ESTATUS, "ESTATUS_ID", "DESCRIPCION", eMPLEADO.ESTATUS_ID);
+            ViewBag.ESTATUS_ID = new SelectList(db.ESTATUS.Where(e => e.TIPO == Bundle.ENTIDAD_GENERICA), "ESTATUS_ID", "DESCRIPCION", eMPLEADO.ESTATUS_ID);
             ViewBag.PERSONA_ID = new SelectList(db.PERSONAs, "PERSONA_ID", "NOMBRE", eMPLEADO.PERSONA_ID);
             return View(eMPLEADO);
         }
