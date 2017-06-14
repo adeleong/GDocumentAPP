@@ -101,10 +101,7 @@ namespace GDocumentAPP.Controllers
         // GET: Empleado/Edit/5
         public ActionResult Edit(int? id)
         {
-            ListaValoresPersona ListaPersona = new ListaValoresPersona();
-
-            var ListaValoresPersona = ListaPersona.getListaPersona();
-
+           
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -114,6 +111,11 @@ namespace GDocumentAPP.Controllers
             {
                 return HttpNotFound();
             }
+
+            ListaValoresPersona ListaPersona = new ListaValoresPersona();
+
+            var ListaValoresPersona = ListaPersona.getListaPersonaById(eMPLEADO.PERSONA_ID);
+
             ViewBag.DEPENDENCIA_ID = new SelectList(db.DEPENDENCIAs, "DEPENDENCIA_ID", "DEPENDENCIA_NOMBRE", eMPLEADO.DEPENDENCIA_ID);
             ViewBag.ESTATUS_ID = new SelectList(db.ESTATUS.Where(e => e.TIPO == Bundle.ENTIDAD_GENERICA), "ESTATUS_ID", "DESCRIPCION", eMPLEADO.ESTATUS_ID);
             ViewBag.PERSONA_ID = new SelectList(ListaValoresPersona, "PersonaId", "PersonaDescripcion", eMPLEADO.PERSONA_ID);

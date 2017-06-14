@@ -39,9 +39,7 @@
         <div class="table-responsive">
             <table class="table">
                 <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.First().ESTATU.DESCRIPCION)
-                    </th>
+                   
                     <th>
                         @Html.DisplayNameFor(model => model.First().PERSONA_ID)
                     </th>
@@ -51,23 +49,34 @@
                     <th>
                         @Html.DisplayNameFor(model => model.First().CONTRASENIA)
                     </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().ESTATU.DESCRIPCION)
+                    </th>
                     <th></th>
                 </tr>
 
                 @foreach (var item in Model)
             {
                     <tr>
+                       
                         <td>
-                            @Html.DisplayFor(modelItem => item.ESTATU.DESCRIPCION)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PERSONA_ID)
+                            @{ var personaDisplay = item.PERSONA.getPersonaDisplay();}
+                            @Html.ActionLink(@personaDisplay, "Details", "Persona", new { id = item.PERSONA_ID }, new
+                       {
+
+                           @title = "Ir a Persona Detalle"
+                       })
+
+
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.LOGIN)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.CONTRASENIA)
+                            *********
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ESTATU.DESCRIPCION)
                         </td>
                         <td align="right">
                             @Html.ActionLink(" ", "Edit", new { id = item.USUARIO_ID }, new

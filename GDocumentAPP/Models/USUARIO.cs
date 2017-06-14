@@ -34,6 +34,7 @@ namespace GDocumentAPP
 
         [Required(ErrorMessage = "La Contraseña es requerida")]
         [StringLength(20)]
+        [DataType(DataType.Password)]
         [Display(Name = "Contraseña")]
         public string CONTRASENIA { get; set; }
 

@@ -19,6 +19,7 @@ namespace GDocumentAPP
         }
 
         [Key]
+        [Display(Name = "Estatus")]
         public int ESTATUS_ID { get; set; }
 
         [Required(ErrorMessage = "El Estatus es requerido")]

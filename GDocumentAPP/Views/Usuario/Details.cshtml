@@ -27,7 +27,8 @@
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.PERSONA_ID)
+                    @{ var personaDisplay = Model.PERSONA.getPersonaDisplayFull();}
+                    @personaDisplay
                 </dd>
 
                 <dt>
@@ -43,7 +44,7 @@
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.CONTRASENIA)
+                    *********
                 </dd>
             </dl>
         </div>

@@ -10,7 +10,14 @@
     <br/><br/><br/>
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
+            
+            <center>
+                <div>
+                    <img alt="Brand" src="~/Images/DocumentoAgilLogo_TextoNegro.png" class="img-responsive img-rounded" id="imgLogin" />
+                </div>
+            </center>
             <div class="login-panel panel panel-default">
+                
                 <div  class="panel-heading">
                     <center>  <h2 class="panel-title"><span class="glyphicon glyphicon-user"> </span><b> Ingresar al Sistema</b></h2> </center>
                 </div>
@@ -20,6 +27,7 @@
                         @Html.AntiForgeryToken()
 
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                      
                         <div class="form-group">
                             <div class="col-md-offset-1 col-md-10">
                                 @Html.TextBoxFor(m => m.Usuario, new { @class = "form-control", @placeholder = "Usuario" })
@@ -46,7 +54,7 @@
         </div>
     </div>
 </div> 
-<br/> <br/> <br/> <br/><br/><br/>
+<br/> <br/> <br/> <br/><br/><br/><br/><br/>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

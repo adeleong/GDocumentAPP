@@ -107,6 +107,23 @@ namespace GDocumentAPP.Models
             
             return ListaPersona;
         }
+
+        public IQueryable getListaPersonaById(int id)
+        {
+            IQueryable ListaPersona = from persona in db.PERSONAs.Where( p => p.PERSONA_ID == id)
+                                      select new
+                                      {
+                                          PersonaId = persona.PERSONA_ID,
+                                          PersonaDescripcion = persona.NOMBRE + " " +
+                                                               persona.PRIMER_APELLIDO + " | " +
+                                                               persona.TIPO_IDENTIFICACION + " | " +
+                                                               persona.IDENTIFICACION
+
+                                      };
+
+            return ListaPersona;
+        }
+
     }
 
     public class ListaValoresEmpleado
@@ -126,6 +143,22 @@ namespace GDocumentAPP.Models
                                                                 Empleado.PUESTO
 
                                       };
+
+            return ListaEmpleado;
+        }
+
+        public IQueryable getListaEmpleadoById(int id)
+        {
+            IQueryable ListaEmpleado = from Empleado in db.EMPLEADOes.Where(e => e.EMPLEADO_ID == id)
+                                       select new
+                                       {
+                                           EmpleadoId = Empleado.EMPLEADO_ID,
+                                           EmpleadoDescripcion = Empleado.PERSONA.NOMBRE + " " +
+                                                                 Empleado.PERSONA.PRIMER_APELLIDO + " | " +
+                                                                 Empleado.PERSONA.IDENTIFICACION + " | " +
+                                                                 Empleado.PUESTO
+
+                                       };
 
             return ListaEmpleado;
         }

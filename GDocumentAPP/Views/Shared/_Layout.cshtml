@@ -4,10 +4,10 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <link rel="shortcut icon" href="~/Images/favicon.png"/>
+    <link rel="shortcut icon" href="~/Images/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="~/Scripts/admin2Template/dist/css/sb-admin-2.css" rel="stylesheet" />
-    <title>@ViewBag.Title - GDocumentApp</title>
+    <title>@ViewBag.Title - Documento Ágil</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/dropzonescss")
     @Scripts.Render("~/bundles/modernizr")
@@ -17,50 +17,55 @@
 
     @if (Request.IsAuthenticated)
     {
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        
-         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-              
-                <a class="navbar-brand" href="/Home/Index">
-                 
-                    <img  alt="Brand" src="~/Images/bootstrap.png" class="img-responsive img-rounded" />
-                </a>
-            </div>
-            <div class="navbar-collapse collapse">
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 
-                @Html.Partial("_LoginPartial")
-                
-                <ul class="nav navbar-nav  navbar-right">
-                   
-                    <li class="dropdown"  title="Configuraciones">
-                        <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown"><span class="btn  btn-outline btn-info glyphicon glyphicon-cog"><b class="caret"></b> </span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Dependencia", "Index", "Dependencia")</li>
-                            <li>@Html.ActionLink("Tipo Documento", "Index", "TipoDocumento")</li>
-                            <li>@Html.ActionLink("Estatus", "Index", "Estatus")</li>
-                            <li>@Html.ActionLink("Usuario", "Index", "Usuario")</li>
-                            <li>@Html.ActionLink("Rol", "Index", "Rol")</li>
+            <div class="container">
+                <div class="navbar-header" id="navBar" height="73.707px">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <a class="navbar-brand" href="/Home/Index">
+
+                        <img alt="Brand" src="~/Images/DocumentoAgilLogo_TextoBlanco.png" class="img-responsive img-rounded" />
+                    </a>
+                </div>
+
+
+
+                <div class="navbar-collapse collapse">
+
+                    @Html.Partial("_LoginPartial")
+                    @using (Html.BeginForm())
+                    {
+                        <ul class="nav navbar-nav  navbar-right">
+
+                            <li class="dropdown" title="Configuraciones">
+                                <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown"><span class="btn  btn-outline btn-info glyphicon glyphicon-cog"><b class="caret"></b> </span></a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Dependencia", "Index", "Dependencia")</li>
+                                    <li>@Html.ActionLink("Tipo Documento", "Index", "TipoDocumento")</li>
+                                    <li>@Html.ActionLink("Estatus", "Index", "Estatus")</li>
+                                    <li>@Html.ActionLink("Usuario", "Index", "Usuario")</li>
+                                    <li>@Html.ActionLink("Rol", "Index", "Rol")</li>
+                                </ul>
+                            </li>
+
                         </ul>
-                    </li>
+                    }
+                </div>
 
-                </ul>
-               
+
             </div>
-           
         </div>
-    </div>
     }
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - GDocumentApp</p>
+            <p>&copy; @DateTime.Now.Year - Documento Ágil </p>
         </footer>
     </div>
 

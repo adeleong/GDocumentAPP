@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using GDocumentAPP;
 using PagedList;
+using GDocumentAPP.Services;
+using GDocumentAPP.Models;
 
 namespace GDocumentAPP.Controllers
 {
@@ -56,7 +58,12 @@ namespace GDocumentAPP.Controllers
         // GET: Usuario/Create
         public ActionResult Create()
         {
-            ViewBag.ESTATUS_ID = new SelectList(db.ESTATUS, "ESTATUS_ID", "DESCRIPCION");
+            ListaValoresPersona ListaPersona = new ListaValoresPersona();
+
+            var ListaValoresPersona = ListaPersona.getListaPersona();
+
+            ViewBag.ESTATUS_ID = new SelectList(db.ESTATUS.Where(e => e.TIPO == Bundle.ENTIDAD_GENERICA), "ESTATUS_ID", "DESCRIPCION");
+            ViewBag.PERSONA_ID = new SelectList(ListaValoresPersona, "PersonaId", "PersonaDescripcion");
             return View();
         }
 
@@ -74,7 +81,7 @@ namespace GDocumentAPP.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ESTATUS_ID = new SelectList(db.ESTATUS, "ESTATUS_ID", "DESCRIPCION", uSUARIO.ESTATUS_ID);
+            ViewBag.ESTATUS_ID = new SelectList(db.ESTATUS.Where(e => e.TIPO == Bundle.ENTIDAD_GENERICA), "ESTATUS_ID", "DESCRIPCION");
             return View(uSUARIO);
         }
 
@@ -90,7 +97,13 @@ namespace GDocumentAPP.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ESTATUS_ID = new SelectList(db.ESTATUS, "ESTATUS_ID", "DESCRIPCION", uSUARIO.ESTATUS_ID);
+
+            ListaValoresPersona ListaPersona = new ListaValoresPersona();
+            var ListaValoresPersona = ListaPersona.getListaPersonaById(uSUARIO.PERSONA_ID);
+
+            ViewBag.ESTATUS_ID = new SelectList(db.ESTATUS.Where(e => e.TIPO == Bundle.ENTIDAD_GENERICA), "ESTATUS_ID", "DESCRIPCION");
+            ViewBag.PERSONA_ID = new SelectList(ListaValoresPersona , "PersonaId", "PersonaDescripcion");
+
             return View(uSUARIO);
         }
 
@@ -107,7 +120,7 @@ namespace GDocumentAPP.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ESTATUS_ID = new SelectList(db.ESTATUS, "ESTATUS_ID", "DESCRIPCION", uSUARIO.ESTATUS_ID);
+            ViewBag.ESTATUS_ID = new SelectList(db.ESTATUS.Where(e => e.TIPO == Bundle.ENTIDAD_GENERICA), "ESTATUS_ID", "DESCRIPCION");
             return View(uSUARIO);
         }
 
