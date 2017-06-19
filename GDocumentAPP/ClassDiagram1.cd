@@ -1,0 +1,487 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="GDocumentAPP.BundleConfig" Collapsed="true">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\BundleConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.FilterConfig">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\FilterConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.EmailService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\IdentityConfig.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="GDocumentAPP.SmsService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\IdentityConfig.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="GDocumentAPP.ApplicationUserManager" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\IdentityConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.ApplicationSignInManager" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\IdentityConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.RouteConfig" Collapsed="true">
+    <Position X="2.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\RouteConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Startup" Collapsed="true">
+    <Position X="9.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAgAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\Startup.Auth.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.ModelDocumentoApp">
+    <Position X="19.5" Y="14" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAkAAACgAAAAAAAAAAAEAAAAAQQACCAADAAQAA=</HashCode>
+      <FileName>Context\ModelDocumentoApp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.MvcApplication">
+    <Position X="19.5" Y="9" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Global.asax.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.DEPENDENCIA">
+    <Position X="11.5" Y="12.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAEAAAAAAAAAAAAAAQAAAAAACAAAAA=</HashCode>
+      <FileName>Models\DEPENDENCIA.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.DOCUMENTO">
+    <Position X="0.5" Y="11" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAQAIAAAAAAAgkAAgAAAAAACAAAAAESAAIAAAgE=</HashCode>
+      <FileName>Models\DOCUMENTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.DOCUMENTO_INDEXACION">
+    <Position X="0.5" Y="17.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAwAAAAAAgAACg0AAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Models\DOCUMENTO_INDEXACION.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.EMPLEADO">
+    <Position X="15.5" Y="9" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>BCAAAAggIAACAAgEAAAAhCAAAAAAAAQAAAAEAICAEAI=</HashCode>
+      <FileName>Models\EMPLEADO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.ESTATU" Collapsed="true">
+    <Position X="11" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAACgAAAAAAAAEAAAAAgAAQAAAAAAKAAAAA=</HashCode>
+      <FileName>Models\ESTATU.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.PERSONA">
+    <Position X="8.5" Y="9" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAEAAAAAAJCAEAhgAAAAIAIAAQAAAAAACAgAAA=</HashCode>
+      <FileName>Models\PERSONA.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.RASTREO_EXPEDIENTE">
+    <Position X="15.25" Y="17.75" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>ACAAACAgIggIAAAEAkAAgAAABAAAAAAAAEAEAIAAAAA=</HashCode>
+      <FileName>Models\RASTREO_EXPEDIENTE.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.ROL" Collapsed="true">
+    <Position X="12.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Models\ROL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.TELEFONO">
+    <Position X="8.5" Y="13.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAEAAAAAAAAEAAAAAAAAAAAAAEAAAAAAE=</HashCode>
+      <FileName>Models\TELEFONO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.TIPO_DOCUMENTO">
+    <Position X="0.5" Y="15.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAABAQAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Models\TIPO_DOCUMENTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.USUARIO">
+    <Position X="7.5" Y="15.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAIAACEBAAAgAAAAAAAAAAAAQAAACEAJAAAAA=</HashCode>
+      <FileName>Models\USUARIO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.USUARIO_ROL">
+    <Position X="7.5" Y="19" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAoAAAkAAAAAAgQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\USUARIO_ROL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Controllers.AccountController" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Class Name="GDocumentAPP.Controllers.AccountController.ChallengeResult" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controllers\AccountController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAABAChACAQAAAAAAFgEgEABAABMKIAAAMRAAQgAAA=</HashCode>
+      <FileName>Controllers\AccountController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Controllers.DependenciaController">
+    <Position X="10.75" Y="15.25" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACARAACAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\DependenciaController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Controllers.DocumentoController">
+    <Position X="4" Y="9" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AIAAACAIBCARABCFAAAAAAAAAAUAAEACACEAAAAAACA=</HashCode>
+      <FileName>Controllers\DocumentoController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Controllers.DocumentoIndexacionController">
+    <Position X="19.5" Y="10.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACARAACAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\DocumentoIndexacionController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Controllers.EmpleadoController">
+    <Position X="15.25" Y="14" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACARAACAAAAAAAAAAAEAAEQCAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\EmpleadoController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Controllers.EstatusController">
+    <Position X="19.25" Y="18.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACARAACAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\EstatusController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Controllers.HomeController">
+    <Position X="0.5" Y="9" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAEACAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Controllers.ManageController" Collapsed="true">
+    <Position X="9.25" Y="4.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="GDocumentAPP.Controllers.ManageController.ManageMessageId" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controllers\ManageController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAABACAQiAAgAAAAEFhAAAAAAEAIMIAAEEEgAAkAAA=</HashCode>
+      <FileName>Controllers\ManageController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Controllers.PersonaController">
+    <Position X="11.75" Y="9" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACARAAiAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\PersonaController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Controllers.RastreoExpedienteController" Collapsed="true">
+    <Position X="7.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQACARAACAAAAAAAAAAAUAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\RastreoExpedienteController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Controllers.RolController" Collapsed="true">
+    <Position X="0.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACARAACAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\RolController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Controllers.TipoDocumentoController">
+    <Position X="4" Y="14.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACARAACAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\TipoDocumentoController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Controllers.UsuarioController">
+    <Position X="3.5" Y="18" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACARAACAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\UsuarioController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Models.ExternalLoginConfirmationViewModel" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\AccountViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Models.ExternalLoginListViewModel" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Models\AccountViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Models.SendCodeViewModel" Collapsed="true">
+    <Position X="4" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAIAAAAAAAAAAAAAAAAAAIAAAAgAAA=</HashCode>
+      <FileName>Models\AccountViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Models.VerifyCodeViewModel" Collapsed="true">
+    <Position X="11" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAEAAAAAAAgAAAAAAAAAAAAAAIAAAAgAAA=</HashCode>
+      <FileName>Models\AccountViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Models.ForgotViewModel" Collapsed="true">
+    <Position X="9.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\AccountViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Models.LoginViewModel" Collapsed="true">
+    <Position X="7.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAEAAAgAAA=</HashCode>
+      <FileName>Models\AccountViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Models.RegisterViewModel" Collapsed="true">
+    <Position X="9.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAACAAAAAAAAIAA=</HashCode>
+      <FileName>Models\AccountViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Models.ResetPasswordViewModel" Collapsed="true">
+    <Position X="11" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAgAAAAAAAAAAACAAAAAAAAIAA=</HashCode>
+      <FileName>Models\AccountViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Models.ForgotPasswordViewModel" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\AccountViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Models.DashboardViewModels">
+    <Position X="11.25" Y="18.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AFAAAQAAAAAQAAQAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DashboardViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Models.ApplicationUser" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\IdentityModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Models.ApplicationDbContext" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\IdentityModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Models.IndexViewModel" Collapsed="true">
+    <Position X="2.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAQAAAAAAAAAAAAAAQAAAEAEA=</HashCode>
+      <FileName>Models\ManageViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Models.ManageLoginsViewModel" Collapsed="true">
+    <Position X="11" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Models\ManageViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Models.FactorViewModel" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Models\ManageViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Models.SetPasswordViewModel" Collapsed="true">
+    <Position X="5.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Models\ManageViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Models.ChangePasswordViewModel" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAEAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Models\ManageViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Models.AddPhoneNumberViewModel" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ManageViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Models.VerifyPhoneNumberViewModel" Collapsed="true">
+    <Position X="12.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ManageViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Models.ConfigureTwoFactorViewModel" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ManageViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Models.ListaValoresPersona" Collapsed="true">
+    <Position X="6" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAEAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ManageViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Models.ListaValoresEmpleado" Collapsed="true">
+    <Position X="4" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAQAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ManageViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Models.TarifarioXML" Collapsed="true">
+    <Position X="11" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAQAAAAAACAAAAAAAAEAAAgAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Models\TarifarioXML.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Services.Bundle" Collapsed="true">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="GDocumentAPP.Services.Bundle.CanalGeneracion" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\Bundle.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="GDocumentAPP.Services.Bundle.Estatus" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\Bundle.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAABgBCAAASAAABAgAIAEAAAAAQAAQAACAAAEAA=</HashCode>
+      <FileName>Services\Bundle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Services.CustomIdentificacionValidator" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\CustomIdentificacionValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Services.DocumentoService" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\DocumentoService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Services.HandlePathFile" Collapsed="true">
+    <Position X="11" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAgAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Services\HandlePathFile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Services.HandleXMLService" Collapsed="true">
+    <Position X="12.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAIAAAAAAAAAAAAACAAAAAAAAAGAAAAAAAEA=</HashCode>
+      <FileName>Services\HandleXMLService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GDocumentAPP.Services.Util" Collapsed="true">
+    <Position X="9.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Util.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="GDocumentAPP.Models.StructTarifario" Collapsed="true">
+    <Position X="1.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAFAAIAAAAAQAAAAAAAAAAAAAgAAAAAACAIAA=</HashCode>
+      <FileName>Models\TarifarioXML.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

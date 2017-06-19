@@ -297,15 +297,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Images\WallImages\Chrysanthemum.jpg" />
     <Content Include="Images\WallImages\Desert.jpg" />
-    <Content Include="Images\WallImages\Hydrangeas.jpg" />
-    <Content Include="Images\WallImages\Jellyfish.jpg" />
-    <Content Include="Images\WallImages\Koala.jpg" />
-    <Content Include="Images\WallImages\Lighthouse.jpg" />
-    <Content Include="Images\WallImages\logo.png" />
-    <Content Include="Images\WallImages\Penguins.jpg" />
-    <Content Include="Images\WallImages\tarifarioConfig.xml" />
     <Content Include="Scripts\admin2Template\data\flot-data.js" />
     <Content Include="Scripts\admin2Template\data\morris-data.js" />
     <Content Include="Scripts\admin2Template\dist\css\sb-admin-2.css" />
@@ -482,6 +474,8 @@
     <Content Include="Scripts\customDropzone.js" />
     <Content Include="Scripts\dropzone\css\stylus\basic.styl" />
     <Content Include="Scripts\dropzone\css\stylus\dropzone.styl" />
+    <Content Include="ClassDiagram1.cd" />
+    <None Include="Properties\PublishProfiles\DocumentoAgilProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\dropzone\dropzone-amd-module.js" />
